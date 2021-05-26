@@ -6,6 +6,7 @@
 package View;
 
 import Model.Circle;
+import Model.Ellipse;
 import Model.MyLine;
 import Model.MyRect;
 import Model.Pixel;
@@ -324,7 +325,9 @@ public class pn2D extends javax.swing.JPanel {
         }
         selectOval = !selectOval;
         // TODO add your handling code here:
-        mode = DRAW_CIRCLE;
+//        mode = DRAW_CIRCLE;
+        mode = DRAW_ELLIPSE;
+
     }//GEN-LAST:event_lbHinhOvalMousePressed
 
     private void lbDiChuyenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDiChuyenMousePressed
@@ -399,12 +402,33 @@ public class pn2D extends javax.swing.JPanel {
 
     private void pnMainMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseDragged
         // TODO add your handling code here:
-
+        x2 = evt.getX();
+        y2 = evt.getY();
+        Point start = TrucToaDo.convertDescart(new Point(x1, y1), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
+        Point end = TrucToaDo.convertDescart(evt.getPoint(), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
+        
         if (mode.equals(DRAW_LINE)) {
-
+            TrucToaDo.tempShape = new MyLine(
+                    start,
+                    end);
+        } else if (mode.equals(DRAW_RECT)) {
+            TrucToaDo.tempShape = new MyRect(
+                    start, end);
+            
+        } else if (mode.equals(DRAW_TRIANGLE)) {
+            TrucToaDo.tempShape = new Triangle(
+                    start,
+                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5);
+        } else if (mode.equals(DRAW_CIRCLE)) {
+            TrucToaDo.tempShape = new Circle(
+                    start,
+                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/10);
+        } else if (mode.equals(DRAW_ELLIPSE)) {
+            TrucToaDo.tempShape =new Ellipse(
+                    start,
+                    end);
         }
-
-//        repaint();
+        repaint();
     }//GEN-LAST:event_pnMainMouseDragged
 
     private void pnMainMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMousePressed
@@ -442,7 +466,9 @@ public class pn2D extends javax.swing.JPanel {
                     start,
                     (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/10));
         } else if (mode.equals(DRAW_ELLIPSE)) {
-            
+            TrucToaDo.shapeList.add(new Ellipse(
+                    start,
+                    end));
         }
         repaint();
     }//GEN-LAST:event_pnMainMouseReleased
