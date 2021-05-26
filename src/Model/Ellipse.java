@@ -14,14 +14,14 @@ import java.awt.Point;
  * @author walker
  */
 public class Ellipse implements Shapes2D {
+
     // top left 
     Point A;
     // bottom right
     Point B;
-    
+
     Point O;
     int dai, cao;
-    
 
     public Ellipse(Point A, Point B) {
         this.A = A;
@@ -39,7 +39,7 @@ public class Ellipse implements Shapes2D {
         putPixel(g, xc + x, yc - y);
         putPixel(g, xc - x, yc - y);
     }
-    
+
     @Override
     public void draw(Graphics g) {
         long x, y, fx, fy, a2, b2, p;
@@ -81,10 +81,4 @@ public class Ellipse implements Shapes2D {
             plot(g, O.x, O.y, Math.round(x), Math.round(y));
         }
     }
-    
-    
-    
-    
-    
-    
 }

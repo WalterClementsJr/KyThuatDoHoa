@@ -14,16 +14,26 @@ import java.awt.Point;
  * @author walker
  */
 public class Triangle implements Shapes2D {
+
     private Point A;
     int canh;
 
-    
     public Triangle(Point a, int canh) {
         A = a;
         this.canh = canh;
     }
 
-    
+    /**
+     * Vẽ tam giác với 2 điểm kéo thả
+     *
+     * @param a
+     * @param b
+     */
+    public Triangle(Point a, Point b) {
+        canh = Math.abs(a.y - b.y);
+        A = new Point((a.x + b.x) / 2, Math.max(a.y, b.y));
+    }
+
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.BLACK);

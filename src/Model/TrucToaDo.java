@@ -25,7 +25,6 @@ public class TrucToaDo extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-        System.out.println("painting");
         super.paint(g);
         veTrucToaDo(g);
 

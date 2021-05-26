@@ -384,6 +384,7 @@ public class pn2D extends javax.swing.JPanel {
         selectXoa = !selectXoa;// TODO add your handling code here:
         
         TrucToaDo.shapeList.clear();
+        TrucToaDo.tempShape = null;
         repaint();
     }//GEN-LAST:event_lbXoaMousePressed
 
@@ -401,7 +402,7 @@ public class pn2D extends javax.swing.JPanel {
     }//GEN-LAST:event_pnMainMouseMoved
 
     private void pnMainMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseDragged
-        // TODO add your handling code here:
+
         x2 = evt.getX();
         y2 = evt.getY();
         Point start = TrucToaDo.convertDescart(new Point(x1, y1), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
@@ -419,6 +420,9 @@ public class pn2D extends javax.swing.JPanel {
             TrucToaDo.tempShape = new Triangle(
                     start,
                     (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5);
+//            TrucToaDo.tempShape = new Triangle(
+//                    start,
+//                    end);
         } else if (mode.equals(DRAW_CIRCLE)) {
             TrucToaDo.tempShape = new Circle(
                     start,
@@ -432,7 +436,7 @@ public class pn2D extends javax.swing.JPanel {
     }//GEN-LAST:event_pnMainMouseDragged
 
     private void pnMainMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMousePressed
-        // TODO add your handling code here:
+
         x1 = evt.getX();
         y1 = evt.getY();
 
@@ -440,7 +444,7 @@ public class pn2D extends javax.swing.JPanel {
     }//GEN-LAST:event_pnMainMousePressed
 
     private void pnMainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseReleased
-        // TODO add your handling code here:
+
         x2 = evt.getX();
         y2 = evt.getY();
         Point start = TrucToaDo.convertDescart(new Point(x1, y1), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
