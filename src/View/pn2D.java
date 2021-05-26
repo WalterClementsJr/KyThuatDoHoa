@@ -5,9 +5,11 @@
  */
 package View;
 
+import Model.Circle;
 import Model.MyLine;
 import Model.MyRect;
 import Model.Pixel;
+import Model.Triangle;
 import Model.TrucToaDo;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -33,14 +35,16 @@ public class pn2D extends javax.swing.JPanel {
     boolean selectXoa = false; //chức năng xóa
 
     int x1, y1, x2, y2;
-    public String mode;
+    
 
     public final String DRAW_LINE = "line";
     public final String DRAW_RECT = "rect";
-    // TODO add shit
-    public final String DRAW_CIRCLE = "";
-    public final String DRAW_TRIANGLE = "";
-
+    public final String DRAW_CIRCLE = "circle";
+    public final String DRAW_TRIANGLE = "triangle";
+    public final String DRAW_ELLIPSE = "ellipse";
+    
+    public String mode = DRAW_LINE;
+    
     public pn2D() {
         initComponents();
 
@@ -278,6 +282,7 @@ public class pn2D extends javax.swing.JPanel {
         selectHCN = !selectHCN;
 
         // TODO add your handling code here:
+        mode = DRAW_RECT;
     }//GEN-LAST:event_lbHinhCNMousePressed
 
     private void lbHinhTamGiacMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhTamGiacMousePressed
@@ -297,6 +302,8 @@ public class pn2D extends javax.swing.JPanel {
             lbHinhTamGiac.setBorder(null);
         }
         selectTamGiac = !selectTamGiac;
+        
+        mode = DRAW_TRIANGLE;
     }//GEN-LAST:event_lbHinhTamGiacMousePressed
 
     private void lbHinhOvalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhOvalMousePressed
@@ -317,6 +324,7 @@ public class pn2D extends javax.swing.JPanel {
         }
         selectOval = !selectOval;
         // TODO add your handling code here:
+        mode = DRAW_CIRCLE;
     }//GEN-LAST:event_lbHinhOvalMousePressed
 
     private void lbDiChuyenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDiChuyenMousePressed
@@ -411,13 +419,31 @@ public class pn2D extends javax.swing.JPanel {
         // TODO add your handling code here:
         x2 = evt.getX();
         y2 = evt.getY();
-        System.out.println(x2 + "-" + y2);
+        Point start = TrucToaDo.convertDescart(new Point(x1, y1), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
+        Point end = TrucToaDo.convertDescart(evt.getPoint(), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
+        
+        // TODO set info into table
+        System.out.println(start.getX() +" - "+ start.getY());
+        
         if (mode.equals(DRAW_LINE)) {
             TrucToaDo.shapeList.add(new MyLine(
-                    TrucToaDo.convertDescart(new Point(x1, y1), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS),
-                    TrucToaDo.convertDescart(evt.getPoint(), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS)));
+                    start,
+                    end));
+        } else if (mode.equals(DRAW_RECT)) {
+            TrucToaDo.shapeList.add(new MyRect(
+                    start, end));
+            
+        } else if (mode.equals(DRAW_TRIANGLE)) {
+            TrucToaDo.shapeList.add(new Triangle(
+                    start,
+                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5));
+        } else if (mode.equals(DRAW_CIRCLE)) {
+            TrucToaDo.shapeList.add(new Circle(
+                    start,
+                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/10));
+        } else if (mode.equals(DRAW_ELLIPSE)) {
+            
         }
-        Point point = TrucToaDo.convertDescart(evt.getPoint(), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
         repaint();
     }//GEN-LAST:event_pnMainMouseReleased
 

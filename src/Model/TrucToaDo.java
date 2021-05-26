@@ -309,7 +309,7 @@ public class TrucToaDo extends JPanel {
             y = deltaY - y;
         } else if (x >= 0 && y <= 0) {
             x = x + deltaX;
-            y = y + deltaY;
+            y = -y + deltaY;
         } else if (x <= 0 && y >= 0) {
             x = deltaX - x;
             y = deltaY - y;
@@ -318,7 +318,7 @@ public class TrucToaDo extends JPanel {
             y = deltaY - y;
         }
         Point pointNew = new Point();
-        pointNew.setLocation(x / 5, y / 5);
+        pointNew.setLocation(x , y );
         return pointNew;
     }
 }

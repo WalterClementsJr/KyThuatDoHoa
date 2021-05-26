@@ -14,23 +14,23 @@ import java.awt.Point;
  * @author walker
  */
 public class Triangle implements Shapes2D {
-    private int xDinh, yDinh, canh;
+    private Point A;
+    int canh;
 
     
-    public Triangle(int xDinh, int yDinh, int canh) {
-        this.xDinh = xDinh;
-        this.yDinh = yDinh;
+    public Triangle(Point a, int canh) {
+        A = a;
         this.canh = canh;
     }
 
     
     @Override
     public void draw(Graphics g) {
-        g.setColor(Color.BLACK);  //dat mau hinh ve la red
+        g.setColor(Color.BLACK);
         //khai bao tọa độ các đỉnh
         int xA, yA, xB, yB, xC, yC, aH;
-        xA = xDinh;
-        yA = yDinh;
+        xA = A.x;
+        yA = A.y;
         aH = (int) Math.sqrt(3) * canh / 2;
         xB = xA + canh;
         yB = yA;//+ aH để đỉnh luôn ở trên
