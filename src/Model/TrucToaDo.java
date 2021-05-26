@@ -8,6 +8,7 @@ package Model;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -19,22 +20,29 @@ public class TrucToaDo extends JPanel {
     public static int deltaX = 375 / 5;//nửa chiều dài của trục Ox chia cho độ lớn 1 pixel
     public static int deltaY = 250 / 5;//nửa chiều dài của trục oy chia cho độ lớn 1 pixel
 
+    
+    public static ArrayList<Shapes2D> shapeList = new ArrayList<>();
     @Override
     public void paint(Graphics g) {
+        System.out.println("painting");
         super.paint(g);
         veTrucToaDo(g);
 
-        Triangle t = new Triangle(30,30,20);
-        t.draw(g);
-        MyLine line =new MyLine(new Point(0, 0), new Point(10, 30));
-        line.draw(g);
-        
-        MyRect rect = new MyRect(new Point(0,0), 10, 20);
-        rect.draw(g);
-        
-        Circle c = new Circle(new Point(0,0), 30);
-        c.draw(g);
-        
+//        Triangle t = new Triangle(30,30,20);
+//        t.draw(g);
+//        MyLine line =new MyLine(new Point(0, 0), new Point(10, 30));
+//        line.draw(g);
+//        
+//        MyRect rect = new MyRect(new Point(0,0), new Point(10,50));
+//        rect.draw(g);
+//        
+//        Circle c = new Circle(new Point(0,0), 30);
+//        c.draw(g);
+
+        for (Shapes2D shape:shapeList) {
+            System.out.println(shapeList.size());
+            shape.draw(g);
+        }
     }
 
     public void veTrucToaDo(Graphics g) {
@@ -250,6 +258,15 @@ public class TrucToaDo extends JPanel {
         }
     }
 
+    /**
+     * chuyển tọa độ real java sang fake
+     * @param p
+     * @param deltaX
+     * @param deltaY
+     * @param xAxisSize
+     * @param yAxisSize
+     * @return 
+     */
     public static Point convertDescart(Point p, double deltaX, double deltaY, int xAxisSize, int yAxisSize) {
 
         double x = Math.floor(p.getX() / 5);
@@ -264,7 +281,7 @@ public class TrucToaDo extends JPanel {
             x = x + deltaX;
             y = y - deltaY;
         } else {
-            x = x + deltaX;
+            x = deltaX-x;
             y = y + deltaY;
         }
         Point pointNew = new Point();
@@ -272,6 +289,15 @@ public class TrucToaDo extends JPanel {
         return pointNew;
     }
 
+    /**
+     * tọa độ 
+     * @param p
+     * @param deltaX
+     * @param deltaY
+     * @param xAxisSize
+     * @param yAxisSize
+     * @return 
+     */
     public static Point convertPointDescart(Point p, double deltaX, double deltaY, int xAxisSize, int yAxisSize) {
         deltaX = deltaX + 10;
         deltaX = (deltaX * 5);

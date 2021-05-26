@@ -23,6 +23,7 @@ import javax.swing.JLabel;
  * @author zoroONE01
  */
 public class pn2D extends javax.swing.JPanel {
+
     //mấy biến này đúng thì mới thực hiện chức năng nha
     boolean selectDuongThang = false; //vẽ đường thẳng
     boolean selectHCN = false; //vẽ hình chữ nhận
@@ -30,12 +31,19 @@ public class pn2D extends javax.swing.JPanel {
     boolean selectOval = false; //vẽ hình oval
     boolean selectDiChuyen = false; //chức năng di chuyển các hình
     boolean selectXoa = false; //chức năng xóa
-    int xTest;
-    int yTest;
+
+    int x1, y1, x2, y2;
+    public String mode;
+
+    public final String DRAW_LINE = "line";
+    public final String DRAW_RECT = "rect";
+    // TODO add shit
+    public final String DRAW_CIRCLE = "";
+    public final String DRAW_TRIANGLE = "";
+
     public pn2D() {
-        initComponents();    
-        
-        
+        initComponents();
+
     }
 
 //    @Override
@@ -47,7 +55,6 @@ public class pn2D extends javax.swing.JPanel {
         lb.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,6 +102,9 @@ public class pn2D extends javax.swing.JPanel {
         pnMain.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnMain.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                pnMainMouseDragged(evt);
+            }
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 pnMainMouseMoved(evt);
             }
@@ -105,6 +115,12 @@ public class pn2D extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 pnMainMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                pnMainMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                pnMainMouseReleased(evt);
             }
         });
 
@@ -239,6 +255,8 @@ public class pn2D extends javax.swing.JPanel {
             lbHinhDuongThang.setBorder(null);
         }
         selectDuongThang = !selectDuongThang;
+
+        mode = DRAW_LINE;
     }//GEN-LAST:event_lbHinhDuongThangMousePressed
 
     private void lbHinhCNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhCNMousePressed
@@ -324,12 +342,12 @@ public class pn2D extends javax.swing.JPanel {
 
     private void pnMainMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseEntered
         if (selectDuongThang || selectHCN || selectOval || selectTamGiac || selectXoa) {
-            pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR)); 
+            pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
         }
         if (selectDiChuyen) {
-            pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR)); 
+            pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
         }
-               
+
     }//GEN-LAST:event_pnMainMouseEntered
 
     private void pnMainMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseExited
@@ -353,20 +371,55 @@ public class pn2D extends javax.swing.JPanel {
             lbXoa.setBorder(null);
         }
         selectXoa = !selectXoa;// TODO add your handling code here:
+        
+        TrucToaDo.shapeList.clear();
+        repaint();
     }//GEN-LAST:event_lbXoaMousePressed
 
     private void pnMainMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseMoved
         // TODO add your handling code here:
-         Point point = TrucToaDo.convertDescart(evt.getPoint(),TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
+        Point point = TrucToaDo.convertDescart(evt.getPoint(), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
         String xyCurrent = "(" + point.getX() + ";" + point.getY() + ")";
         toaDoCurrent.setText(xyCurrent);
-        int xJv=evt.getX()+50;
-              int yJv=evt.getY()+50;
-        String xyJava = "(" + xJv+ ";" + yJv + ")";
-         toadoJava.setText("");
+        int xJv = evt.getX() + 50;
+        int yJv = evt.getY() + 50;
+        String xyJava = "(" + xJv + ";" + yJv + ")";
+        toadoJava.setText("");
         toadoJava.setText(xyJava);
-            
+
     }//GEN-LAST:event_pnMainMouseMoved
+
+    private void pnMainMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseDragged
+        // TODO add your handling code here:
+
+        if (mode.equals(DRAW_LINE)) {
+
+        }
+
+//        repaint();
+    }//GEN-LAST:event_pnMainMouseDragged
+
+    private void pnMainMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMousePressed
+        // TODO add your handling code here:
+        x1 = evt.getX();
+        y1 = evt.getY();
+
+
+    }//GEN-LAST:event_pnMainMousePressed
+
+    private void pnMainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseReleased
+        // TODO add your handling code here:
+        x2 = evt.getX();
+        y2 = evt.getY();
+        System.out.println(x2 + "-" + y2);
+        if (mode.equals(DRAW_LINE)) {
+            TrucToaDo.shapeList.add(new MyLine(
+                    TrucToaDo.convertDescart(new Point(x1, y1), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS),
+                    TrucToaDo.convertDescart(evt.getPoint(), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS)));
+        }
+        Point point = TrucToaDo.convertDescart(evt.getPoint(), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
+        repaint();
+    }//GEN-LAST:event_pnMainMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

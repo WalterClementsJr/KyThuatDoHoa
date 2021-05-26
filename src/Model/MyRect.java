@@ -6,23 +6,19 @@ import java.awt.Point;
 
 public class MyRect implements Shapes2D {
 
-    private Point A;
-    int dai, rong;
+    private Point A, B;
 
-    public MyRect(Point a, int dai, int rong) {
+    public MyRect(Point a, Point b) {
         A = a;
-        this.dai = dai;
-        this.rong = rong;
+        B = b;
     }
 
     @Override
     public void draw(Graphics g) {
-        int x1 = A.x + dai;
-        int y1 = A.y + rong;
-        bresenhamLine(g, A.x, A.y, x1, A.y);
-        bresenhamLine(g, x1, A.y, x1, y1);
-        bresenhamLine(g, A.x, y1, x1, y1);
-        bresenhamLine(g, A.x, A.y, A.x, y1);
+        bresenhamLine(g, A.x, A.y, B.x, A.y);
+        bresenhamLine(g, B.x, A.y, B.x, B.y);
+        bresenhamLine(g, B.x, B.y, A.x, B.y);
+        bresenhamLine(g, A.x, B.y, A.x, A.y);
     }
 
 }

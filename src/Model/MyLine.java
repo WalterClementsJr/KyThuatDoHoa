@@ -17,6 +17,7 @@ public class MyLine implements Shapes2D {
 
     @Override
     public void draw(Graphics g) {
+        System.out.println("drawing line");
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
     }
 

@@ -22,6 +22,11 @@ public class Circle implements Shapes2D {
         this.A = A;
         this.radius = radius;
     }
+    
+    public Circle(Point A, Point B) {
+        this.A = A;
+        this.radius = radius;
+    }
 
     @Override
     public void draw(Graphics g) {
