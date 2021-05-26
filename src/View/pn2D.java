@@ -384,6 +384,7 @@ public class pn2D extends javax.swing.JPanel {
         selectXoa = !selectXoa;// TODO add your handling code here:
         
         TrucToaDo.shapeList.clear();
+        TrucToaDo.tempShape=null;
         repaint();
     }//GEN-LAST:event_lbXoaMousePressed
 
