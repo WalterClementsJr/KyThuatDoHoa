@@ -276,6 +276,9 @@ public class pn3D extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbHinhHopMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhHopMousePressed
+        TrucToaDo3D.tempShape=null;
+        TrucToaDo3D.shape3D=null;
+        repaint();
         if (!selectHinhHop) {
             selectHinhCau = false;
             selectDiChuyen = false;
@@ -296,6 +299,9 @@ public class pn3D extends javax.swing.JPanel {
     }//GEN-LAST:event_lbHinhHopMousePressed
 
     private void lbHinhCauMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhCauMousePressed
+        TrucToaDo3D.tempShape=null;
+        TrucToaDo3D.shape3D=null;
+        repaint();
         if (!selectHinhCau) {
             selectHinhHop = false;
             selectDiChuyen = false;
@@ -356,6 +362,9 @@ public class pn3D extends javax.swing.JPanel {
             lbXoa.setBorder(null);
         }
         selectXoa = !selectXoa;// TODO add your handling code here:
+        TrucToaDo3D.tempShape=null;
+        TrucToaDo3D.shape3D=null;
+        repaint();
     }//GEN-LAST:event_lbXoaMousePressed
 
     private void jSpinnerXoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerXoStateChanged
