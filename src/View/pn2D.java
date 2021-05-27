@@ -672,7 +672,7 @@ public class pn2D extends javax.swing.JPanel {
         } else if (mode.equals(DRAW_CIRCLE) && selectTron) {
             TrucToaDo.tempShape = new Circle(
                     start,
-                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) / 10);
+                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) / 5);
         } else if (mode.equals(DRAW_ELLIPSE) && selectOval) {
             TrucToaDo.tempShape = new Ellipse(
                     start,
@@ -682,25 +682,25 @@ public class pn2D extends javax.swing.JPanel {
     }//GEN-LAST:event_pnMainMouseDragged
 
     private void pnMainMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMousePressed
-        shape = new ShapeInfo();
+
         x1 = evt.getX();
         y1 = evt.getY();
-        shape.setxStart(x1);
-        shape.setyStart(y1);
-
+        Point start = TrucToaDo.convertDescart(new Point(x1, y1));
     }//GEN-LAST:event_pnMainMousePressed
 
     private void pnMainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseReleased
-
+        shape = new ShapeInfo();
+        
         x2 = evt.getX();
         y2 = evt.getY();
-        shape.setxEnd(x2);
-        shape.setyEnd(y2);
+        
         Point start = TrucToaDo.convertDescart(new Point(x1, y1));
-        Point end = TrucToaDo.convertDescart(evt.getPoint());
+        shape.setxStart(start.x);
+        shape.setyStart(start.y);
 
-        // TODO set info into table
-        System.out.println(start.getX() + " - " + start.getY());
+        Point end = TrucToaDo.convertDescart(evt.getPoint());
+        shape.setxEnd(end.x);
+        shape.setyEnd(end.y);
 
         if (mode.equals(DRAW_LINE) && selectDuongThang) {
             shape.setline(numberName("Line"));
@@ -714,9 +714,6 @@ public class pn2D extends javax.swing.JPanel {
 
         } else if (mode.equals(DRAW_TRIANGLE) && selectTamGiac) {
             shape.setTriangle(numberName("Triangle"));
-//            TrucToaDo.shapeList.add(new Triangle(
-//                    start,
-//                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5));
             TrucToaDo.shapeList.add(new Triangle(
                     start,
                     end));
@@ -724,7 +721,7 @@ public class pn2D extends javax.swing.JPanel {
             shape.setCircle(numberName("Circle"));
             TrucToaDo.shapeList.add(new Circle(
                     start,
-                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) / 10));
+                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) / 5));
         } else if (mode.equals(DRAW_ELLIPSE) && selectOval) {
             shape.setEllipse(numberName("Ellipse"));
             TrucToaDo.shapeList.add(new Ellipse(

@@ -187,30 +187,29 @@ public class ShapeInfo {
         y1 = Math.min(yStart, yEnd);
         x2 = Math.max(xStart, xEnd);
         y2 = Math.min(yStart, yEnd);
+        this.h = Math.abs(y0 - y2);
     }
 
     public void setRectangle(int name) {
         this.name = "Rectangle" + String.valueOf(name);
         this.type = "Rectangle";
-        x1 = xStart;
-        y1 = yStart;
-        x2 = xEnd;
-        y2 = yEnd;
+        a = Math.abs(x1 - x2);
+        b = Math.abs(y1 - y2);
     }
 
     public void setline(int name) {
         this.name = "Line" + String.valueOf(name);
         this.type = "Line";
-        x1 = xStart;
-        y1 = yStart;
-        x2 = xEnd;
-        y2 = yEnd;
+        a = (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+
     }
 
     public void setCircle(int name) {
         this.name = "Circle" + String.valueOf(name);
         this.type = "Circle";
-        r = (int) Math.sqrt((xEnd - xStart) * (xEnd - xStart) + (yEnd - yStart) * (yEnd - yStart)) / 5;
+        System.out.println("%d %d - %d %d".formatted(xStart, yStart, xEnd , yEnd));
+        r = (int) Math.sqrt((xEnd - xStart) * (xEnd - xStart) + (yEnd - yStart) * (yEnd - yStart));
+        System.out.println(r);
         x0 = xStart;
         y0 = yStart;
     }
@@ -219,7 +218,7 @@ public class ShapeInfo {
         this.name = "Ellipse" + String.valueOf(name);
         this.type = "Ellipse";
         a = Math.abs(xStart - xEnd);
-        b = Math.abs(yStart - yStart);
+        b = Math.abs(yStart - yEnd);
         x0 = (xStart + xEnd) / 2;
         y0 = (yStart + yStart) / 2;
     }
