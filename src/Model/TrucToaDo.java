@@ -27,17 +27,9 @@ public class TrucToaDo extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         veTrucToaDo(g);
-
-//        Triangle t = new Triangle(30,30,20);
-//        t.draw(g);
-//        MyLine line =new MyLine(new Point(0, 0), new Point(10, 30));
-//        line.draw(g);
-//        
-//        MyRect rect = new MyRect(new Point(0,0), new Point(10,50));
-//        rect.draw(g);
-//        
-//        Circle c = new Circle(new Point(0,0), 30);
-//        c.draw(g);
+        
+//        Ellipse.drawHalfDottedEllipse(g, new Point(0, 0), 20);
+        
         for (Shapes2D shape : shapeList) {
             System.out.println(shapeList.size());
             shape.draw(g);

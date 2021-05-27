@@ -34,7 +34,6 @@ public class MyRect implements Shapes2D {
 
     @Override
     public void fill(Graphics g, Color color) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

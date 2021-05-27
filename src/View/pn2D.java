@@ -14,7 +14,6 @@ import Model.TrucToaDo;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Point;
-import static java.awt.image.ImageObserver.ALLBITS;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 

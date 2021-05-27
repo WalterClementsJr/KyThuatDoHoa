@@ -44,7 +44,7 @@ public class pn2Da extends javax.swing.JPanel {
 
         pnThongTin = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        pnMain = new javax.swing.JPanel();
+        pnMain = new Model.TrucToaDo2DAnimation();
         pnFooter = new javax.swing.JPanel();
         lbDiChuyen = new javax.swing.JLabel();
         lbXoay = new javax.swing.JLabel();
