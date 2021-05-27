@@ -30,17 +30,19 @@ public class TrucToaDo3D extends JPanel {
         veTrucToaDo(g);
         
 //        Ellipse.drawHalfDottedEllipse(g, new Point(0, 0), 20);
-        
-        for (Shapes2D shape : shapeList) {
-            System.out.println(shapeList.size());
-            shape.draw(g);
-        }
-        if (shape3D != null) {
-            shape3D.draw(g);
-        }
-        if (tempShape != null) {
-            tempShape.draw(g);
-        }
+        Ellipse.drawHalfDashed(g, 0, 0, 60, 20);
+//        Ellipse e = new Ellipse(new Point(0, 0), new Point(20, 20));
+//        e.draw(g);
+//        for (Shapes2D shape : shapeList) {
+//            System.out.println(shapeList.size());
+//            shape.draw(g);
+//        }
+//        if (shape3D != null) {
+//            shape3D.draw(g);
+//        }
+//        if (tempShape != null) {
+//            tempShape.draw(g);
+//        }
     }
 
     public void veTrucToaDo(Graphics g) {
