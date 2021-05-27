@@ -412,22 +412,22 @@ public class pn2D extends javax.swing.JPanel {
         Point start = TrucToaDo.convertDescart(new Point(x1, y1), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
         Point end = TrucToaDo.convertDescart(evt.getPoint(), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
         
-        if (mode.equals(DRAW_LINE)) {
+        if (mode.equals(DRAW_LINE)&& selectDuongThang) {
             TrucToaDo.tempShape = new MyLine(
                     start,
                     end);
-        } else if (mode.equals(DRAW_RECT)) {
+        } else if (mode.equals(DRAW_RECT)&& selectHCN) {
             TrucToaDo.tempShape = new MyRect(
                     start, end);
             
-        } else if (mode.equals(DRAW_TRIANGLE)) {
-//            TrucToaDo.tempShape = new Triangle(
-//                    start,
-//                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5);
+        } else if (mode.equals(DRAW_TRIANGLE)&& selectTamGiac) {
             TrucToaDo.tempShape = new Triangle(
                     start,
-                    end);
-        } else if (mode.equals(DRAW_CIRCLE)) {
+                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5);
+//            TrucToaDo.tempShape = new Triangle(
+//                    start,
+//                    end);
+        } else if (mode.equals(DRAW_CIRCLE)&&selectOval) {
             TrucToaDo.tempShape = new Circle(
                     start,
                     (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/10);
@@ -457,22 +457,20 @@ public class pn2D extends javax.swing.JPanel {
         // TODO set info into table
         System.out.println(start.getX() +" - "+ start.getY());
         
-        if (mode.equals(DRAW_LINE)) {
+        if (mode.equals(DRAW_LINE)&& selectDuongThang) {
             TrucToaDo.shapeList.add(new MyLine(
                     start,
                     end));
-        } else if (mode.equals(DRAW_RECT)) {
+        } else if (mode.equals(DRAW_RECT)&& selectHCN) {
+            
             TrucToaDo.shapeList.add(new MyRect(
                     start, end));
             
-        } else if (mode.equals(DRAW_TRIANGLE)) {
-//            TrucToaDo.shapeList.add(new Triangle(
-//                    start,
-//                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5));
+        } else if (mode.equals(DRAW_TRIANGLE)&& selectTamGiac) {
             TrucToaDo.shapeList.add(new Triangle(
                     start,
-                    end));
-        } else if (mode.equals(DRAW_CIRCLE)) {
+                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5));
+        } else if (mode.equals(DRAW_CIRCLE)&&selectOval) {
             TrucToaDo.shapeList.add(new Circle(
                     start,
                     (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/10));
