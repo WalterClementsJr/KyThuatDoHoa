@@ -9,13 +9,31 @@ import Model.Circle;
 import Model.Ellipse;
 import Model.MyLine;
 import Model.MyRect;
+import Model.Pixel;
+import Model.ShapeInfo;
 import Model.Triangle;
 import Model.TrucToaDo;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import static java.awt.Frame.HAND_CURSOR;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.image.ImageObserver;
+import static java.awt.image.ImageObserver.ALLBITS;
+import java.text.AttributedCharacterIterator;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.ToolTipManager;
+import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -29,7 +47,7 @@ public class pn2D extends javax.swing.JPanel {
     boolean selectTamGiac = false; //vẽ hình tam giác
     boolean selectOval = false; //vẽ hình oval
     boolean selectDiChuyen = false; //chức năng di chuyển các hình
-    boolean selectXoa = false; //chức năng xóa
+    boolean selectTron = false;
 
     int x1, y1, x2, y2;
 
@@ -38,21 +56,45 @@ public class pn2D extends javax.swing.JPanel {
     public final String DRAW_CIRCLE = "circle";
     public final String DRAW_TRIANGLE = "triangle";
     public final String DRAW_ELLIPSE = "ellipse";
+    public String mode = "";
 
-    public String mode = DRAW_LINE;
+    ArrayList<ShapeInfo> listShapeInfo = new ArrayList<>();
+    ShapeInfo shape;
+    DefaultListModel<String> dlm;
+    int listIndexSelected = -1;
+    String name = "";
 
     public pn2D() {
         initComponents();
-
+        setListShape();
+        
     }
 
+    public void setListShape() {
+        listShape.setModel(new DefaultListModel<>());
+        dlm = (DefaultListModel<String>) listShape.getModel();
+        for (ShapeInfo shapeInfo : listShapeInfo) {
+            dlm.addElement(shapeInfo.getName());
+        }
+    }
 //    @Override
 //    public void paint(Graphics g) {
 //        super.paint(g); //To change body of generated methods, choose Tools | Templates.
 //        
 //    }
+
     public void lbSelected(JLabel lb) {
         lb.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+    }
+
+    public int numberName(String type) {
+        int num = 0;
+        for (ShapeInfo shapeInfo : listShapeInfo) {
+            if (shapeInfo.getType().equals(type)) {
+                num++;
+            }
+        }
+        return num;
     }
 
     /**
@@ -64,42 +106,62 @@ public class pn2D extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnMain = new Model.TrucToaDo();
         pnThongTin = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        pnMain = new Model.TrucToaDo();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listShape = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        tfY1 = new javax.swing.JTextField();
+        tfX2 = new javax.swing.JTextField();
+        tfY2 = new javax.swing.JTextField();
+        tfx0 = new javax.swing.JTextField();
+        tfy0 = new javax.swing.JTextField();
+        tfh = new javax.swing.JTextField();
+        tfX1 = new javax.swing.JTextField();
+        tfr = new javax.swing.JTextField();
+        tfa = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        tfb = new javax.swing.JTextField();
+        lbXoaTatCa = new javax.swing.JLabel();
+        lbDelete = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel13 = new javax.swing.JLabel();
+        tfx1 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        tfy1 = new javax.swing.JTextField();
+        tfx2 = new javax.swing.JTextField();
+        tfy2 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         pnFooter = new javax.swing.JPanel();
-        lbUndo = new javax.swing.JLabel();
-        lbRedo = new javax.swing.JLabel();
-        lbDiChuyen = new javax.swing.JLabel();
         lbXoay = new javax.swing.JLabel();
         lbLatOy = new javax.swing.JLabel();
         lbLatOx = new javax.swing.JLabel();
         lbPhongTo = new javax.swing.JLabel();
         lbThuNho = new javax.swing.JLabel();
-        lbXoa = new javax.swing.JLabel();
-        toaDoCurrent = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         toadoJava = new javax.swing.JLabel();
+        toaDoCurrent = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         pnChucNang = new javax.swing.JPanel();
         lbHinhCN = new javax.swing.JLabel();
         lbHinhTamGiac = new javax.swing.JLabel();
         lbHinhDuongThang = new javax.swing.JLabel();
+        lbHinhTron = new javax.swing.JLabel();
         lbHinhOval = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnThongTin.setBackground(new java.awt.Color(255, 255, 255));
-        pnThongTin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnThongTin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel16.setText("Thông tin chi tiết");
-        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        pnThongTin.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 140, 30));
-
-        add(pnThongTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 200, 500));
-
         pnMain.setBackground(new java.awt.Color(255, 255, 255));
-        pnMain.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnMain.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnMain.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -128,70 +190,294 @@ public class pn2D extends javax.swing.JPanel {
         pnMain.setLayout(pnMainLayout);
         pnMainLayout.setHorizontalGroup(
             pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 748, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
         );
         pnMainLayout.setVerticalGroup(
             pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
 
         add(pnMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 750, 500));
+
+        pnThongTin.setBackground(new java.awt.Color(255, 255, 255));
+        pnThongTin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Thông tin chi tiết");
+        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnThongTin.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 200, 30));
+
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        listShape.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        listShape.setSelectionBackground(new java.awt.Color(153, 153, 153));
+        listShape.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                listShapeMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listShape);
+
+        pnThongTin.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 160, 160));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("X1");
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 25, 30));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Y1");
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 25, 30));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Y2");
+        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 510, 25, 30));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("X2");
+        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 25, 30));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("x0");
+        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 25, 30));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("h");
+        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 25, 30));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("y0");
+        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 25, 30));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("r");
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 25, 30));
+
+        tfY1.setEditable(false);
+        tfY1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfY1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfY1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfY1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 470, 45, 30));
+
+        tfX2.setEditable(false);
+        tfX2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfX2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfX2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfX2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 510, 45, 30));
+
+        tfY2.setEditable(false);
+        tfY2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfY2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfY2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfY2, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 510, 45, 30));
+
+        tfx0.setEditable(false);
+        tfx0.setBackground(new java.awt.Color(220, 220, 220));
+        tfx0.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfx0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfx0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfx0, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 260, 45, 30));
+
+        tfy0.setEditable(false);
+        tfy0.setBackground(new java.awt.Color(220, 220, 220));
+        tfy0.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfy0.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfy0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfy0, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 260, 45, 30));
+
+        tfh.setEditable(false);
+        tfh.setBackground(new java.awt.Color(220, 220, 220));
+        tfh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfh.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfh, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 420, 45, 30));
+
+        tfX1.setEditable(false);
+        tfX1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfX1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfX1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfX1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 470, 45, 30));
+
+        tfr.setEditable(false);
+        tfr.setBackground(new java.awt.Color(220, 220, 220));
+        tfr.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfr.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfr.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfr, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 420, 45, 30));
+
+        tfa.setEditable(false);
+        tfa.setBackground(new java.awt.Color(220, 220, 220));
+        tfa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfa, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 380, 45, 30));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("a");
+        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 25, 30));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("b");
+        jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 25, 30));
+
+        tfb.setEditable(false);
+        tfb.setBackground(new java.awt.Color(220, 220, 220));
+        tfb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfb.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfb.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfb, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 380, 45, 30));
+
+        lbXoaTatCa.setBackground(new java.awt.Color(0, 0, 0));
+        lbXoaTatCa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbXoaTatCa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_delete_database_20px.png"))); // NOI18N
+        lbXoaTatCa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbXoaTatCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbXoaTatCa.setOpaque(true);
+        lbXoaTatCa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbXoaTatCaMousePressed(evt);
+            }
+        });
+        pnThongTin.add(lbXoaTatCa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 70, 30));
+
+        lbDelete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_trash_20px.png"))); // NOI18N
+        lbDelete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbDeleteMousePressed(evt);
+            }
+        });
+        pnThongTin.add(lbDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 550, 70, 30));
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        pnThongTin.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 160, 10));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("x1");
+        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 25, 30));
+
+        tfx1.setEditable(false);
+        tfx1.setBackground(new java.awt.Color(220, 220, 220));
+        tfx1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfx1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfx1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfx1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 300, 45, 30));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("y1");
+        jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 25, 30));
+
+        tfy1.setEditable(false);
+        tfy1.setBackground(new java.awt.Color(220, 220, 220));
+        tfy1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfy1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfy1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfy1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 300, 45, 30));
+
+        tfx2.setEditable(false);
+        tfx2.setBackground(new java.awt.Color(220, 220, 220));
+        tfx2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfx2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfx2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfx2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 340, 45, 30));
+
+        tfy2.setEditable(false);
+        tfy2.setBackground(new java.awt.Color(220, 220, 220));
+        tfy2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfy2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfy2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(tfy2, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 340, 45, 30));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("y2");
+        jLabel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 25, 30));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("x2");
+        jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 25, 30));
+
+        add(pnThongTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, -40, 200, 590));
 
         pnFooter.setBackground(new java.awt.Color(255, 255, 255));
         pnFooter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnFooter.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_undo_30px_1.png"))); // NOI18N
-        lbUndo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbUndo, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, -1, -1));
-
-        lbRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_redo_30px.png"))); // NOI18N
-        lbRedo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbRedo, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, -1, -1));
-
-        lbDiChuyen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_move_30px.png"))); // NOI18N
-        lbDiChuyen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbDiChuyen.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbDiChuyenMousePressed(evt);
-            }
-        });
-        pnFooter.add(lbDiChuyen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
-
         lbXoay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_rotate_30px.png"))); // NOI18N
         lbXoay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbXoay, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
+        pnFooter.add(lbXoay, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, -1));
 
         lbLatOy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flip_vertical_30px_1.png"))); // NOI18N
         lbLatOy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbLatOy, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
+        pnFooter.add(lbLatOy, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
         lbLatOx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flip_horizontal_30px_1.png"))); // NOI18N
         lbLatOx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbLatOx, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));
+        pnFooter.add(lbLatOx, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
 
         lbPhongTo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_zoom_in_30px.png"))); // NOI18N
         lbPhongTo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbPhongTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
+        pnFooter.add(lbPhongTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, -1, -1));
 
         lbThuNho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_zoom_out_30px.png"))); // NOI18N
         lbThuNho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbThuNho, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
+        pnFooter.add(lbThuNho, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, -1, -1));
 
-        lbXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_erase_30px_2.png"))); // NOI18N
-        lbXoa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbXoa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbXoaMousePressed(evt);
-            }
-        });
-        pnFooter.add(lbXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_move_30px.png"))); // NOI18N
+        jLabel2.setText("Java:");
+        pnFooter.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        toaDoCurrent.setText("jLabel1");
-        pnFooter.add(toaDoCurrent, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 100, -1));
+        toadoJava.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        toadoJava.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        toadoJava.setText("Ox : Oy");
+        toadoJava.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnFooter.add(toadoJava, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 70, 30));
 
-        toadoJava.setText("jLabel1");
-        pnFooter.add(toadoJava, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 100, -1));
+        toaDoCurrent.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        toaDoCurrent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        toaDoCurrent.setText("Ox : Oy");
+        toaDoCurrent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnFooter.add(toaDoCurrent, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 60, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_move_30px.png"))); // NOI18N
+        jLabel1.setText("Descartes:");
+        pnFooter.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 110, -1));
 
         add(pnFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 1000, 50));
 
@@ -206,7 +492,7 @@ public class pn2D extends javax.swing.JPanel {
                 lbHinhCNMousePressed(evt);
             }
         });
-        pnChucNang.add(lbHinhCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        pnChucNang.add(lbHinhCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         lbHinhTamGiac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_triangle_30px.png"))); // NOI18N
         lbHinhTamGiac.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -215,7 +501,7 @@ public class pn2D extends javax.swing.JPanel {
                 lbHinhTamGiacMousePressed(evt);
             }
         });
-        pnChucNang.add(lbHinhTamGiac, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        pnChucNang.add(lbHinhTamGiac, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
         lbHinhDuongThang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_line_30px.png"))); // NOI18N
         lbHinhDuongThang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -224,7 +510,16 @@ public class pn2D extends javax.swing.JPanel {
                 lbHinhDuongThangMousePressed(evt);
             }
         });
-        pnChucNang.add(lbHinhDuongThang, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 14, -1, -1));
+        pnChucNang.add(lbHinhDuongThang, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
+        lbHinhTron.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_circle_30px.png"))); // NOI18N
+        lbHinhTron.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbHinhTron.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbHinhTronMousePressed(evt);
+            }
+        });
+        pnChucNang.add(lbHinhTron, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
         lbHinhOval.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_oval_30px.png"))); // NOI18N
         lbHinhOval.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -233,9 +528,9 @@ public class pn2D extends javax.swing.JPanel {
                 lbHinhOvalMousePressed(evt);
             }
         });
-        pnChucNang.add(lbHinhOval, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        pnChucNang.add(lbHinhOval, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
 
-        add(pnChucNang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 500));
+        add(pnChucNang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 50, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbHinhDuongThangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhDuongThangMousePressed
@@ -244,13 +539,12 @@ public class pn2D extends javax.swing.JPanel {
             selectTamGiac = false;
             selectOval = false;
             selectDiChuyen = false;
-            selectXoa = false;
+            selectTron = false;
             lbSelected(lbHinhDuongThang);
             lbHinhCN.setBorder(null);
             lbHinhTamGiac.setBorder(null);
             lbHinhOval.setBorder(null);
-            lbDiChuyen.setBorder(null);
-            lbXoa.setBorder(null);
+            lbHinhTron.setBorder(null);
         } else {
             lbHinhDuongThang.setBorder(null);
         }
@@ -265,13 +559,12 @@ public class pn2D extends javax.swing.JPanel {
             selectTamGiac = false;
             selectOval = false;
             selectDiChuyen = false;
-            selectXoa = false;
+            selectTron = false;
             lbSelected(lbHinhCN);
             lbHinhDuongThang.setBorder(null);
             lbHinhTamGiac.setBorder(null);
             lbHinhOval.setBorder(null);
-            lbDiChuyen.setBorder(null);
-            lbXoa.setBorder(null);
+            lbHinhTron.setBorder(null);
         } else {
             lbHinhCN.setBorder(null);
         }
@@ -287,13 +580,12 @@ public class pn2D extends javax.swing.JPanel {
             selectHCN = false;
             selectOval = false;
             selectDiChuyen = false;
-            selectXoa = false;
+            selectTron = false;
             lbSelected(lbHinhTamGiac);
             lbHinhDuongThang.setBorder(null);
             lbHinhCN.setBorder(null);
             lbHinhOval.setBorder(null);
-            lbDiChuyen.setBorder(null);
-            lbXoa.setBorder(null);
+            lbHinhTron.setBorder(null);
         } else {
             lbHinhTamGiac.setBorder(null);
         }
@@ -308,13 +600,12 @@ public class pn2D extends javax.swing.JPanel {
             selectHCN = false;
             selectTamGiac = false;
             selectDiChuyen = false;
-            selectXoa = false;
+            selectTron = false;
             lbSelected(lbHinhOval);
             lbHinhDuongThang.setBorder(null);
             lbHinhCN.setBorder(null);
             lbHinhTamGiac.setBorder(null);
-            lbDiChuyen.setBorder(null);
-            lbXoa.setBorder(null);
+            lbHinhTron.setBorder(null);
         } else {
             lbHinhOval.setBorder(null);
         }
@@ -325,29 +616,8 @@ public class pn2D extends javax.swing.JPanel {
 
     }//GEN-LAST:event_lbHinhOvalMousePressed
 
-    private void lbDiChuyenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDiChuyenMousePressed
-        if (!selectDiChuyen) {
-            lbSelected(lbDiChuyen);
-            selectDuongThang = false;
-            selectHCN = false;
-            selectTamGiac = false;
-            selectOval = false;
-            selectXoa = false;
-            lbHinhDuongThang.setBorder(null);
-            lbHinhCN.setBorder(null);
-            lbHinhTamGiac.setBorder(null);
-            lbHinhOval.setBorder(null);
-            lbXoa.setBorder(null);
-        } else {
-            lbDiChuyen.setBorder(null);
-        }
-        selectDiChuyen = !selectDiChuyen;
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_lbDiChuyenMousePressed
-
     private void pnMainMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseEntered
-        if (selectDuongThang || selectHCN || selectOval || selectTamGiac || selectXoa) {
+        if (selectDuongThang || selectHCN || selectOval || selectTamGiac) {
             pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
         }
         if (selectDiChuyen) {
@@ -360,47 +630,24 @@ public class pn2D extends javax.swing.JPanel {
         pnMain.setCursor(Cursor.getDefaultCursor());// TODO add your handling code here:
     }//GEN-LAST:event_pnMainMouseExited
 
-    private void lbXoaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbXoaMousePressed
-        if (!selectXoa) {
-            lbSelected(lbXoa);
-            selectDuongThang = false;
-            selectHCN = false;
-            selectTamGiac = false;
-            selectOval = false;
-            selectDiChuyen = false;
-            lbHinhDuongThang.setBorder(null);
-            lbHinhCN.setBorder(null);
-            lbHinhTamGiac.setBorder(null);
-            lbHinhOval.setBorder(null);
-            lbDiChuyen.setBorder(null);
-        } else {
-            lbXoa.setBorder(null);
-        }
-        selectXoa = !selectXoa;// TODO add your handling code here:
-
-        TrucToaDo.shapeList.clear();
-        TrucToaDo.tempShape = null;
-        repaint();
-    }//GEN-LAST:event_lbXoaMousePressed
-
     private void pnMainMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseMoved
         // TODO add your handling code here:
         Point point = TrucToaDo.convertDescart(evt.getPoint());
-        String xyCurrent = "(" + point.getX() + ";" + point.getY() + ")";
+        String xyCurrent = (int) point.getX() + " : " + (int) point.getY();
         toaDoCurrent.setText(xyCurrent);
         int xJv = evt.getX() + 50;
         int yJv = evt.getY() + 50;
-        toadoJava.setText("(" + xJv + ";" + yJv + ")");
+        toadoJava.setText(xJv + " : " + yJv);
 
     }//GEN-LAST:event_pnMainMouseMoved
 
     private void pnMainMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseDragged
         Point point = TrucToaDo.convertDescart(evt.getPoint());
-        String xyCurrent = "(" + point.getX() + ";" + point.getY() + ")";
+        String xyCurrent = (int) point.getX() + " : " + (int) point.getY();
         toaDoCurrent.setText(xyCurrent);
         int xJv = evt.getX() + 50;
         int yJv = evt.getY() + 50;
-        toadoJava.setText("(" + xJv + ";" + yJv + ")");
+        toadoJava.setText(xJv + " : " + yJv);
 
         x2 = evt.getX();
         y2 = evt.getY();
@@ -418,15 +665,15 @@ public class pn2D extends javax.swing.JPanel {
         } else if (mode.equals(DRAW_TRIANGLE) && selectTamGiac) {
 //            TrucToaDo.tempShape = new Triangle(
 //                    start,
-//                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) / 5);
+//                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5);
             TrucToaDo.tempShape = new Triangle(
                     start,
                     end);
-        } else if (mode.equals(DRAW_CIRCLE) && selectOval) {
+        } else if (mode.equals(DRAW_CIRCLE) && selectTron) {
             TrucToaDo.tempShape = new Circle(
                     start,
                     (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) / 10);
-        } else if (mode.equals(DRAW_ELLIPSE)) {
+        } else if (mode.equals(DRAW_ELLIPSE) && selectOval) {
             TrucToaDo.tempShape = new Ellipse(
                     start,
                     end);
@@ -435,15 +682,20 @@ public class pn2D extends javax.swing.JPanel {
     }//GEN-LAST:event_pnMainMouseDragged
 
     private void pnMainMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMousePressed
-
+        shape = new ShapeInfo();
         x1 = evt.getX();
         y1 = evt.getY();
+        shape.setxStart(x1);
+        shape.setyStart(y1);
+
     }//GEN-LAST:event_pnMainMousePressed
 
     private void pnMainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseReleased
 
         x2 = evt.getX();
         y2 = evt.getY();
+        shape.setxEnd(x2);
+        shape.setyEnd(y2);
         Point start = TrucToaDo.convertDescart(new Point(x1, y1));
         Point end = TrucToaDo.convertDescart(evt.getPoint());
 
@@ -451,50 +703,215 @@ public class pn2D extends javax.swing.JPanel {
         System.out.println(start.getX() + " - " + start.getY());
 
         if (mode.equals(DRAW_LINE) && selectDuongThang) {
+            shape.setline(numberName("Line"));
             TrucToaDo.shapeList.add(new MyLine(
                     start,
                     end));
         } else if (mode.equals(DRAW_RECT) && selectHCN) {
-
+            shape.setRectangle(numberName("Rectangle"));
             TrucToaDo.shapeList.add(new MyRect(
                     start, end));
 
         } else if (mode.equals(DRAW_TRIANGLE) && selectTamGiac) {
+            shape.setTriangle(numberName("Triangle"));
+//            TrucToaDo.shapeList.add(new Triangle(
+//                    start,
+//                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5));
             TrucToaDo.shapeList.add(new Triangle(
                     start,
                     end));
-        } else if (mode.equals(DRAW_CIRCLE) && selectOval) {
+        } else if (mode.equals(DRAW_CIRCLE) && selectTron) {
+            shape.setCircle(numberName("Circle"));
             TrucToaDo.shapeList.add(new Circle(
                     start,
                     (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) / 10));
-        } else if (mode.equals(DRAW_ELLIPSE)) {
+        } else if (mode.equals(DRAW_ELLIPSE) && selectOval) {
+            shape.setEllipse(numberName("Ellipse"));
             TrucToaDo.shapeList.add(new Ellipse(
                     start,
                     end));
         }
+        tfx0.setText("");
+        tfx1.setText("");
+        tfx2.setText("");
+        tfy0.setText("");
+        tfy1.setText("");
+        tfy2.setText("");
+        tfa.setText("");
+        tfb.setText("");
+        tfr.setText("");
+        tfh.setText("");
+        tfX1.setText("");
+        tfX2.setText("");
+        tfY1.setText("");
+        tfY2.setText("");
+        listIndexSelected = -1;
+        listShapeInfo.add(shape);
+        setListShape();
         repaint();
     }//GEN-LAST:event_pnMainMouseReleased
 
+    private void lbHinhTronMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhTronMousePressed
+        if (!selectTron) {
+            selectDuongThang = false;
+            selectHCN = false;
+            selectOval = false;
+            selectDiChuyen = false;
+            selectTamGiac = false;
+            lbSelected(lbHinhTron);
+            lbHinhDuongThang.setBorder(null);
+            lbHinhCN.setBorder(null);
+            lbHinhOval.setBorder(null);
+            lbHinhTamGiac.setBorder(null);
+        } else {
+            lbHinhTron.setBorder(null);
+        }
+        selectTron = !selectTron;
+
+        mode = DRAW_CIRCLE;// TODO add your handling code here:
+    }//GEN-LAST:event_lbHinhTronMousePressed
+
+    private void listShapeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listShapeMousePressed
+        try {
+            listIndexSelected = listShape.getSelectedIndices()[0];
+        } catch (Exception e) {
+            listIndexSelected = -1;
+        }
+        if (listIndexSelected != -1) {
+            name = listShapeInfo.get(listIndexSelected).getName();
+            tfx0.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getX0()));
+            tfx1.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getX1()));
+            tfx2.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getX2()));
+            tfy0.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getY0()));
+            tfy1.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getY1()));
+            tfy2.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getY2()));
+            tfa.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getA()));
+            tfb.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getB()));
+            tfr.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getR()));
+            tfh.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getH()));
+            tfX1.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getxStart()));
+            tfX2.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getxEnd()));
+            tfY1.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getyStart()));
+            tfY2.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getyEnd()));
+        }
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_listShapeMousePressed
+
+    private void lbDeleteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeleteMousePressed
+        if (listIndexSelected != -1) {
+            int select = JOptionPane.showConfirmDialog(this, "XÓA", "Xóa " + name + "", JOptionPane.YES_NO_OPTION, 0);
+            if (select == 0) {
+                TrucToaDo.shapeList.remove(listIndexSelected);
+                TrucToaDo.tempShape = null;
+                listShapeInfo.remove(listIndexSelected);
+                pnMain.repaint();
+                setListShape();
+                listIndexSelected = -1;
+                tfx0.setText("");
+                tfx1.setText("");
+                tfx2.setText("");
+                tfy0.setText("");
+                tfy1.setText("");
+                tfy2.setText("");
+                tfa.setText("");
+                tfb.setText("");
+                tfr.setText("");
+                tfh.setText("");
+                tfX1.setText("");
+                tfX2.setText("");
+                tfY1.setText("");
+                tfY2.setText("");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Chọn Shape");
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbDeleteMousePressed
+
+    private void lbXoaTatCaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbXoaTatCaMousePressed
+        if (!listShapeInfo.isEmpty()) {
+            int select = JOptionPane.showConfirmDialog(this, "XÓA TẤT CẢ", "Xóa tất cả các Shape?", JOptionPane.YES_NO_OPTION, 0);
+            if (select == 0) {
+                TrucToaDo.shapeList.clear();
+                TrucToaDo.tempShape = null;
+                listShapeInfo.clear();
+                pnMain.repaint();
+                setListShape();
+                listIndexSelected = -1;
+                tfx0.setText("");
+                tfx1.setText("");
+                tfx2.setText("");
+                tfy0.setText("");
+                tfy1.setText("");
+                tfy2.setText("");
+                tfa.setText("");
+                tfb.setText("");
+                tfr.setText("");
+                tfh.setText("");
+                tfX1.setText("");
+                tfX2.setText("");
+                tfY1.setText("");
+                tfY2.setText("");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Danh sách rỗng");
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_lbXoaTatCaMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel lbDiChuyen;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbDelete;
     private javax.swing.JLabel lbHinhCN;
     private javax.swing.JLabel lbHinhDuongThang;
     private javax.swing.JLabel lbHinhOval;
     private javax.swing.JLabel lbHinhTamGiac;
+    private javax.swing.JLabel lbHinhTron;
     private javax.swing.JLabel lbLatOx;
     private javax.swing.JLabel lbLatOy;
     private javax.swing.JLabel lbPhongTo;
-    private javax.swing.JLabel lbRedo;
     private javax.swing.JLabel lbThuNho;
-    private javax.swing.JLabel lbUndo;
-    private javax.swing.JLabel lbXoa;
+    private javax.swing.JLabel lbXoaTatCa;
     private javax.swing.JLabel lbXoay;
+    private javax.swing.JList<String> listShape;
     private javax.swing.JPanel pnChucNang;
     private javax.swing.JPanel pnFooter;
     private javax.swing.JPanel pnMain;
     private javax.swing.JPanel pnThongTin;
+    private javax.swing.JTextField tfX1;
+    private javax.swing.JTextField tfX2;
+    private javax.swing.JTextField tfY1;
+    private javax.swing.JTextField tfY2;
+    private javax.swing.JTextField tfa;
+    private javax.swing.JTextField tfb;
+    private javax.swing.JTextField tfh;
+    private javax.swing.JTextField tfr;
+    private javax.swing.JTextField tfx0;
+    private javax.swing.JTextField tfx1;
+    private javax.swing.JTextField tfx2;
+    private javax.swing.JTextField tfy0;
+    private javax.swing.JTextField tfy1;
+    private javax.swing.JTextField tfy2;
     private javax.swing.JLabel toaDoCurrent;
     private javax.swing.JLabel toadoJava;
     // End of variables declaration//GEN-END:variables

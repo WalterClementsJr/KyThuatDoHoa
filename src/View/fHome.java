@@ -5,13 +5,15 @@
  */
 package View;
 
-
 import Model.MyRect;
 import Model.TrucToaDo;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
-
+import javax.swing.ToolTipManager;
+import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -38,7 +40,15 @@ public class fHome extends javax.swing.JFrame {
         c.show(pnMain, "pn2D");
         lb2D.setFont(new Font("Tahoma", Font.BOLD, 22));
         select2D = true;
-     
+        UIManager UI = new UIManager();
+        UIManager.put("OptionPane.background", Color.WHITE);
+        UIManager.put("Panel.background", Color.WHITE);
+        UIManager.put("Button.background", Color.WHITE);
+        UIManager.put("OptionPane.buttonBackground", Color.WHITE);
+        UIManager.put("control", Color.WHITE);
+        UIManager.put("OptionPane.border", new LineBorder(new Color(214, 224, 250), 1));
+        ToolTipManager.sharedInstance().setInitialDelay(600);
+
     }
 
     /**
@@ -178,7 +188,7 @@ public class fHome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void lb2DMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb2DMouseEntered
         lb2D.setFont(new Font("Tahoma", Font.BOLD, 22));
 
@@ -228,7 +238,7 @@ public class fHome extends javax.swing.JFrame {
         select3D = false;
         lb2Da.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lb3D.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        
+
         c.show(pnMain, "pn2D");
     }//GEN-LAST:event_lb2DMousePressed
 
@@ -238,7 +248,7 @@ public class fHome extends javax.swing.JFrame {
         select3D = false;
         lb2D.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lb3D.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        
+
         c.show(pnMain, "pn2Da");// TODO add your handling code here:
     }//GEN-LAST:event_lb2DaMousePressed
 
@@ -248,7 +258,7 @@ public class fHome extends javax.swing.JFrame {
         select3D = true;
         lb2Da.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lb2D.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        
+
         c.show(pnMain, "pn3D");// TODO add your handling code here:
     }//GEN-LAST:event_lb3DMousePressed
 
