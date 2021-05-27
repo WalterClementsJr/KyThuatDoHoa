@@ -28,21 +28,16 @@ public class TrucToaDo3D extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         veTrucToaDo(g);
-        
 //        Ellipse.drawHalfDottedEllipse(g, new Point(0, 0), 20);
-        Ellipse.drawHalfDashed(g, 0, 0, 60, 20);
+//        Ellipse.drawHalfDashed(g, 3, 0, 60, 20);
 //        Ellipse e = new Ellipse(new Point(0, 0), new Point(20, 20));
 //        e.draw(g);
-//        for (Shapes2D shape : shapeList) {
-//            System.out.println(shapeList.size());
-//            shape.draw(g);
-//        }
-//        if (shape3D != null) {
-//            shape3D.draw(g);
-//        }
-//        if (tempShape != null) {
-//            tempShape.draw(g);
-//        }
+        if (shape3D != null) {
+            shape3D.draw(g);
+        }
+        if (tempShape != null) {
+            tempShape.draw(g);
+        }
     }
 
     public void veTrucToaDo(Graphics g) {
@@ -59,10 +54,11 @@ public class TrucToaDo3D extends JPanel {
             g.setColor(Color.LIGHT_GRAY);
             g.drawLine(0, i, chieuDaiPanel, i);
         }
-        //vẽ 2 trục Ox, Oy
+        //vẽ 2 trục Ox, Oy, Oz
         g.setColor(Color.red);
-        bresenhamLine(g, 0, -deltaY + 1, 0, deltaY);
-        bresenhamLine(g, -deltaX, 0, deltaX - 1, 0);
+        bresenhamLine(g, 0,0, 0, deltaY);
+        bresenhamLine(g, 0, 0, deltaX - 1, 0);
+        bresenhamLine(g, -49, -49, 0, 0);
 //            veDoanThang(g, 0, -deltaY + 1, 0, deltaY);
 //            veDoanThang(g, -deltaX, 0, deltaX - 1, 0);
 
@@ -88,6 +84,26 @@ public class TrucToaDo3D extends JPanel {
         }
         g.fillRect(x, y, 5, 5);
     }
+    public static void veChu(Graphics g,String str, int x, int y) {
+        if (x > 0 && y > 0) {
+            x = (x + deltaX) * 5;
+            y = (deltaY - y) * 5;
+        } else if (x >= 0 && y < 0) {
+            x = (x + deltaX) * 5;
+            y = (y * -1 + deltaY) * 5;
+        } else if (x <= 0 && y > 0) {
+            x = (x + deltaX) * 5;
+            y = (deltaY - y) * 5;
+        } else if (x < 0 && y < 0) {
+            x = (x + deltaX) * 5;
+            y = (y * -1 + deltaY) * 5;
+        } else {
+            x = (x + deltaX) * 5;
+            y = (y + deltaY) * 5;
+        }
+        g.drawString(str,x,y);
+    }
+    
 
     public static void bresenhamLine(Graphics g, int x1, int y1, int x2, int y2) {
         int x, y, Dx, Dy, p;

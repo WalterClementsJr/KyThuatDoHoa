@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.HinhCau;
 import Model.HinhHop;
 import Model.TrucToaDo;
 import Model.TrucToaDo3D;
@@ -64,6 +65,8 @@ public class pn3D extends javax.swing.JPanel {
         jSpinnerRong = new javax.swing.JSpinner();
         jSpinnerCao = new javax.swing.JSpinner();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jSpinnerBanKinh = new javax.swing.JSpinner();
         pnMain = new Model.TrucToaDo3D();
         pnFooter = new javax.swing.JPanel();
         lbDiChuyen = new javax.swing.JLabel();
@@ -104,15 +107,21 @@ public class pn3D extends javax.swing.JPanel {
                 jSpinnerXoStateChanged(evt);
             }
         });
-        pnThongTin.add(jSpinnerXo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 130, -1));
+        pnThongTin.add(jSpinnerXo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 120, -1));
 
         jSpinnerYo.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinnerYoStateChanged(evt);
             }
         });
-        pnThongTin.add(jSpinnerYo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 110, -1));
-        pnThongTin.add(jSpinnerZo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 130, -1));
+        pnThongTin.add(jSpinnerYo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 100, -1));
+
+        jSpinnerZo.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerZoStateChanged(evt);
+            }
+        });
+        pnThongTin.add(jSpinnerZo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 120, -1));
 
         jLabel4.setText("Dài");
         pnThongTin.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
@@ -133,12 +142,35 @@ public class pn3D extends javax.swing.JPanel {
                 jSpinnerDaiMousePressed(evt);
             }
         });
-        pnThongTin.add(jSpinnerDai, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 130, -1));
-        pnThongTin.add(jSpinnerRong, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 130, -1));
-        pnThongTin.add(jSpinnerCao, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 130, -1));
+        pnThongTin.add(jSpinnerDai, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 120, -1));
+
+        jSpinnerRong.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerRongStateChanged(evt);
+            }
+        });
+        pnThongTin.add(jSpinnerRong, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 120, -1));
+
+        jSpinnerCao.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerCaoStateChanged(evt);
+            }
+        });
+        pnThongTin.add(jSpinnerCao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 120, -1));
 
         jLabel7.setText("√2");
         pnThongTin.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 20, 20));
+
+        jLabel8.setText("Bán kính");
+        pnThongTin.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
+
+        jSpinnerBanKinh.setEnabled(false);
+        jSpinnerBanKinh.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerBanKinhStateChanged(evt);
+            }
+        });
+        pnThongTin.add(jSpinnerBanKinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 120, -1));
 
         add(pnThongTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 200, 500));
 
@@ -257,6 +289,10 @@ public class pn3D extends javax.swing.JPanel {
         }
         selectHinhHop = !selectHinhHop;// TODO add your handling code here:
         mode=Ve_HinhHop;
+        jSpinnerDai.setEnabled(true);
+        jSpinnerRong.setEnabled(true);
+        jSpinnerCao.setEnabled(true);
+        jSpinnerBanKinh.setEnabled(false);
     }//GEN-LAST:event_lbHinhHopMousePressed
 
     private void lbHinhCauMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhCauMousePressed
@@ -272,6 +308,11 @@ public class pn3D extends javax.swing.JPanel {
             lbHinhCau.setBorder(null);
         }
         selectHinhCau = !selectHinhCau;// TODO add your handling code here:
+        mode=Ve_HinhCau;
+        jSpinnerDai.setEnabled(false);
+        jSpinnerRong.setEnabled(false);
+        jSpinnerCao.setEnabled(false);
+        jSpinnerBanKinh.setEnabled(true);
     }//GEN-LAST:event_lbHinhCauMousePressed
 
     private void lbDiChuyenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDiChuyenMousePressed
@@ -319,7 +360,7 @@ public class pn3D extends javax.swing.JPanel {
 
     private void jSpinnerXoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerXoStateChanged
         // TODO add your handling code here:
-        
+        jSpinnerYoStateChanged(evt);
     }//GEN-LAST:event_jSpinnerXoStateChanged
 
     private void jSpinnerDaiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinnerDaiMousePressed
@@ -329,11 +370,7 @@ public class pn3D extends javax.swing.JPanel {
 
     private void jSpinnerDaiStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerDaiStateChanged
         // TODO add your handling code here:
-        if (mode.equals(Ve_HinhHop))
-        {
-            TrucToaDo3D.shape3D=new HinhHop((int) jSpinnerXo.getValue(), (int) jSpinnerYo.getValue(), (int) jSpinnerZo.getValue(), (int) jSpinnerDai.getValue(),(int) jSpinnerRong.getValue(),(int) jSpinnerCao.getValue());
-        }
-        repaint();
+        jSpinnerYoStateChanged(evt);
     }//GEN-LAST:event_jSpinnerDaiStateChanged
 
     private void jSpinnerYoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerYoStateChanged
@@ -342,8 +379,35 @@ public class pn3D extends javax.swing.JPanel {
         {
             TrucToaDo3D.shape3D=new HinhHop((int) jSpinnerXo.getValue(), (int) jSpinnerYo.getValue(), (int) jSpinnerZo.getValue(), (int) jSpinnerDai.getValue(),(int) jSpinnerRong.getValue(),(int) jSpinnerCao.getValue());
         }
+        else
+        {
+            if (mode.equals(Ve_HinhCau))
+            {
+                TrucToaDo3D.shape3D=new HinhCau((int) jSpinnerXo.getValue(), (int) jSpinnerYo.getValue(), (int) jSpinnerZo.getValue(), (int) jSpinnerBanKinh.getValue());
+            }
+        }
         repaint();
     }//GEN-LAST:event_jSpinnerYoStateChanged
+
+    private void jSpinnerZoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerZoStateChanged
+        // TODO add your handling code here:
+        jSpinnerYoStateChanged(evt);
+    }//GEN-LAST:event_jSpinnerZoStateChanged
+
+    private void jSpinnerRongStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerRongStateChanged
+        // TODO add your handling code here:
+        jSpinnerYoStateChanged(evt);
+    }//GEN-LAST:event_jSpinnerRongStateChanged
+
+    private void jSpinnerCaoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerCaoStateChanged
+        // TODO add your handling code here:
+        jSpinnerYoStateChanged(evt);
+    }//GEN-LAST:event_jSpinnerCaoStateChanged
+
+    private void jSpinnerBanKinhStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerBanKinhStateChanged
+        // TODO add your handling code here:
+        jSpinnerYoStateChanged(evt);
+    }//GEN-LAST:event_jSpinnerBanKinhStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -355,7 +419,9 @@ public class pn3D extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JSpinner jSpinner6;
+    private javax.swing.JSpinner jSpinnerBanKinh;
     private javax.swing.JSpinner jSpinnerCao;
     private javax.swing.JSpinner jSpinnerDai;
     private javax.swing.JSpinner jSpinnerRong;

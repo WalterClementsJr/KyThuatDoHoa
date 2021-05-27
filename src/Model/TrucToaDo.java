@@ -38,6 +38,7 @@ public class TrucToaDo extends JPanel {
         if (tempShape != null) {
             tempShape.draw(g);
         }
+//MyLine.dashedLine(g, -20, 1, 20, 1);
     }
 
     public void veTrucToaDo(Graphics g) {
@@ -140,78 +141,9 @@ public class TrucToaDo extends JPanel {
         putPixel(g, xc - x, yc - y);
     }
 
-    void Mid_ellipse(Graphics g, int xc, int yc, int a, int b) {
-        long x, y, fx, fy, a2, b2, p;
-        x = 0;
-        y = b;
-        a2 = a * a; //a^2
-        b2 = b * b; // b^2
-        fx = 0;
-        fy = 2 * a2 * y; // 2a^2y
-        plot(g, xc, yc, Math.round(x), Math.round(y));
-        p = Math.round(b2 - (a2 * b) + (0.25 * a));
+    
 
-        while (fx < fy) {
-            x++;
-            fx += 2 * b2; //2b2
-            if (p < 0) {
-                p += b2 * (2 * x + 3);
-            } else {
-                y--;
-                p += b2 * (2 * x + 3) + a2 * (-2 * y + 2);
-
-                fy -= 2 * a2; // 2a2
-            }
-            plot(g, xc, yc, Math.round(x), Math.round(y));
-        }
-        p = Math.round(b2 * (x + 0.5) * (x + 0.5) + a2 * (y - 1) * (y - 1) - a2 * b2);
-
-        while (y > 0) {
-            y--;
-            fy -= 2 * a2; // 2a2
-            if (p >= 0) {
-                p += a2 * (3 - 2 * y);
-            } else {
-                x++;
-                fx += 2 * b2; // 2b2
-                p += b2 * (2 * x + 2) + a2 * (-2 * y + 3);
-
-            }
-            plot(g, xc, yc, Math.round(x), Math.round(y));
-        }
-    }
-
-    public static void dashedLine(Graphics g, int x1, int y1, int x2, int y2) {
-        int x, y, dx, dy, p, const1, const2, dem, chieuDaiMoiDoan, khoangCachMoiDoan;
-        y = y1;
-        dx = x2 - x1;
-        dy = y2 - y1;
-        p = 2 * dy - dx;
-        const1 = 2 * dy;
-        const2 = 2 * (dy - dx);
-        dem = 0;
-        chieuDaiMoiDoan = 6;
-        khoangCachMoiDoan = 2;
-        for (x = x1; x <= x2; x++) {
-            dem++;
-            if (dem <= chieuDaiMoiDoan) {
-                putPixel(g, x, y);
-            } else {
-                if (dem > chieuDaiMoiDoan + khoangCachMoiDoan) {
-                    //reset bien dem
-                    dem = 1;
-                    putPixel(g, x, y);
-                }
-            }
-
-            if (p < 0) {
-                p += const1; // p=p + 2dy
-            } else {
-                p += const2; //p=p+2dy-2dx
-                y++;
-            }
-        }
-    }
+    
 
     public static void dashDotLine(Graphics g, int x1, int y1, int x2, int y2) {
         int x, y, dx, dy, p, const1, const2, dem, chieuDaiMoiDoan, khoangCachMoiDoan;
