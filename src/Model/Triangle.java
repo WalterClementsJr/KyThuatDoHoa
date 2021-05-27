@@ -15,7 +15,7 @@ import java.awt.Point;
  */
 public class Triangle implements Shapes2D {
 
-    private Point A;
+    private Point A, B, C;
     int canh;
 
     public Triangle(Point a, int canh) {
@@ -30,24 +30,25 @@ public class Triangle implements Shapes2D {
      * @param b
      */
     public Triangle(Point a, Point b) {
-        canh = Math.abs(a.y - b.y);
-        A = new Point((a.x + b.x) / 2, Math.max(a.y, b.y));
+        A = new Point();
+        B = new Point();
+        C = new Point();
+        
+        A.x = (a.x + b.x) / 2;
+        A.y = Math.max(a.y, b.y);
+        B.x = Math.min(a.x, b.x);
+        B.y = Math.min(a.y, b.y);
+        C.x = Math.max(a.x, b.x);
+        C.y = Math.min(a.y, b.y);
+        
     }
 
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.BLACK);
-        //khai bao tọa độ các đỉnh
-        int xA, yA, xB, yB, xC, yC, aH;
-        xA = A.x;
-        yA = A.y;
-        aH = (int) Math.sqrt(3) * canh / 2;
-        xB = xA + canh;
-        yB = yA;//+ aH để đỉnh luôn ở trên
-        xC = xA + canh / 2;
-        yC = yA + aH;
-        TrucToaDo.bresenhamLine(g, xA, yA, xB, yB);
-        TrucToaDo.bresenhamLine(g, xA, yA, xC, yC);
-        TrucToaDo.bresenhamLine(g, xB, yB, xC, yC);
+
+        TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
+        TrucToaDo.bresenhamLine(g, C.x, C.y, B.x, B.y);
+        TrucToaDo.bresenhamLine(g, A.x, A.y, C.x, C.y);
     }
 }

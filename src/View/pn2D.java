@@ -395,14 +395,18 @@ public class pn2D extends javax.swing.JPanel {
         toaDoCurrent.setText(xyCurrent);
         int xJv = evt.getX() + 50;
         int yJv = evt.getY() + 50;
-        String xyJava = "(" + xJv + ";" + yJv + ")";
-        toadoJava.setText("");
-        toadoJava.setText(xyJava);
+        toadoJava.setText("(" + xJv + ";" + yJv + ")");
 
     }//GEN-LAST:event_pnMainMouseMoved
 
     private void pnMainMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseDragged
-
+        Point point = TrucToaDo.convertDescart(evt.getPoint(), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
+        String xyCurrent = "(" + point.getX() + ";" + point.getY() + ")";
+        toaDoCurrent.setText(xyCurrent);
+        int xJv = evt.getX() + 50;
+        int yJv = evt.getY() + 50;
+        toadoJava.setText("(" + xJv + ";" + yJv + ")");
+        
         x2 = evt.getX();
         y2 = evt.getY();
         Point start = TrucToaDo.convertDescart(new Point(x1, y1), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
@@ -417,12 +421,12 @@ public class pn2D extends javax.swing.JPanel {
                     start, end);
             
         } else if (mode.equals(DRAW_TRIANGLE)) {
-            TrucToaDo.tempShape = new Triangle(
-                    start,
-                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5);
 //            TrucToaDo.tempShape = new Triangle(
 //                    start,
-//                    end);
+//                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5);
+            TrucToaDo.tempShape = new Triangle(
+                    start,
+                    end);
         } else if (mode.equals(DRAW_CIRCLE)) {
             TrucToaDo.tempShape = new Circle(
                     start,
@@ -462,9 +466,12 @@ public class pn2D extends javax.swing.JPanel {
                     start, end));
             
         } else if (mode.equals(DRAW_TRIANGLE)) {
+//            TrucToaDo.shapeList.add(new Triangle(
+//                    start,
+//                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5));
             TrucToaDo.shapeList.add(new Triangle(
                     start,
-                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5));
+                    end));
         } else if (mode.equals(DRAW_CIRCLE)) {
             TrucToaDo.shapeList.add(new Circle(
                     start,
