@@ -18,6 +18,7 @@ public class Ellipse implements Shapes2D {
 
     Point O;
     int dai, cao;
+    static int dem=0;
 
     public Ellipse(Point A, Point B) {
         O = new Point();
@@ -26,7 +27,6 @@ public class Ellipse implements Shapes2D {
         O.x = (A.x + B.x) / 2;
         O.y = (A.y + B.y) / 2;
     }
-
     public static void drawHalfDottedEllipse(Graphics g, Point a, int dai) {
         double dx, dy, d1, d2;
         int x, y, cao = (int) dai / 2;
@@ -106,85 +106,72 @@ public class Ellipse implements Shapes2D {
         }
     }
 
-    public static void drawHalfDashed(Graphics g, int xO, int yO, int a, int b) {
-        //khai bao cac bien cua thuat toan Midpoint
-        int dem = 0;
-        int dx, dy, p0, q0, x, y;
+
+    public static void drawHalfDashed(Graphics g, int xc, int yc, int a, int b) {
+        long x, y, fx, fy, a2, b2, p;
         x = 0;
         y = b;
+        a2 = a * a; //a^2
+        b2 = b * b; // b^2
+        fx = 0;
+        fy = 2 * a2 * y; // 2a^2y
+        int chieuDaiMoiDoan=4;
+        int khoangCachMoiDoan=2;
+        plotDash(g, xc, yc, Math.round(x), Math.round(y),chieuDaiMoiDoan,khoangCachMoiDoan);
+        p = Math.round(b2 - (a2 * b) + (0.25 * a));
 
-        //Khai bao cac bien vung I
-        p0 = (int) ((b * b) - (a * a * b) + (0.25 * a * a));
-        dx = 2 * b * b * x;
-        dy = 2 * a * a * y;
-
-        //Ve vung I
-        while (dx < dy) {
-            // Ve diem dua tren doi xung
-            if (dem < 3) {
-                putPixel(g, x +xO, y + -yO);
-                putPixel(g, -x +xO, y + -yO);
-                dem++;
-            } else if (dem < 7) {
-                dem++;
+        while (fx < fy) {
+            dem++;
+            x++;
+            fx += 2 * b2; //2b2
+            if (p < 0) {
+                p += b2 * (2 * x + 3);
             } else {
-                dem = 0;
-                putPixel(g, x +xO, y + -yO);
-                putPixel(g, -x +xO, y + -yO);
-            }
-            putPixel(g, x +xO, -y + yO);
-            putPixel(g, -x +xO, -y + yO);
-
-            // Kiem tra va cap nhat cac gia tri
-            if (p0 < 0) {
-                x++;
-                dx = dx + (2 * b * b);
-                p0 = p0 + dx + (b * b);
-            } else {
-                x++;
                 y--;
-                dx = dx + (2 * b * b);
-                dy = dy - (2 * a * a);
-                p0 = p0 + dx - dy + (b * b);
+                p += b2 * (2 * x + 3) + a2 * (-2 * y + 2);
+
+                fy -= 2 * a2; // 2a2
             }
+            plotDash(g, xc, yc, Math.round(x), Math.round(y), chieuDaiMoiDoan,khoangCachMoiDoan);
         }
-        // Ve vung II
-        q0 = (int) (((b * b) * ((x + 0.5) * (x + 0.5))) + ((a * a) * ((y) * (y))) - (a * a * b * b));
-        while (y >= 0) {
+        p = Math.round(b2 * (x + 0.5) * (x + 0.5) + a2 * (y - 1) * (y - 1) - a2 * b2);
 
-            // Ve 4 diem
-            if (dem < 3) {
-                putPixel(g, x +xO, y + -yO);
-                putPixel(g, -x +xO, y + -yO);
-                dem++;
-            } else if (dem < 7) {
-                dem++;
+        while (y > 0) {
+            dem++;
+            y--;
+            fy -= 2 * a2; // 2a2
+            if (p >= 0) {
+                p += a2 * (3 - 2 * y);
             } else {
-                dem = 0;
-                putPixel(g, x +xO, y + -yO);
-                putPixel(g, -x +xO, y + -yO);
-            }
-
-            putPixel(g, x +xO, -y + -yO);
-            putPixel(g, -x +xO, -y + -yO);
-            // Kiem tra va cap nhat cac gia tri
-            if (q0 > 0) {
-                y--;
-                dy = dy - (2 * a * a);
-                q0 = q0 + (a * a) - dy;
-            } else {
-                y--;
                 x++;
-                dx = dx + (2 * b * b);
-                dy = dy - (2 * a * a);
-                q0 = q0 + dx - dy + (a * a);
+                fx += 2 * b2; // 2b2
+                p += b2 * (2 * x + 2) + a2 * (-2 * y + 3);
+
             }
+            plotDash(g, xc, yc, Math.round(x), Math.round(y), chieuDaiMoiDoan,khoangCachMoiDoan);
         }
     }
 
     static void plot(Graphics g, int xc, int yc, int x, int y) {
         putPixel(g, xc + x, yc + y);
         putPixel(g, xc - x, yc + y);
+        putPixel(g, xc + x, yc - y);
+        putPixel(g, xc - x, yc - y);
+    }
+    static void plotDash(Graphics g, int xc, int yc, int x, int y, int chieuDaiMoiDoan, int khoangCachMoiDoan) {
+        
+        if (dem <= chieuDaiMoiDoan) {
+            putPixel(g, xc + x, yc + y);
+            putPixel(g, xc - x, yc + y);
+        } else {
+            if (dem > chieuDaiMoiDoan && dem <= chieuDaiMoiDoan + khoangCachMoiDoan) {
+                //không put pixel
+            } else {
+                dem=1;
+                putPixel(g, xc + x, yc + y);
+                putPixel(g, xc - x, yc + y);
+            }
+        }
         putPixel(g, xc + x, yc - y);
         putPixel(g, xc - x, yc - y);
     }

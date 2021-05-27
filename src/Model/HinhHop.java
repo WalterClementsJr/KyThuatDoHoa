@@ -36,18 +36,29 @@ public class HinhHop implements Shapes3D{
 
     @Override
     public void draw(Graphics g) {
-        TrucToaDo.bresenhamLine(g, O.x, O.y, A.x, A.y);
+        MyLine.dashedLine(g, O.x, O.y, A.x, A.y);
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, B.x, B.y, C.x, C.y);
-        TrucToaDo.bresenhamLine(g, C.x, C.y, O.x, O.y);
+        MyLine.dashedLine(g, C.x, C.y, O.x, O.y);
         TrucToaDo.bresenhamLine(g, E.x, E.y, D.x, D.y);
         TrucToaDo.bresenhamLine(g, D.x, D.y, G.x, G.y);
         TrucToaDo.bresenhamLine(g, G.x, G.y, F.x, F.y);
         TrucToaDo.bresenhamLine(g, F.x, F.y, E.x, E.y);
-        TrucToaDo.bresenhamLine(g, E.x, E.y, O.x, O.y);
+        MyLine.dashedLine(g, E.x, E.y, O.x, O.y);
         TrucToaDo.bresenhamLine(g, D.x, D.y, A.x, A.y);
         TrucToaDo.bresenhamLine(g, G.x, G.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, F.x, F.y, C.x, C.y);
+        
+        //vẽ đỉnh
+        TrucToaDo3D.veChu(g, "O", O.x+2, O.y+2);
+        TrucToaDo3D.veChu(g, "A", A.x+2, A.y+2);
+        TrucToaDo3D.veChu(g, "B", B.x-2, B.y);
+        TrucToaDo3D.veChu(g, "C", C.x-2, C.y+2);
+        TrucToaDo3D.veChu(g, "D", D.x+2, D.y+2);
+        TrucToaDo3D.veChu(g, "E", E.x+2, E.y+2);
+        TrucToaDo3D.veChu(g, "F", F.x-2, F.y-2);
+        TrucToaDo3D.veChu(g, "G", G.x-2, G.y);
+        
     }
     
 }
