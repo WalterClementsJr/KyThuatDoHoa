@@ -270,7 +270,7 @@ public class TrucToaDo extends JPanel {
      * @param yAxisSize
      * @return
      */
-    public static Point convertDescart(Point p, double deltaX, double deltaY, int xAxisSize, int yAxisSize) {
+    public static Point convertDescart(Point p) {
 
         double x = Math.floor(p.getX() / 5);
         double y = -Math.floor(p.getY() / 5);
@@ -302,7 +302,7 @@ public class TrucToaDo extends JPanel {
      * @param yAxisSize
      * @return
      */
-    public static Point convertPointDescart(Point p, double deltaX, double deltaY, int xAxisSize, int yAxisSize) {
+    public static Point convertPointDescart(Point p) {
         deltaX = deltaX + 10;
         deltaX = (deltaX * 5);
         deltaY = (deltaY * 5);

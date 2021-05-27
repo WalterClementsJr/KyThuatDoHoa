@@ -6,6 +6,7 @@
 package Model;
 
 import static Model.TrucToaDo.putPixel;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -59,6 +60,16 @@ public class Circle implements Shapes2D {
         putPixel(g, A.x - y, A.y - y);
         putPixel(g, A.x - y, A.y + y);
         putPixel(g, A.x + y, A.y - y);
+    }
+
+    @Override
+    public void draw(Graphics g, Color c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void fill(Graphics g, Color color) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

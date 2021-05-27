@@ -9,13 +9,10 @@ import Model.Circle;
 import Model.Ellipse;
 import Model.MyLine;
 import Model.MyRect;
-import Model.Pixel;
 import Model.Triangle;
 import Model.TrucToaDo;
 import java.awt.Color;
 import java.awt.Cursor;
-import static java.awt.Frame.HAND_CURSOR;
-import java.awt.Graphics;
 import java.awt.Point;
 import static java.awt.image.ImageObserver.ALLBITS;
 import javax.swing.BorderFactory;
@@ -36,16 +33,15 @@ public class pn2D extends javax.swing.JPanel {
     boolean selectXoa = false; //chức năng xóa
 
     int x1, y1, x2, y2;
-    
 
     public final String DRAW_LINE = "line";
     public final String DRAW_RECT = "rect";
     public final String DRAW_CIRCLE = "circle";
     public final String DRAW_TRIANGLE = "triangle";
     public final String DRAW_ELLIPSE = "ellipse";
-    
+
     public String mode = DRAW_LINE;
-    
+
     public pn2D() {
         initComponents();
 
@@ -303,7 +299,7 @@ public class pn2D extends javax.swing.JPanel {
             lbHinhTamGiac.setBorder(null);
         }
         selectTamGiac = !selectTamGiac;
-        
+
         mode = DRAW_TRIANGLE;
     }//GEN-LAST:event_lbHinhTamGiacMousePressed
 
@@ -382,7 +378,7 @@ public class pn2D extends javax.swing.JPanel {
             lbXoa.setBorder(null);
         }
         selectXoa = !selectXoa;// TODO add your handling code here:
-        
+
         TrucToaDo.shapeList.clear();
         TrucToaDo.tempShape = null;
         repaint();
@@ -390,7 +386,7 @@ public class pn2D extends javax.swing.JPanel {
 
     private void pnMainMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseMoved
         // TODO add your handling code here:
-        Point point = TrucToaDo.convertDescart(evt.getPoint(), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
+        Point point = TrucToaDo.convertDescart(evt.getPoint());
         String xyCurrent = "(" + point.getX() + ";" + point.getY() + ")";
         toaDoCurrent.setText(xyCurrent);
         int xJv = evt.getX() + 50;
@@ -400,39 +396,39 @@ public class pn2D extends javax.swing.JPanel {
     }//GEN-LAST:event_pnMainMouseMoved
 
     private void pnMainMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseDragged
-        Point point = TrucToaDo.convertDescart(evt.getPoint(), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
+        Point point = TrucToaDo.convertDescart(evt.getPoint());
         String xyCurrent = "(" + point.getX() + ";" + point.getY() + ")";
         toaDoCurrent.setText(xyCurrent);
         int xJv = evt.getX() + 50;
         int yJv = evt.getY() + 50;
         toadoJava.setText("(" + xJv + ";" + yJv + ")");
-        
+
         x2 = evt.getX();
         y2 = evt.getY();
-        Point start = TrucToaDo.convertDescart(new Point(x1, y1), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
-        Point end = TrucToaDo.convertDescart(evt.getPoint(), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
-        
-        if (mode.equals(DRAW_LINE)&& selectDuongThang) {
+        Point start = TrucToaDo.convertDescart(new Point(x1, y1));
+        Point end = TrucToaDo.convertDescart(evt.getPoint());
+
+        if (mode.equals(DRAW_LINE) && selectDuongThang) {
             TrucToaDo.tempShape = new MyLine(
                     start,
                     end);
-        } else if (mode.equals(DRAW_RECT)&& selectHCN) {
+        } else if (mode.equals(DRAW_RECT) && selectHCN) {
             TrucToaDo.tempShape = new MyRect(
                     start, end);
-            
-        } else if (mode.equals(DRAW_TRIANGLE)&& selectTamGiac) {
-            TrucToaDo.tempShape = new Triangle(
-                    start,
-                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5);
+
+        } else if (mode.equals(DRAW_TRIANGLE) && selectTamGiac) {
 //            TrucToaDo.tempShape = new Triangle(
 //                    start,
-//                    end);
-        } else if (mode.equals(DRAW_CIRCLE)&&selectOval) {
+//                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) / 5);
+            TrucToaDo.tempShape = new Triangle(
+                    start,
+                    end);
+        } else if (mode.equals(DRAW_CIRCLE) && selectOval) {
             TrucToaDo.tempShape = new Circle(
                     start,
-                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/10);
+                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) / 10);
         } else if (mode.equals(DRAW_ELLIPSE)) {
-            TrucToaDo.tempShape =new Ellipse(
+            TrucToaDo.tempShape = new Ellipse(
                     start,
                     end);
         }
@@ -443,37 +439,35 @@ public class pn2D extends javax.swing.JPanel {
 
         x1 = evt.getX();
         y1 = evt.getY();
-
-
     }//GEN-LAST:event_pnMainMousePressed
 
     private void pnMainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseReleased
 
         x2 = evt.getX();
         y2 = evt.getY();
-        Point start = TrucToaDo.convertDescart(new Point(x1, y1), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
-        Point end = TrucToaDo.convertDescart(evt.getPoint(), TrucToaDo.deltaX, TrucToaDo.deltaY, ALLBITS, ALLBITS);
-        
+        Point start = TrucToaDo.convertDescart(new Point(x1, y1));
+        Point end = TrucToaDo.convertDescart(evt.getPoint());
+
         // TODO set info into table
-        System.out.println(start.getX() +" - "+ start.getY());
-        
-        if (mode.equals(DRAW_LINE)&& selectDuongThang) {
+        System.out.println(start.getX() + " - " + start.getY());
+
+        if (mode.equals(DRAW_LINE) && selectDuongThang) {
             TrucToaDo.shapeList.add(new MyLine(
                     start,
                     end));
-        } else if (mode.equals(DRAW_RECT)&& selectHCN) {
-            
+        } else if (mode.equals(DRAW_RECT) && selectHCN) {
+
             TrucToaDo.shapeList.add(new MyRect(
                     start, end));
-            
-        } else if (mode.equals(DRAW_TRIANGLE)&& selectTamGiac) {
+
+        } else if (mode.equals(DRAW_TRIANGLE) && selectTamGiac) {
             TrucToaDo.shapeList.add(new Triangle(
                     start,
-                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5));
-        } else if (mode.equals(DRAW_CIRCLE)&&selectOval) {
+                    end));
+        } else if (mode.equals(DRAW_CIRCLE) && selectOval) {
             TrucToaDo.shapeList.add(new Circle(
                     start,
-                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/10));
+                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) / 10));
         } else if (mode.equals(DRAW_ELLIPSE)) {
             TrucToaDo.shapeList.add(new Ellipse(
                     start,

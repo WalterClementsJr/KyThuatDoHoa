@@ -6,6 +6,7 @@
 package Model;
 
 import static Model.TrucToaDo.putPixel;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -80,5 +81,15 @@ public class Ellipse implements Shapes2D {
             }
             plot(g, O.x, O.y, Math.round(x), Math.round(y));
         }
+    }
+
+    @Override
+    public void draw(Graphics g, Color c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void fill(Graphics g, Color color) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -8,6 +8,7 @@ package Model;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Polygon;
 
 /**
  *
@@ -51,4 +52,29 @@ public class Triangle implements Shapes2D {
         TrucToaDo.bresenhamLine(g, C.x, C.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, A.x, A.y, C.x, C.y);
     }
+    
+    @Override
+    public void draw(Graphics g, Color c) {
+        g.setColor(c);
+
+        TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
+        TrucToaDo.bresenhamLine(g, C.x, C.y, B.x, B.y);
+        TrucToaDo.bresenhamLine(g, A.x, A.y, C.x, C.y);
+}
+
+    @Override
+    public void fill(Graphics g, Color color) {
+//        Polygon triangle = new Polygon();
+//        Point x = TrucToaDo.convertPointDescart(A);
+//        Point y = TrucToaDo.convertPointDescart(B);
+//        Point z = TrucToaDo.convertPointDescart(C);
+//
+//        triangle.addPoint(x.x, x.y);
+//        triangle.addPoint(y.x, y.y);
+//        triangle.addPoint(z.x, z.y);
+//        g.setColor(color);
+//        g.fillPolygon(triangle);
+    }
+    
+    
 }
