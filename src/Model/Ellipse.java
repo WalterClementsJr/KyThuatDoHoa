@@ -107,13 +107,6 @@ public class Ellipse implements Shapes2D {
     }
 
     public static void drawHalfDashed(Graphics g, int xO, int yO, int a, int b) {
-        //Gấp 5 lần
-        xO = xO * 5;
-        yO = yO * 5;
-//        a = a * 5;
-//        b = b * 5;
-
-        System.out.println("half dashed");
         //khai bao cac bien cua thuat toan Midpoint
         int dem = 0;
         int dx, dy, p0, q0, x, y;

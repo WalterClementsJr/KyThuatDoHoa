@@ -193,8 +193,8 @@ public class ShapeInfo {
     public void setRectangle(int name) {
         this.name = "Rectangle" + String.valueOf(name);
         this.type = "Rectangle";
-        a = Math.abs(x1 - x2);
-        b = Math.abs(y1 - y2);
+        a = Math.abs(yEnd - yStart);
+        b = Math.abs(xEnd - xStart);
     }
 
     public void setline(int name) {
@@ -207,9 +207,7 @@ public class ShapeInfo {
     public void setCircle(int name) {
         this.name = "Circle" + String.valueOf(name);
         this.type = "Circle";
-        System.out.println("%d %d - %d %d".formatted(xStart, yStart, xEnd , yEnd));
         r = (int) Math.sqrt((xEnd - xStart) * (xEnd - xStart) + (yEnd - yStart) * (yEnd - yStart));
-        System.out.println(r);
         x0 = xStart;
         y0 = yStart;
     }

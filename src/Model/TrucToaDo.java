@@ -23,13 +23,20 @@ public class TrucToaDo extends JPanel {
     public static ArrayList<Shapes2D> shapeList = new ArrayList<>();
     public static Shapes2D tempShape;
 
+    public static void main(String[] args) {
+        Point p = new Point(425, 300);
+        Point p1 = convertDescart(p);
+        System.out.println(p1.x + " " + p1.y);
+        Point p2 = convertDescartReverse(p1);
+        System.out.println(p2.x + " " + p2.y);
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         veTrucToaDo(g);
-        
+
 //        Ellipse.drawHalfDottedEllipse(g, new Point(0, 0), 20);
-        
         for (Shapes2D shape : shapeList) {
             System.out.println(shapeList.size());
             shape.draw(g);
@@ -263,7 +270,7 @@ public class TrucToaDo extends JPanel {
      * @return
      */
     public static Point convertDescart(Point p) {
-
+        
         double x = Math.floor(p.getX() / 5);
         double y = -Math.floor(p.getY() / 5);
         if (x >= 0 && y >= 0) {
@@ -294,27 +301,35 @@ public class TrucToaDo extends JPanel {
      * @param yAxisSize
      * @return
      */
-    public static Point convertPointDescart(Point p) {
-        deltaX = deltaX + 10;
-        deltaX = (deltaX * 5);
-        deltaY = (deltaY * 5);
-        double x = (p.getX()) * 5;
-        double y = (p.getY()) * 5;
+    public static Point convertDescartReverse(Point p) {
+        int deltaXTemp = deltaX * 5;
+        int deltaYTemp = deltaY * 5;
+        double x = Math.floor(p.getX() * 5);
+        double y = Math.floor(p.getY() * 5);
+        double xJva = 750;
+        double yJva = 500;
         if (x >= 0 && y >= 0) {
-            x = x + deltaX;
-            y = deltaY - y;
+            x = xJva - (deltaXTemp);
+            y = yJva - (y + deltaYTemp);
         } else if (x >= 0 && y <= 0) {
-            x = x + deltaX;
-            y = -y + deltaY;
+            x = xJva - (deltaXTemp);
+            y = yJva - (deltaYTemp + y);
         } else if (x <= 0 && y >= 0) {
-            x = deltaX - x;
-            y = deltaY - y;
+            x = xJva - (deltaXTemp);
+            y = yJva - (y + deltaYTemp);
         } else {
-            x = deltaX - x;
-            y = deltaY - y;
+            x = xJva - (deltaXTemp - x);
+            y = yJva - (deltaYTemp + y);
         }
         Point pointNew = new Point();
         pointNew.setLocation(x, y);
         return pointNew;
     }
+    
+    public static Point expandX(Point p) // cộng thêm để bù vào phần bên
+    {
+        p.x += 10;
+        return p;
+    }
 }
+
