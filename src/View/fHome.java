@@ -11,6 +11,13 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
+import java.awt.Toolkit;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Locale;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
@@ -28,7 +35,7 @@ public class fHome extends javax.swing.JFrame {
     boolean select2Da = false;
     boolean select3D = false;
     CardLayout c;
-
+    
     public fHome() {
         initComponents();
         setResizable(false);
@@ -48,7 +55,7 @@ public class fHome extends javax.swing.JFrame {
         UIManager.put("control", Color.WHITE);
         UIManager.put("OptionPane.border", new LineBorder(new Color(214, 224, 250), 1));
         ToolTipManager.sharedInstance().setInitialDelay(600);
-
+        
     }
 
     /**
@@ -143,6 +150,11 @@ public class fHome extends javax.swing.JFrame {
         lbNhomTacGia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbNhomTacGia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_info_30px.png"))); // NOI18N
         lbNhomTacGia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbNhomTacGia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbNhomTacGiaMousePressed(evt);
+            }
+        });
         pnHeader.add(lbNhomTacGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, 30, 30));
 
         lb2Da.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -238,7 +250,7 @@ public class fHome extends javax.swing.JFrame {
         select3D = false;
         lb2Da.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lb3D.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
+        
         c.show(pnMain, "pn2D");
     }//GEN-LAST:event_lb2DMousePressed
 
@@ -248,7 +260,7 @@ public class fHome extends javax.swing.JFrame {
         select3D = false;
         lb2D.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lb3D.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
+        
         c.show(pnMain, "pn2Da");// TODO add your handling code here:
     }//GEN-LAST:event_lb2DaMousePressed
 
@@ -258,9 +270,19 @@ public class fHome extends javax.swing.JFrame {
         select3D = true;
         lb2Da.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lb2D.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
+        
         c.show(pnMain, "pn3D");// TODO add your handling code here:
     }//GEN-LAST:event_lb3DMousePressed
+
+    private void lbNhomTacGiaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbNhomTacGiaMousePressed
+        String[] info = {"N18DCCN193 - Nguyễn Thanh Tú",
+            "N18DCCN190 - Bùi Minh Tơ",
+            "N18DCCN202 - Nguyễn Mạnh Tường",
+            "N18DCCN214 - Nguyễn Tân Thiên",
+            "N18DCCN229 - Lê Đình Triều"};
+        JOptionPane d = new JOptionPane();
+        d.showMessageDialog(this, info, "About Us", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_lbNhomTacGiaMousePressed
 
     /**
      * @param args the command line arguments

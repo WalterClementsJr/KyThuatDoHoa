@@ -7,9 +7,9 @@ package View;
 
 import Model.Circle;
 import Model.Ellipse;
+import Model.MyFlag;
 import Model.MyLine;
 import Model.MyRect;
-import Model.Pixel;
 import Model.ShapeInfo;
 import Model.Triangle;
 import Model.TrucToaDo;
@@ -19,6 +19,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import static java.awt.Frame.HAND_CURSOR;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -46,8 +47,8 @@ public class pn2D extends javax.swing.JPanel {
     boolean selectHCN = false; //vẽ hình chữ nhận
     boolean selectTamGiac = false; //vẽ hình tam giác
     boolean selectOval = false; //vẽ hình oval
-    boolean selectDiChuyen = false; //chức năng di chuyển các hình
     boolean selectTron = false;
+    boolean selectXoay = false;
 
     int x1, y1, x2, y2;
 
@@ -63,11 +64,12 @@ public class pn2D extends javax.swing.JPanel {
     DefaultListModel<String> dlm;
     int listIndexSelected = -1;
     String name = "";
+    Point pQuay;
 
     public pn2D() {
         initComponents();
         setListShape();
-        
+        lbFlag.setVisible(false);
     }
 
     public void setListShape() {
@@ -90,9 +92,14 @@ public class pn2D extends javax.swing.JPanel {
     public int numberName(String type) {
         int num = 0;
         for (ShapeInfo shapeInfo : listShapeInfo) {
-            if (shapeInfo.getType().equals(type)) {
-                num++;
+            try {
+                if (shapeInfo.getType().equals(type)) {
+                    num++;
+                }
+            } catch (Exception e) {
+                num = 0;
             }
+
         }
         return num;
     }
@@ -106,6 +113,7 @@ public class pn2D extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lbFlag = new javax.swing.JLabel();
         pnMain = new Model.TrucToaDo();
         pnThongTin = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -143,21 +151,22 @@ public class pn2D extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         pnFooter = new javax.swing.JPanel();
-        lbXoay = new javax.swing.JLabel();
         lbLatOy = new javax.swing.JLabel();
         lbLatOx = new javax.swing.JLabel();
-        lbPhongTo = new javax.swing.JLabel();
-        lbThuNho = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         toadoJava = new javax.swing.JLabel();
         toaDoCurrent = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        lbXoay = new javax.swing.JLabel();
         pnChucNang = new javax.swing.JPanel();
         lbHinhCN = new javax.swing.JLabel();
         lbHinhTamGiac = new javax.swing.JLabel();
         lbHinhDuongThang = new javax.swing.JLabel();
         lbHinhTron = new javax.swing.JLabel();
         lbHinhOval = new javax.swing.JLabel();
+
+        lbFlag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flag_filled_20px_2.png"))); // NOI18N
+        lbFlag.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -437,25 +446,13 @@ public class pn2D extends javax.swing.JPanel {
         pnFooter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnFooter.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbXoay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_rotate_30px.png"))); // NOI18N
-        lbXoay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbXoay, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, -1));
-
         lbLatOy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flip_vertical_30px_1.png"))); // NOI18N
         lbLatOy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbLatOy, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
+        pnFooter.add(lbLatOy, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, -1, -1));
 
         lbLatOx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flip_horizontal_30px_1.png"))); // NOI18N
         lbLatOx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbLatOx, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
-
-        lbPhongTo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_zoom_in_30px.png"))); // NOI18N
-        lbPhongTo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbPhongTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, -1, -1));
-
-        lbThuNho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_zoom_out_30px.png"))); // NOI18N
-        lbThuNho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbThuNho, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, -1, -1));
+        pnFooter.add(lbLatOx, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_move_30px.png"))); // NOI18N
@@ -478,6 +475,16 @@ public class pn2D extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_move_30px.png"))); // NOI18N
         jLabel1.setText("Descartes:");
         pnFooter.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 110, -1));
+
+        lbXoay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbXoay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flag_filled_30px_1.png"))); // NOI18N
+        lbXoay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbXoay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbXoayMousePressed(evt);
+            }
+        });
+        pnFooter.add(lbXoay, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
 
         add(pnFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 1000, 50));
 
@@ -538,13 +545,14 @@ public class pn2D extends javax.swing.JPanel {
             selectHCN = false;
             selectTamGiac = false;
             selectOval = false;
-            selectDiChuyen = false;
             selectTron = false;
+            selectXoay = false;
             lbSelected(lbHinhDuongThang);
             lbHinhCN.setBorder(null);
             lbHinhTamGiac.setBorder(null);
             lbHinhOval.setBorder(null);
             lbHinhTron.setBorder(null);
+            lbXoay.setBorder(null);
         } else {
             lbHinhDuongThang.setBorder(null);
         }
@@ -558,13 +566,15 @@ public class pn2D extends javax.swing.JPanel {
             selectDuongThang = false;
             selectTamGiac = false;
             selectOval = false;
-            selectDiChuyen = false;
             selectTron = false;
+            selectXoay = false;
+
             lbSelected(lbHinhCN);
             lbHinhDuongThang.setBorder(null);
             lbHinhTamGiac.setBorder(null);
             lbHinhOval.setBorder(null);
             lbHinhTron.setBorder(null);
+            lbXoay.setBorder(null);
         } else {
             lbHinhCN.setBorder(null);
         }
@@ -579,13 +589,15 @@ public class pn2D extends javax.swing.JPanel {
             selectDuongThang = false;
             selectHCN = false;
             selectOval = false;
-            selectDiChuyen = false;
             selectTron = false;
+            selectXoay = false;
+
             lbSelected(lbHinhTamGiac);
             lbHinhDuongThang.setBorder(null);
             lbHinhCN.setBorder(null);
             lbHinhOval.setBorder(null);
             lbHinhTron.setBorder(null);
+            lbXoay.setBorder(null);
         } else {
             lbHinhTamGiac.setBorder(null);
         }
@@ -599,13 +611,15 @@ public class pn2D extends javax.swing.JPanel {
             selectDuongThang = false;
             selectHCN = false;
             selectTamGiac = false;
-            selectDiChuyen = false;
             selectTron = false;
+            selectXoay = false;
+
             lbSelected(lbHinhOval);
             lbHinhDuongThang.setBorder(null);
             lbHinhCN.setBorder(null);
             lbHinhTamGiac.setBorder(null);
             lbHinhTron.setBorder(null);
+            lbXoay.setBorder(null);
         } else {
             lbHinhOval.setBorder(null);
         }
@@ -620,7 +634,7 @@ public class pn2D extends javax.swing.JPanel {
         if (selectDuongThang || selectHCN || selectOval || selectTamGiac) {
             pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
         }
-        if (selectDiChuyen) {
+        if (selectXoay) {
             pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
         }
 
@@ -682,18 +696,27 @@ public class pn2D extends javax.swing.JPanel {
     }//GEN-LAST:event_pnMainMouseDragged
 
     private void pnMainMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMousePressed
-
+        System.out.println(selectXoay);
         x1 = evt.getX();
         y1 = evt.getY();
         Point start = TrucToaDo.convertDescart(new Point(x1, y1));
+        if (selectXoay) {
+            TrucToaDo.tempFlag = new MyFlag(x1, y1);
+            pQuay = new Point(x1, y1);
+            //selectXoay đúng là quay luôn
+        } else {
+            TrucToaDo.tempFlag = null;
+            //selectXoay sai là dừng quay
+        }
+        repaint();
     }//GEN-LAST:event_pnMainMousePressed
 
     private void pnMainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseReleased
         shape = new ShapeInfo();
-        
+
         x2 = evt.getX();
         y2 = evt.getY();
-        
+
         Point start = TrucToaDo.convertDescart(new Point(x1, y1));
         shape.setxStart(start.x);
         shape.setyStart(start.y);
@@ -743,9 +766,12 @@ public class pn2D extends javax.swing.JPanel {
         tfY1.setText("");
         tfY2.setText("");
         listIndexSelected = -1;
-        listShapeInfo.add(shape);
-        setListShape();
-        repaint();
+        if (shape.getName() != null) {
+            listShapeInfo.add(shape);
+            setListShape();
+            repaint();
+        }
+
     }//GEN-LAST:event_pnMainMouseReleased
 
     private void lbHinhTronMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhTronMousePressed
@@ -753,13 +779,14 @@ public class pn2D extends javax.swing.JPanel {
             selectDuongThang = false;
             selectHCN = false;
             selectOval = false;
-            selectDiChuyen = false;
             selectTamGiac = false;
+            selectXoay = false;
             lbSelected(lbHinhTron);
             lbHinhDuongThang.setBorder(null);
             lbHinhCN.setBorder(null);
             lbHinhOval.setBorder(null);
             lbHinhTamGiac.setBorder(null);
+            lbXoay.setBorder(null);
         } else {
             lbHinhTron.setBorder(null);
         }
@@ -857,6 +884,27 @@ public class pn2D extends javax.swing.JPanel {
         }// TODO add your handling code here:
     }//GEN-LAST:event_lbXoaTatCaMousePressed
 
+    private void lbXoayMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbXoayMousePressed
+        if (!selectXoay) {
+            selectDuongThang = false;
+            selectHCN = false;
+            selectOval = false;
+            selectTamGiac = false;
+            selectTron = false;
+            lbSelected(lbXoay);
+            lbHinhDuongThang.setBorder(null);
+            lbHinhCN.setBorder(null);
+            lbHinhOval.setBorder(null);
+            lbHinhTamGiac.setBorder(null);
+            lbHinhTron.setBorder(null);
+        } else {
+            TrucToaDo.tempFlag = null;
+            lbXoay.setBorder(null);
+        }
+        repaint();
+        selectXoay = !selectXoay;// TODO add your handling code here:
+    }//GEN-LAST:event_lbXoayMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -879,6 +927,7 @@ public class pn2D extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbDelete;
+    private javax.swing.JLabel lbFlag;
     private javax.swing.JLabel lbHinhCN;
     private javax.swing.JLabel lbHinhDuongThang;
     private javax.swing.JLabel lbHinhOval;
@@ -886,8 +935,6 @@ public class pn2D extends javax.swing.JPanel {
     private javax.swing.JLabel lbHinhTron;
     private javax.swing.JLabel lbLatOx;
     private javax.swing.JLabel lbLatOy;
-    private javax.swing.JLabel lbPhongTo;
-    private javax.swing.JLabel lbThuNho;
     private javax.swing.JLabel lbXoaTatCa;
     private javax.swing.JLabel lbXoay;
     private javax.swing.JList<String> listShape;

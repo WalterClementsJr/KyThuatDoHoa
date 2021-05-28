@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,15 +26,15 @@ public class pn3D extends javax.swing.JPanel {
      */
     boolean selectHinhHop = false;
     boolean selectHinhCau = false;
-    boolean selectDiChuyen = false;
-    boolean selectXoa = false;
     public final String Ve_HinhHop = "hinhHop";
     public final String Ve_HinhCau = "hinhCau";
-    
+
     public String mode = Ve_HinhHop;
 
     public pn3D() {
         initComponents();
+        lbSelected(lbHinhHop);
+        selectHinhHop = true;
     }
 
     public void lbSelected(JLabel lb) {
@@ -69,15 +70,7 @@ public class pn3D extends javax.swing.JPanel {
         jSpinnerBanKinh = new javax.swing.JSpinner();
         pnMain = new Model.TrucToaDo3D();
         pnFooter = new javax.swing.JPanel();
-        lbDiChuyen = new javax.swing.JLabel();
-        lbXoay = new javax.swing.JLabel();
-        lbLatOy = new javax.swing.JLabel();
-        lbLatOx = new javax.swing.JLabel();
-        lbPhongTo = new javax.swing.JLabel();
-        lbThuNho = new javax.swing.JLabel();
         lbXoa = new javax.swing.JLabel();
-        lbUndo = new javax.swing.JLabel();
-        lbRedo = new javax.swing.JLabel();
         pnChucNang = new javax.swing.JPanel();
         lbHinhCau = new javax.swing.JLabel();
         lbHinhHop = new javax.swing.JLabel();
@@ -93,45 +86,71 @@ public class pn3D extends javax.swing.JPanel {
         jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnThongTin.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 140, 30));
 
-        jLabel1.setText("X");
-        pnThongTin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("x");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 20, 30));
 
-        jLabel2.setText("Y");
-        pnThongTin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("y");
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 20, 30));
 
-        jLabel3.setText("Z");
-        pnThongTin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("z");
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 20, 30));
 
+        jSpinnerXo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jSpinnerXo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jSpinnerXo.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinnerXoStateChanged(evt);
             }
         });
-        pnThongTin.add(jSpinnerXo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 120, -1));
+        pnThongTin.add(jSpinnerXo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 120, 30));
 
+        jSpinnerYo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jSpinnerYo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jSpinnerYo.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinnerYoStateChanged(evt);
             }
         });
-        pnThongTin.add(jSpinnerYo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 100, -1));
+        pnThongTin.add(jSpinnerYo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 100, 30));
 
+        jSpinnerZo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jSpinnerZo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jSpinnerZo.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinnerZoStateChanged(evt);
             }
         });
-        pnThongTin.add(jSpinnerZo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 120, -1));
+        pnThongTin.add(jSpinnerZo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 120, 30));
 
-        jLabel4.setText("Dài");
-        pnThongTin.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("a");
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 20, 30));
 
-        jLabel5.setText("Rộng");
-        pnThongTin.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("b");
+        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 20, 30));
 
-        jLabel6.setText("Cao");
-        pnThongTin.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("h");
+        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 20, 30));
 
+        jSpinnerDai.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jSpinnerDai.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jSpinnerDai.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinnerDaiStateChanged(evt);
@@ -142,40 +161,50 @@ public class pn3D extends javax.swing.JPanel {
                 jSpinnerDaiMousePressed(evt);
             }
         });
-        pnThongTin.add(jSpinnerDai, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 120, -1));
+        pnThongTin.add(jSpinnerDai, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 120, 30));
 
+        jSpinnerRong.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jSpinnerRong.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jSpinnerRong.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinnerRongStateChanged(evt);
             }
         });
-        pnThongTin.add(jSpinnerRong, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 120, -1));
+        pnThongTin.add(jSpinnerRong, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 120, 30));
 
+        jSpinnerCao.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jSpinnerCao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jSpinnerCao.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinnerCaoStateChanged(evt);
             }
         });
-        pnThongTin.add(jSpinnerCao, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 120, -1));
+        pnThongTin.add(jSpinnerCao, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 120, 30));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("√2");
-        pnThongTin.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 20, 20));
+        pnThongTin.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 20, 30));
 
-        jLabel8.setText("Bán kính");
-        pnThongTin.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("r");
+        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnThongTin.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 20, 30));
 
+        jSpinnerBanKinh.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jSpinnerBanKinh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jSpinnerBanKinh.setEnabled(false);
         jSpinnerBanKinh.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinnerBanKinhStateChanged(evt);
             }
         });
-        pnThongTin.add(jSpinnerBanKinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 120, -1));
+        pnThongTin.add(jSpinnerBanKinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 120, 30));
 
-        add(pnThongTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 200, 500));
+        add(pnThongTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 200, 550));
 
         pnMain.setBackground(new java.awt.Color(255, 255, 255));
-        pnMain.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnMain.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 pnMainMouseEntered(evt);
@@ -189,11 +218,11 @@ public class pn3D extends javax.swing.JPanel {
         pnMain.setLayout(pnMainLayout);
         pnMainLayout.setHorizontalGroup(
             pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 748, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
         );
         pnMainLayout.setVerticalGroup(
             pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
 
         add(pnMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 750, 500));
@@ -202,51 +231,14 @@ public class pn3D extends javax.swing.JPanel {
         pnFooter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnFooter.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbDiChuyen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_move_30px.png"))); // NOI18N
-        lbDiChuyen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbDiChuyen.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbDiChuyenMousePressed(evt);
-            }
-        });
-        pnFooter.add(lbDiChuyen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
-
-        lbXoay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_rotate_30px.png"))); // NOI18N
-        lbXoay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbXoay, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
-
-        lbLatOy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flip_vertical_30px_1.png"))); // NOI18N
-        lbLatOy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbLatOy, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
-
-        lbLatOx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flip_horizontal_30px_1.png"))); // NOI18N
-        lbLatOx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbLatOx, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));
-
-        lbPhongTo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_zoom_in_30px.png"))); // NOI18N
-        lbPhongTo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbPhongTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
-
-        lbThuNho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_zoom_out_30px.png"))); // NOI18N
-        lbThuNho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbThuNho, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
-
-        lbXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_erase_30px_2.png"))); // NOI18N
+        lbXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_trash_30px.png"))); // NOI18N
         lbXoa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbXoa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lbXoaMousePressed(evt);
             }
         });
-        pnFooter.add(lbXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, -1, -1));
-
-        lbUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_undo_30px_1.png"))); // NOI18N
-        lbUndo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbUndo, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, -1, -1));
-
-        lbRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_redo_30px.png"))); // NOI18N
-        lbRedo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbRedo, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, -1, -1));
+        pnFooter.add(lbXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
 
         add(pnFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 1000, 50));
 
@@ -272,77 +264,38 @@ public class pn3D extends javax.swing.JPanel {
         });
         pnChucNang.add(lbHinhHop, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 14, -1, -1));
 
-        add(pnChucNang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 500));
+        add(pnChucNang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 550));
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbHinhHopMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhHopMousePressed
-        TrucToaDo3D.tempShape=null;
-        TrucToaDo3D.shape3D=null;
-        repaint();
-        if (!selectHinhHop) {
-            selectHinhCau = false;
-            selectDiChuyen = false;
-            selectXoa = false;
-            lbSelected(lbHinhHop);
-            lbHinhCau.setBorder(null);
-            lbDiChuyen.setBorder(null);
-            lbXoa.setBorder(null);
-        } else {
-            lbHinhHop.setBorder(null);
-        }
-        selectHinhHop = !selectHinhHop;// TODO add your handling code here:
-        mode=Ve_HinhHop;
+        selectHinhCau = false;
+        lbSelected(lbHinhHop);
+        lbHinhCau.setBorder(null);
+        mode = Ve_HinhHop;
         jSpinnerDai.setEnabled(true);
         jSpinnerRong.setEnabled(true);
         jSpinnerCao.setEnabled(true);
         jSpinnerBanKinh.setEnabled(false);
+        TrucToaDo3D.tempShape = null;
+        TrucToaDo3D.shape3D = null;
+        repaint();
     }//GEN-LAST:event_lbHinhHopMousePressed
 
     private void lbHinhCauMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhCauMousePressed
-        TrucToaDo3D.tempShape=null;
-        TrucToaDo3D.shape3D=null;
-        repaint();
-        if (!selectHinhCau) {
-            selectHinhHop = false;
-            selectDiChuyen = false;
-            selectXoa = false;
-            lbSelected(lbHinhCau);
-            lbHinhHop.setBorder(null);
-            lbDiChuyen.setBorder(null);
-            lbXoa.setBorder(null);
-        } else {
-            lbHinhCau.setBorder(null);
-        }
-        selectHinhCau = !selectHinhCau;// TODO add your handling code here:
-        mode=Ve_HinhCau;
+        selectHinhHop = false;
+        lbSelected(lbHinhCau);
+        lbHinhHop.setBorder(null);
         jSpinnerDai.setEnabled(false);
         jSpinnerRong.setEnabled(false);
         jSpinnerCao.setEnabled(false);
         jSpinnerBanKinh.setEnabled(true);
+        TrucToaDo3D.tempShape = null;
+        TrucToaDo3D.shape3D = null;
+        repaint();
+        mode = Ve_HinhCau;
     }//GEN-LAST:event_lbHinhCauMousePressed
 
-    private void lbDiChuyenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDiChuyenMousePressed
-        if (!selectHinhHop) {
-            selectHinhCau = false;
-            selectHinhHop = false;
-            selectXoa = false;
-            lbSelected(lbDiChuyen);
-            lbHinhCau.setBorder(null);
-            lbHinhHop.setBorder(null);
-            lbXoa.setBorder(null);
-        } else {
-            lbDiChuyen.setBorder(null);
-        }
-        selectDiChuyen = !selectDiChuyen;// TODO add your handling code here:
-    }//GEN-LAST:event_lbDiChuyenMousePressed
-
     private void pnMainMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseEntered
-        if (selectHinhCau || selectHinhHop || selectXoa) {
-            pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
-        }
-        if (selectDiChuyen) {
-            pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-        }// TODO add your handling code here:
     }//GEN-LAST:event_pnMainMouseEntered
 
     private void pnMainMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseExited
@@ -350,21 +303,16 @@ public class pn3D extends javax.swing.JPanel {
     }//GEN-LAST:event_pnMainMouseExited
 
     private void lbXoaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbXoaMousePressed
-        if (!selectXoa) {
-            selectHinhCau = false;
-            selectHinhHop = false;
-            selectDiChuyen = false;
-            lbSelected(lbXoa);
-            lbHinhCau.setBorder(null);
-            lbHinhHop.setBorder(null);
-            lbDiChuyen.setBorder(null);
+        if (TrucToaDo3D.shape3D != null) {
+            int select = JOptionPane.showConfirmDialog(this, "XÓA", "Xóa Shape?", JOptionPane.YES_NO_OPTION, 0);
+            if (select == 0) {
+                TrucToaDo3D.tempShape = null;
+                TrucToaDo3D.shape3D = null;
+                repaint();
+            }
         } else {
-            lbXoa.setBorder(null);
+            JOptionPane.showMessageDialog(this, "Danh sách rỗng");
         }
-        selectXoa = !selectXoa;// TODO add your handling code here:
-        TrucToaDo3D.tempShape=null;
-        TrucToaDo3D.shape3D=null;
-        repaint();
     }//GEN-LAST:event_lbXoaMousePressed
 
     private void jSpinnerXoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerXoStateChanged
@@ -374,7 +322,7 @@ public class pn3D extends javax.swing.JPanel {
 
     private void jSpinnerDaiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinnerDaiMousePressed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jSpinnerDaiMousePressed
 
     private void jSpinnerDaiStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerDaiStateChanged
@@ -384,15 +332,11 @@ public class pn3D extends javax.swing.JPanel {
 
     private void jSpinnerYoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerYoStateChanged
         // TODO add your handling code here
-        if (mode.equals(Ve_HinhHop))
-        {
-            TrucToaDo3D.shape3D=new HinhHop((int) jSpinnerXo.getValue(), (int) jSpinnerYo.getValue(), (int) jSpinnerZo.getValue(), (int) jSpinnerDai.getValue(),(int) jSpinnerRong.getValue(),(int) jSpinnerCao.getValue());
-        }
-        else
-        {
-            if (mode.equals(Ve_HinhCau))
-            {
-                TrucToaDo3D.shape3D=new HinhCau((int) jSpinnerXo.getValue(), (int) jSpinnerYo.getValue(), (int) jSpinnerZo.getValue(), (int) jSpinnerBanKinh.getValue());
+        if (mode.equals(Ve_HinhHop)) {
+            TrucToaDo3D.shape3D = new HinhHop((int) jSpinnerXo.getValue(), (int) jSpinnerYo.getValue(), (int) jSpinnerZo.getValue(), (int) jSpinnerDai.getValue(), (int) jSpinnerRong.getValue(), (int) jSpinnerCao.getValue());
+        } else {
+            if (mode.equals(Ve_HinhCau)) {
+                TrucToaDo3D.shape3D = new HinhCau((int) jSpinnerXo.getValue(), (int) jSpinnerYo.getValue(), (int) jSpinnerZo.getValue(), (int) jSpinnerBanKinh.getValue());
             }
         }
         repaint();
@@ -437,17 +381,9 @@ public class pn3D extends javax.swing.JPanel {
     private javax.swing.JSpinner jSpinnerXo;
     private javax.swing.JSpinner jSpinnerYo;
     private javax.swing.JSpinner jSpinnerZo;
-    private javax.swing.JLabel lbDiChuyen;
     private javax.swing.JLabel lbHinhCau;
     private javax.swing.JLabel lbHinhHop;
-    private javax.swing.JLabel lbLatOx;
-    private javax.swing.JLabel lbLatOy;
-    private javax.swing.JLabel lbPhongTo;
-    private javax.swing.JLabel lbRedo;
-    private javax.swing.JLabel lbThuNho;
-    private javax.swing.JLabel lbUndo;
     private javax.swing.JLabel lbXoa;
-    private javax.swing.JLabel lbXoay;
     private javax.swing.JPanel pnChucNang;
     private javax.swing.JPanel pnFooter;
     private javax.swing.JPanel pnMain;

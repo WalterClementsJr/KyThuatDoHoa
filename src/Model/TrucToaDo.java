@@ -23,21 +23,23 @@ public class TrucToaDo extends JPanel {
 
     public static ArrayList<Shapes2D> shapeList = new ArrayList<>();
     public static Shapes2D tempShape;
+    public static Shapes2D tempFlag;
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         veTrucToaDo(g);
         
-//        Ellipse.drawHalfDottedEllipse(g, new Point(0, 0), 20);
-        
         for (Shapes2D shape : shapeList) {
-            System.out.println(shapeList.size());
             shape.draw(g);
         }
 
         if (tempShape != null) {
             tempShape.draw(g);
+        }
+        
+        if (tempFlag != null) {
+            tempFlag.draw(g);
         }
 //MyLine.dashedLine(g, -20, 1, 20, 1);
     }
