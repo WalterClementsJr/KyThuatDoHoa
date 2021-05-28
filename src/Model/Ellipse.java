@@ -15,10 +15,9 @@ import java.awt.Point;
  * @author walker
  */
 public class Ellipse implements Shapes2D {
-
-    Point O;
-    int dai, cao;
-    static int dem=0;
+    Point O, originalO;
+    int dai, cao,orginalDai, originalCao;
+    static int dem = 0;
 
     public Ellipse(Point A, Point B) {
         O = new Point();
@@ -26,7 +25,11 @@ public class Ellipse implements Shapes2D {
         cao = Math.abs(A.y - B.y);
         O.x = (A.x + B.x) / 2;
         O.y = (A.y + B.y) / 2;
+        originalO = O;
+        originalCao=dai;
+        originalCao=cao;
     }
+
     public static void drawHalfDottedEllipse(Graphics g, Point a, int dai) {
         double dx, dy, d1, d2;
         int x, y, cao = (int) dai / 2;
@@ -106,7 +109,6 @@ public class Ellipse implements Shapes2D {
         }
     }
 
-
     public static void drawHalfDashed(Graphics g, int xc, int yc, int a, int b) {
         long x, y, fx, fy, a2, b2, p;
         x = 0;
@@ -115,9 +117,9 @@ public class Ellipse implements Shapes2D {
         b2 = b * b; // b^2
         fx = 0;
         fy = 2 * a2 * y; // 2a^2y
-        int chieuDaiMoiDoan=4;
-        int khoangCachMoiDoan=2;
-        plotDash(g, xc, yc, Math.round(x), Math.round(y),chieuDaiMoiDoan,khoangCachMoiDoan);
+        int chieuDaiMoiDoan = 4;
+        int khoangCachMoiDoan = 2;
+        plotDash(g, xc, yc, Math.round(x), Math.round(y), chieuDaiMoiDoan, khoangCachMoiDoan);
         p = Math.round(b2 - (a2 * b) + (0.25 * a));
 
         while (fx < fy) {
@@ -132,7 +134,7 @@ public class Ellipse implements Shapes2D {
 
                 fy -= 2 * a2; // 2a2
             }
-            plotDash(g, xc, yc, Math.round(x), Math.round(y), chieuDaiMoiDoan,khoangCachMoiDoan);
+            plotDash(g, xc, yc, Math.round(x), Math.round(y), chieuDaiMoiDoan, khoangCachMoiDoan);
         }
         p = Math.round(b2 * (x + 0.5) * (x + 0.5) + a2 * (y - 1) * (y - 1) - a2 * b2);
 
@@ -148,7 +150,7 @@ public class Ellipse implements Shapes2D {
                 p += b2 * (2 * x + 2) + a2 * (-2 * y + 3);
 
             }
-            plotDash(g, xc, yc, Math.round(x), Math.round(y), chieuDaiMoiDoan,khoangCachMoiDoan);
+            plotDash(g, xc, yc, Math.round(x), Math.round(y), chieuDaiMoiDoan, khoangCachMoiDoan);
         }
     }
 
@@ -158,8 +160,9 @@ public class Ellipse implements Shapes2D {
         putPixel(g, xc + x, yc - y);
         putPixel(g, xc - x, yc - y);
     }
+
     static void plotDash(Graphics g, int xc, int yc, int x, int y, int chieuDaiMoiDoan, int khoangCachMoiDoan) {
-        
+
         if (dem <= chieuDaiMoiDoan) {
             putPixel(g, xc + x, yc + y);
             putPixel(g, xc - x, yc + y);
@@ -167,7 +170,7 @@ public class Ellipse implements Shapes2D {
             if (dem > chieuDaiMoiDoan && dem <= chieuDaiMoiDoan + khoangCachMoiDoan) {
                 //không put pixel
             } else {
-                dem=1;
+                dem = 1;
                 putPixel(g, xc + x, yc + y);
                 putPixel(g, xc - x, yc + y);
             }
@@ -216,15 +219,42 @@ public class Ellipse implements Shapes2D {
             }
             plot(g, O.x, O.y, Math.round(x), Math.round(y));
         }
+        O = originalO;
     }
 
     @Override
     public void draw(Graphics g, Color c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void fill(Graphics g, Color color) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void xoay(double radian, Point anchor) {
+        O = Rotation.rotateAroundO(O.x, O.y, radian, anchor);
+    }
+
+    @Override
+    public void dich(int x, int y) {
+        O.x =originalO.x+ x;
+        O.y =originalO.y+ y;
+    }
+    @Override
+    public void doiXungOx() {
+        O.y=-O.y;
+}
+
+    @Override
+    public void doiXungOy() {
+        O.x=-O.x;      
+    }
+
+    @Override
+    public void bienDang(double heSoBienDang) {
+        dai=(int) Math.round(orginalDai*heSoBienDang);
+        cao=(int) Math.round(originalCao*heSoBienDang);
+    }
+    
 }

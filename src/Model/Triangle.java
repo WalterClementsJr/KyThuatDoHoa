@@ -17,6 +17,7 @@ import java.awt.Polygon;
 public class Triangle implements Shapes2D {
 
     private Point A, B, C;
+    private Point originalA, originalB, originalC;
     int canh;
 
     public Triangle(Point a, int canh) {
@@ -34,22 +35,28 @@ public class Triangle implements Shapes2D {
         this.A = A;
         this.B = B;
         this.C = C;
+        this.originalA = A;
+        this.originalB = B;
+        this.originalC = C;
     }
 
     public Triangle(Point a, Point b) {
         A = new Point();
         B = new Point();
         C = new Point();
-
+        
         A.x = (a.x + b.x) / 2;
         A.y = Math.max(a.y, b.y);
         B.x = Math.min(a.x, b.x);
         B.y = Math.min(a.y, b.y);
         C.x = Math.max(a.x, b.x);
         C.y = Math.min(a.y, b.y);
-
+        
+        this.originalA = A;
+        this.originalB = B;
+        this.originalC = C;
     }
-
+    
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.BLACK);
@@ -57,6 +64,7 @@ public class Triangle implements Shapes2D {
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, C.x, C.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, A.x, A.y, C.x, C.y);
+//        A = originalA; B = originalB; C = originalC;
     }
 
     @Override
@@ -70,17 +78,8 @@ public class Triangle implements Shapes2D {
 
     @Override
     public void fill(Graphics g, Color color) {
-//        Polygon triangle = new Polygon();
-//        Point x = TrucToaDo.convertPointDescart(A);
-//        Point y = TrucToaDo.convertPointDescart(B);
-//        Point z = TrucToaDo.convertPointDescart(C);
-//
-//        triangle.addPoint(x.x, x.y);
-//        triangle.addPoint(y.x, y.y);
-//        triangle.addPoint(z.x, z.y);
-//        g.setColor(color);
-//        g.fillPolygon(triangle);
     }
+
 
     public Point getA() {
         return A;
@@ -114,4 +113,40 @@ public class Triangle implements Shapes2D {
         this.canh = canh;
     }
 
+
+    @Override
+    public void xoay(double radian, Point anchor) {
+        A = Rotation.rotateAroundO(A.x, A.y, radian, anchor);
+        B = Rotation.rotateAroundO(B.x, B.y, radian, anchor);
+        C = Rotation.rotateAroundO(C.x, C.y, radian, anchor);
+    }
+
+    @Override
+    public void dich(int x, int y) {
+        A.x =originalA.x +x; A.y =originalA.y +y;
+        B.x =originalB.x +x; B.y =originalB.y +y;
+        C.x =originalC.x +x; C.y =originalC.y +y;
+    }
+    @Override
+    public void doiXungOx() {
+        A.y = -A.y;
+        B.y = -B.y;
+        C.y = -C.y;
+    }
+
+    @Override
+    public void doiXungOy() {
+        A.x = -A.x; 
+        B.x = -B.x;
+        C.x = -C.x;
+
+}
+
+    @Override
+    public void bienDang(double heSoBienDang) {
+        A.x =(int) Math.round(originalA.x*heSoBienDang)-originalA.x; A.y =(int) Math.round(originalA.y*heSoBienDang)-originalA.y;
+        B.x =(int) Math.round(originalC.x*heSoBienDang)-originalA.x; B.y =(int) Math.round(originalC.y*heSoBienDang)-originalA.y;
+        C.x =(int) Math.round(originalC.x*heSoBienDang)-originalA.x; C.y =(int) Math.round(originalC.y*heSoBienDang)-originalA.y;
+    }
+    
 }

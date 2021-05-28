@@ -34,8 +34,6 @@ public class TrucToaDo extends JPanel {
 //        dashDotLine(g, 0, 0, 40, 20);
 //        dashedLine(g, 0, 0, 40, 20);
 //        drawArrow(g, 10, 10, 40, 10);
-
-
         for (Shapes2D shape : shapeList) {
             shape.draw(g);
         }
@@ -315,6 +313,7 @@ public class TrucToaDo extends JPanel {
         return pointNew;
 
     }
+
     /**
      * tọa độ
      *
@@ -325,7 +324,7 @@ public class TrucToaDo extends JPanel {
      * @param yAxisSize
      * @return
      */
-   public static Point convertDescartReverse(Point p) {
+    public static Point convertDescartReverse(Point p) {
         int deltaXTemp = deltaX * 5;
         int deltaYTemp = deltaY * 5;
         double x = Math.round(p.getX() * 5);
@@ -333,13 +332,13 @@ public class TrucToaDo extends JPanel {
         double xJva = 750;
         double yJva = 500;
         if (x >= 0 && y >= 0) {
-            x = xJva - (deltaXTemp-x);
+            x = xJva - (deltaXTemp - x);
             y = yJva - (y + deltaYTemp);
         } else if (x >= 0 && y <= 0) {
-            x = xJva - (deltaXTemp-x);
+            x = xJva - (deltaXTemp - x);
             y = yJva - (deltaYTemp + y);
         } else if (x <= 0 && y >= 0) {
-            x = xJva - (deltaXTemp-x);
+            x = xJva - (deltaXTemp - x);
             y = yJva - (y + deltaYTemp);
         } else {
             x = xJva - (deltaXTemp - x);
@@ -350,23 +349,25 @@ public class TrucToaDo extends JPanel {
         return pointNew;
     }
 
-      public static Point getPointInAxisNew(Point p, int xAxis,int yAxis )
-            {   Point newP=new Point();
-                    //tra về điểm trong hệ toạ độ mới
-                    newP.x=p.x+xAxis;
-                    newP.y=p.y+yAxis;
-                    return newP;
-               
-            }
+    public static Point getPointInAxisNew(Point p, int xAxis, int yAxis) {
+        Point newP = new Point();
+        //tra về điểm trong hệ toạ độ mới
+        newP.x = p.x + xAxis;
+        newP.y = p.y + yAxis;
+        return newP;
+
+    }
 
     public static Point expandX(Point p) // cộng thêm để bù vào phần bên
-    {  Point diem=new Point();
-        diem.x= p.x+10;
+    {
+        Point diem = new Point();
+        diem.x = p.x + 10;
         return new Point(diem.x, p.y);
     }
+
     public static void main(String[] args) {
-        Point a=new Point(15,15);
-        Point b=convertDescartReverse(a);
-        Point c=convertDescart(b);
+        Point a = new Point(15, 15);
+        Point b = convertDescartReverse(a);
+        Point c = convertDescart(b);
     }
 }
