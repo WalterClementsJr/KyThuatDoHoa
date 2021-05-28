@@ -46,4 +46,36 @@ public class MyRect implements Shapes2D {
     public void fill(Graphics g, Color color) {
     }
 
+    public Point getA() {
+        return A;
+    }
+
+    public void setA(Point A) {
+        this.A = A;
+    }
+
+    public Point getB() {
+        return B;
+    }
+
+    public void setB(Point B) {
+        this.B = B;
+    }
+
+    public Point getC() {
+        return C;
+    }
+
+    public void setC(Point C) {
+        this.C = C;
+    }
+
+    public Point getD() {
+        return D;
+    }
+
+    public void setD(Point D) {
+        this.D = D;
+    }
+
 }

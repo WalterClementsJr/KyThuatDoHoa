@@ -21,6 +21,38 @@ public MyRect1(Point A, Point B, Point C, Point D) {
         this.C = C;
         this.D = D;
     }
+
+    public Point getA() {
+        return A;
+    }
+
+    public void setA(Point A) {
+        this.A = A;
+    }
+
+    public Point getB() {
+        return B;
+    }
+
+    public void setB(Point B) {
+        this.B = B;
+    }
+
+    public Point getC() {
+        return C;
+    }
+
+    public void setC(Point C) {
+        this.C = C;
+    }
+
+    public Point getD() {
+        return D;
+    }
+
+    public void setD(Point D) {
+        this.D = D;
+    }
     @Override
     public void draw(Graphics g) {
         g.setColor(DEFAULT_COLOR);

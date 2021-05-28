@@ -82,4 +82,36 @@ public class Triangle implements Shapes2D {
 //        g.fillPolygon(triangle);
     }
 
+    public Point getA() {
+        return A;
+    }
+
+    public void setA(Point A) {
+        this.A = A;
+    }
+
+    public Point getB() {
+        return B;
+    }
+
+    public void setB(Point B) {
+        this.B = B;
+    }
+
+    public Point getC() {
+        return C;
+    }
+
+    public void setC(Point C) {
+        this.C = C;
+    }
+
+    public int getCanh() {
+        return canh;
+    }
+
+    public void setCanh(int canh) {
+        this.canh = canh;
+    }
+
 }
