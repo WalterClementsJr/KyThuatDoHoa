@@ -124,6 +124,7 @@ public class MyLine implements Shapes2D {
     @Override
     public void dich(int x, int y) {
         A.x += x; A.y += y;
+        B.x += x; B.y += y;
     }
 }
 
