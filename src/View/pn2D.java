@@ -10,6 +10,8 @@ import Model.Ellipse;
 import Model.MyFlag;
 import Model.MyLine;
 import Model.MyRect;
+import Model.MyRect1;
+import Model.Rotation;
 import Model.ShapeInfo;
 import Model.Triangle;
 import Model.TrucToaDo;
@@ -28,6 +30,8 @@ import java.awt.image.ImageObserver;
 import static java.awt.image.ImageObserver.ALLBITS;
 import java.text.AttributedCharacterIterator;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
@@ -64,14 +68,158 @@ public class pn2D extends javax.swing.JPanel {
     DefaultListModel<String> dlm;
     int listIndexSelected = -1;
     String name = "";
-    Point pQuay;
+    Point pQuay;  //TOA ĐỘ Cờ
+   public Thread thread=new Thread("Thread Rotation");
+   
+   
+   //QUAY HINH CHU NHAT
+    ArrayList<Point> listA = new ArrayList<>();
+    ArrayList<Point> listB = new ArrayList<>();
+    ArrayList<Point> listC = new ArrayList<>();
+    ArrayList<Point> listD = new ArrayList<>();
+    static int iAuto = 1;
+    //QUAY HINHCHU NHAT
+    ArrayList<Point> listTA = new ArrayList<>();
+    ArrayList<Point> listTB = new ArrayList<>();
+    ArrayList<Point> listTC = new ArrayList<>();
+    //QUAY HINH Duong thăng
+    ArrayList<Point> listDt = new ArrayList<>(); 
+  
+    
+    
+    
+    
 
     public pn2D() {
         initComponents();
         setListShape();
         lbFlag.setVisible(false);
-    }
+        
+        //1 dinh duong thang
+         Point aD = new Point(5, 5);
+        
+           //3 dinh tam giac
+        Point aT = new Point(5, 25);
+        Point bT = new Point(10, 35);
+        Point cT = new Point(50, 25);
+        
+        
+        Point a = new Point(5, 30);
+        Point b = new Point(50, 30);
+        Point c = new Point(50, 5);
+        Point d = new Point(5, 5);
 
+//        a= TrucToaDo.getPointInAxisNew(a, 10, 10);
+//        b= TrucToaDo.getPointInAxisNew(b, 10, 10);
+//        c=TrucToaDo.getPointInAxisNew(c, 10, 10);
+//        d=TrucToaDo.getPointInAxisNew(d, 10, 10);
+        Point a1 = a;
+        Point b1 = b;
+        Point c1 = c;
+        Point d1 = d;
+        // 3dinh tam giac
+        Point a1T = aT;
+        Point b1T = bT;
+        Point c1T = cT;
+        //1dinh duongthang
+        Point a1D = aD;
+        
+        double angle = (2 * Math.PI / 8);
+        for (int i = 1; i <= (2 * Math.PI / angle); i++) {
+            
+            Point a3 = new Point();
+            Point b3 = new Point();
+            Point c3 = new Point();
+            Point d3 = new Point();
+            // 3DIEM TAM GIAC
+            a3 = Rotation.rotateAroundO(a1.x, a1.y, -angle * i, new Point(0, 0));
+            b3 = Rotation.rotateAroundO(b1.x, b1.y, -angle * i, new Point(0, 0));
+            c3 = Rotation.rotateAroundO(c1.x, c1.y, -angle * i, new Point(0, 0));
+            d3 = Rotation.rotateAroundO(d1.x, d1.y, -angle * i, new Point(0, 0));
+            
+            Point a3T = new Point();
+            Point b3T = new Point();
+            Point c3T = new Point();
+            a3T = Rotation.rotateAroundO(a1T.x, a1T.y, -angle * i, new Point(0, 0));
+            b3T = Rotation.rotateAroundO(b1T.x, b1T.y, -angle * i, new Point(0, 0));
+            c3T = Rotation.rotateAroundO(c1T.x, c1T.y, -angle * i, new Point(0, 0));
+            //DINH DUONG THANG
+            Point a3D = new Point();
+            a3D=Rotation.rotateAroundO(a1T.x, a1T.y, -angle * i, new Point(0, 0));
+            
+            //CHU NHAT
+            listA.add(a3);
+            listB.add(b3);
+            listC.add(c3);
+            listD.add(d3);
+
+            // TAM GIAC
+            listTA.add(a3T);
+            listTB.add(b3T);
+            listTC.add(c3T);
+        }
+    }
+@Override
+    public void paint(Graphics g) {
+        super.paint(g); //To change body of generated methods, choose Tools | Templates.
+//   
+
+        Point a0 = new Point(0, 0);
+        Point b0 = new Point(5, 5);
+//         
+        
+        a0 = TrucToaDo.expandX(a0);
+        b0 = TrucToaDo.expandX(b0);
+        
+        MyLine myline1 = new MyLine(a0, b0);
+        myline1.draw(g);
+        
+        {   //4 DIEM CHU NHAT
+            Point aa = new Point();
+            Point bb = new Point();
+            Point cc = new Point();
+            Point dd = new Point();
+            //3DIEM TAM GIAC
+            Point aaT = new Point();
+            Point bbT = new Point();
+            Point ccT = new Point();
+            
+            aa = listA.get(iAuto - 1);
+            bb = listB.get(iAuto - 1);
+            cc = listC.get(iAuto - 1);
+            dd = listD.get(iAuto - 1);
+
+            //3DIEM TAM GIAC
+            aaT = listTA.get(iAuto - 1);
+            bbT = listTB.get(iAuto - 1);
+            ccT = listTC.get(iAuto - 1);
+            
+            Point aaa = new Point();
+            Point bbb = new Point();
+            Point ccc = new Point();
+            Point ddd = new Point();
+            aaa = TrucToaDo.expandX(aa);
+            bbb = TrucToaDo.expandX(bb);
+               ccc = TrucToaDo.expandX(cc);
+                  ddd = TrucToaDo.expandX(dd);
+
+            //  3 DIEM TAM GIAC
+            Point aaaT = new Point();
+            Point bbbT = new Point();
+            Point cccT = new Point();
+            
+            aaaT = TrucToaDo.expandX(aaT);
+            bbbT = TrucToaDo.expandX(bbT);
+            cccT = TrucToaDo.expandX(ccT);
+            
+            MyRect1 myReact2 = new MyRect1(aaa,bbb,ccc,ddd);
+            
+            myReact2.draw(g);
+            
+            Triangle triangle = new Triangle(aaaT, bbbT, cccT);
+            triangle.draw(g);
+        }
+    }
     public void setListShape() {
         listShape.setModel(new DefaultListModel<>());
         dlm = (DefaultListModel<String>) listShape.getModel();
@@ -652,7 +800,23 @@ public class pn2D extends javax.swing.JPanel {
         int xJv = evt.getX() + 50;
         int yJv = evt.getY() + 50;
         toadoJava.setText(xJv + " : " + yJv);
-
+ iAuto++;
+        if (iAuto <= 8) {
+            try {
+                repaint();
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(pn2D.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            iAuto = 1;
+            try {
+                repaint();
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(pn2D.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_pnMainMouseMoved
 
     private void pnMainMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseDragged
@@ -709,6 +873,8 @@ public class pn2D extends javax.swing.JPanel {
             //selectXoay sai là dừng quay
         }
         repaint();
+        
+        
     }//GEN-LAST:event_pnMainMousePressed
 
     private void pnMainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseReleased
@@ -901,6 +1067,7 @@ public class pn2D extends javax.swing.JPanel {
             TrucToaDo.tempFlag = null;
             lbXoay.setBorder(null);
         }
+        
         repaint();
         selectXoay = !selectXoay;// TODO add your handling code here:
     }//GEN-LAST:event_lbXoayMousePressed

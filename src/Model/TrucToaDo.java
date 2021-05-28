@@ -295,9 +295,8 @@ public class TrucToaDo extends JPanel {
      * @return
      */
     public static Point convertDescart(Point p) {
-
-        double x = Math.floor(p.getX() / 5);
-        double y = -Math.floor(p.getY() / 5);
+        double x = Math.round(p.getX() / 5);
+        double y = -Math.round(p.getY() / 5);
         if (x >= 0 && y >= 0) {
             x = x - deltaX;
             y = y - deltaY;
@@ -308,14 +307,14 @@ public class TrucToaDo extends JPanel {
             x = x + deltaX;
             y = y - deltaY;
         } else {
-            x = deltaX - x;
+            x = x + deltaX;
             y = y + deltaY;
         }
         Point pointNew = new Point();
         pointNew.setLocation(x, y);
         return pointNew;
-    }
 
+    }
     /**
      * tọa độ
      *
@@ -326,27 +325,48 @@ public class TrucToaDo extends JPanel {
      * @param yAxisSize
      * @return
      */
-    public static Point convertPointDescart(Point p) {
-        deltaX = deltaX + 10;
-        deltaX = (deltaX * 5);
-        deltaY = (deltaY * 5);
-        double x = (p.getX()) * 5;
-        double y = (p.getY()) * 5;
+   public static Point convertDescartReverse(Point p) {
+        int deltaXTemp = deltaX * 5;
+        int deltaYTemp = deltaY * 5;
+        double x = Math.round(p.getX() * 5);
+        double y = Math.round(p.getY() * 5);
+        double xJva = 750;
+        double yJva = 500;
         if (x >= 0 && y >= 0) {
-            x = x + deltaX;
-            y = deltaY - y;
+            x = xJva - (deltaXTemp-x);
+            y = yJva - (y + deltaYTemp);
         } else if (x >= 0 && y <= 0) {
-            x = x + deltaX;
-            y = -y + deltaY;
+            x = xJva - (deltaXTemp-x);
+            y = yJva - (deltaYTemp + y);
         } else if (x <= 0 && y >= 0) {
-            x = deltaX - x;
-            y = deltaY - y;
+            x = xJva - (deltaXTemp-x);
+            y = yJva - (y + deltaYTemp);
         } else {
-            x = deltaX - x;
-            y = deltaY - y;
+            x = xJva - (deltaXTemp - x);
+            y = yJva - (deltaYTemp + y);
         }
         Point pointNew = new Point();
-        pointNew.setLocation(x, y);
+        pointNew.setLocation(x - 1, y - 1);
         return pointNew;
+    }
+
+      public static Point getPointInAxisNew(Point p, int xAxis,int yAxis )
+            {   Point newP=new Point();
+                    //tra về điểm trong hệ toạ độ mới
+                    newP.x=p.x+xAxis;
+                    newP.y=p.y+yAxis;
+                    return newP;
+               
+            }
+
+    public static Point expandX(Point p) // cộng thêm để bù vào phần bên
+    {  Point diem=new Point();
+        diem.x= p.x+10;
+        return new Point(diem.x, p.y);
+    }
+    public static void main(String[] args) {
+        Point a=new Point(15,15);
+        Point b=convertDescartReverse(a);
+        Point c=convertDescart(b);
     }
 }

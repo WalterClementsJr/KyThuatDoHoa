@@ -30,18 +30,24 @@ public class Triangle implements Shapes2D {
      * @param a
      * @param b
      */
+    public Triangle(Point A, Point B, Point C) {
+        this.A = A;
+        this.B = B;
+        this.C = C;
+    }
+
     public Triangle(Point a, Point b) {
         A = new Point();
         B = new Point();
         C = new Point();
-        
+
         A.x = (a.x + b.x) / 2;
         A.y = Math.max(a.y, b.y);
         B.x = Math.min(a.x, b.x);
         B.y = Math.min(a.y, b.y);
         C.x = Math.max(a.x, b.x);
         C.y = Math.min(a.y, b.y);
-        
+
     }
 
     @Override
@@ -52,7 +58,7 @@ public class Triangle implements Shapes2D {
         TrucToaDo.bresenhamLine(g, C.x, C.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, A.x, A.y, C.x, C.y);
     }
-    
+
     @Override
     public void draw(Graphics g, Color c) {
         g.setColor(c);
@@ -60,7 +66,7 @@ public class Triangle implements Shapes2D {
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, C.x, C.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, A.x, A.y, C.x, C.y);
-}
+    }
 
     @Override
     public void fill(Graphics g, Color color) {
@@ -75,6 +81,5 @@ public class Triangle implements Shapes2D {
 //        g.setColor(color);
 //        g.fillPolygon(triangle);
     }
-    
-    
+
 }

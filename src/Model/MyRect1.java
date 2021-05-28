@@ -5,25 +5,22 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public class MyRect implements Shapes2D {
+public class MyRect1 implements Shapes2D {
 
     private Point A, B,C,D;
 
-    public MyRect(Point a, Point c) {
-        A = a;
+    public MyRect1(Point a, Point c) {
+         A = a;
         C = c;
         B=new Point(C.x,A.y);
         D=new Point(A.x,C.y);
-    
     }
-
-    public MyRect(Point A, Point B, Point C, Point D) {
+public MyRect1(Point A, Point B, Point C, Point D) {
         this.A = A;
         this.B = B;
         this.C = C;
         this.D = D;
     }
-
     @Override
     public void draw(Graphics g) {
         g.setColor(DEFAULT_COLOR);
