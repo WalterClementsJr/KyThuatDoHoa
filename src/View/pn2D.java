@@ -303,6 +303,11 @@ public class pn2D extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         lbXoay = new javax.swing.JLabel();
         jSliderGocQuay = new javax.swing.JSlider();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jSpinnerTinhTienX = new javax.swing.JSpinner();
+        jSpinnerTinhTienY = new javax.swing.JSpinner();
+        jSpinnerBienDang = new javax.swing.JSpinner();
         pnChucNang = new javax.swing.JPanel();
         lbHinhCN = new javax.swing.JLabel();
         lbHinhTamGiac = new javax.swing.JLabel();
@@ -593,11 +598,21 @@ public class pn2D extends javax.swing.JPanel {
 
         lbLatOy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flip_vertical_30px_1.png"))); // NOI18N
         lbLatOy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbLatOy, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, -1, -1));
+        lbLatOy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbLatOyMousePressed(evt);
+            }
+        });
+        pnFooter.add(lbLatOy, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, -1));
 
         lbLatOx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flip_horizontal_30px_1.png"))); // NOI18N
         lbLatOx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbLatOx, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, -1, -1));
+        lbLatOx.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbLatOxMousePressed(evt);
+            }
+        });
+        pnFooter.add(lbLatOx, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_move_30px.png"))); // NOI18N
@@ -629,14 +644,43 @@ public class pn2D extends javax.swing.JPanel {
                 lbXoayMousePressed(evt);
             }
         });
-        pnFooter.add(lbXoay, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
+        pnFooter.add(lbXoay, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
 
         jSliderGocQuay.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSliderGocQuayStateChanged(evt);
             }
         });
-        pnFooter.add(jSliderGocQuay, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
+        pnFooter.add(jSliderGocQuay, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
+
+        jLabel18.setText("Tịnh tiến");
+        pnFooter.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
+
+        jLabel19.setText("Thu phóng");
+        pnFooter.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, -1, -1));
+
+        jSpinnerTinhTienX.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerTinhTienXStateChanged(evt);
+            }
+        });
+        pnFooter.add(jSpinnerTinhTienX, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 40, -1));
+
+        jSpinnerTinhTienY.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerTinhTienYStateChanged(evt);
+            }
+        });
+        pnFooter.add(jSpinnerTinhTienY, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 40, -1));
+
+        jSpinnerBienDang.setModel(new javax.swing.SpinnerNumberModel(1.0d, 0.25d, 2.0d, 0.5d));
+        jSpinnerBienDang.setOpaque(false);
+        jSpinnerBienDang.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinnerBienDangStateChanged(evt);
+            }
+        });
+        pnFooter.add(jSpinnerBienDang, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 40, -1));
 
         add(pnFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 1000, 50));
 
@@ -1085,6 +1129,43 @@ public class pn2D extends javax.swing.JPanel {
         repaint();
     }//GEN-LAST:event_jSliderGocQuayStateChanged
 
+    private void jSpinnerTinhTienXStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerTinhTienXStateChanged
+        // TODO add your handling code here:
+        TrucToaDo.shapeList.get(listIndexSelected).dich((int) jSpinnerTinhTienX.getValue(), (int) jSpinnerTinhTienY.getValue());
+        TrucToaDo.tempShape=null;
+        repaint();
+    }//GEN-LAST:event_jSpinnerTinhTienXStateChanged
+
+    private void jSpinnerTinhTienYStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerTinhTienYStateChanged
+        // TODO add your handling code here:
+        jSpinnerTinhTienXStateChanged(evt);
+    }//GEN-LAST:event_jSpinnerTinhTienYStateChanged
+
+    private void jSpinnerBienDangStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerBienDangStateChanged
+        // TODO add your handling code here:
+        double heSoBienDang=(double) jSpinnerBienDang.getValue();
+        if (heSoBienDang!=1)
+        {
+            TrucToaDo.shapeList.get(listIndexSelected).bienDang(heSoBienDang);
+            TrucToaDo.tempShape = null;
+            repaint();
+        }
+    }//GEN-LAST:event_jSpinnerBienDangStateChanged
+
+    private void lbLatOyMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLatOyMousePressed
+        // TODO add your handling code here:
+        TrucToaDo.shapeList.get(listIndexSelected).doiXungOy();
+        TrucToaDo.tempShape = null;
+        repaint();
+    }//GEN-LAST:event_lbLatOyMousePressed
+
+    private void lbLatOxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLatOxMousePressed
+        // TODO add your handling code here:
+        TrucToaDo.shapeList.get(listIndexSelected).doiXungOx();
+        TrucToaDo.tempShape = null;
+        repaint();
+    }//GEN-LAST:event_lbLatOxMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -1096,6 +1177,8 @@ public class pn2D extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1107,6 +1190,9 @@ public class pn2D extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSlider jSliderGocQuay;
+    private javax.swing.JSpinner jSpinnerBienDang;
+    private javax.swing.JSpinner jSpinnerTinhTienX;
+    private javax.swing.JSpinner jSpinnerTinhTienY;
     private javax.swing.JLabel lbDelete;
     private javax.swing.JLabel lbFlag;
     private javax.swing.JLabel lbHinhCN;

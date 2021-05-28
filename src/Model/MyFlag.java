@@ -59,5 +59,17 @@ public class MyFlag implements Shapes2D {
     public void dich(int x, int y) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    @Override
+    public void doiXungOx() {
+    }
 
+    @Override
+    public void doiXungOy() {
+    }
+
+    @Override
+    public void bienDang(double heSoBienDang) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

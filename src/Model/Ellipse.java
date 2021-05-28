@@ -16,7 +16,7 @@ import java.awt.Point;
  */
 public class Ellipse implements Shapes2D {
     Point O, originalO;
-    int dai, cao;
+    int dai, cao,orginalDai, originalCao;
     static int dem = 0;
 
     public Ellipse(Point A, Point B) {
@@ -26,6 +26,8 @@ public class Ellipse implements Shapes2D {
         O.x = (A.x + B.x) / 2;
         O.y = (A.y + B.y) / 2;
         originalO = O;
+        originalCao=dai;
+        originalCao=cao;
     }
 
     public static void drawHalfDottedEllipse(Graphics g, Point a, int dai) {
@@ -236,7 +238,23 @@ public class Ellipse implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
-        O.x += x;
-        O.y += y;
+        O.x =originalO.x+ x;
+        O.y =originalO.y+ y;
     }
+    @Override
+    public void doiXungOx() {
+        O.y=-O.y;
+}
+
+    @Override
+    public void doiXungOy() {
+        O.x=-O.x;      
+    }
+
+    @Override
+    public void bienDang(double heSoBienDang) {
+        dai=(int) Math.round(orginalDai*heSoBienDang);
+        cao=(int) Math.round(originalCao*heSoBienDang);
+    }
+    
 }

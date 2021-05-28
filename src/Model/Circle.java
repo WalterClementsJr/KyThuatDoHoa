@@ -17,17 +17,19 @@ import java.awt.Point;
 public class Circle implements Shapes2D {
 
     Point O, originalO;
-    int radius;
+    int radius, originalRadius;
 
     public Circle(Point A, int radius) {
         this.O = A;
         this.radius = radius;
         originalO = O;
+        originalRadius=radius;
     }
     
     public Circle(Point A, Point B) {
         this.O = A; originalO = A;
         this.radius = (int) Math.sqrt((B.x - A.x) * (B.x - A.x) + (B.y - A.y) * (B.y - A.y)) / 5;
+        originalRadius=radius;
     }
 
     @Override
@@ -80,7 +82,24 @@ public class Circle implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
-        O.x += x; O.y += y;
+        O.x = originalO.x+x; O.y = originalO.y + y;
     }
 
+    @Override
+    public void doiXungOx() {
+        O.y=-O.y;
+}
+
+    @Override
+    public void doiXungOy() {
+        O.x=-O.x;      
+    }
+
+    @Override
+    public void bienDang(double heSoBienDang) {
+        radius=(int) Math.round(originalRadius*heSoBienDang);
+    }
+    
+    
+    
 }

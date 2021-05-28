@@ -16,4 +16,10 @@ public interface Shapes2D {
     public void xoay(double radian, Point anchor);
     
     public void dich(int x, int y);
+    
+    public void doiXungOx();
+    
+    public void doiXungOy();
+    
+    public void bienDang(double heSoBienDang);
 }

@@ -125,8 +125,30 @@ public class MyLine implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
-        A.x += x; A.y += y;
-        B.x += x; B.y += y;
+        A.x =originalA.x+ x; A.y =originalA.y+ y;
+        B.x =originalB.x+ x; B.y =originalB.y+ y;
     }
+
+    @Override
+    public void doiXungOx() {
+        A.y = -A.y; 
+        B.y=-B.y;
+}
+
+    @Override
+    public void doiXungOy() {
+        A.x=-A.x;
+        B.x=-B.x;
+    }
+
+    @Override
+    public void bienDang(double heSoBienDang) {
+        //thu phóng và tịnh tiến về lại điểm A
+        A.x =(int) Math.round(originalA.x*heSoBienDang)-originalA.x; A.y =(int) Math.round(originalA.y*heSoBienDang)-originalA.y;
+        B.x =(int) Math.round(originalB.x*heSoBienDang)-originalA.x; B.y =(int) Math.round(originalB.y*heSoBienDang)-originalA.y;
+        
+    }
+    
+    
 }
 

@@ -68,10 +68,34 @@ public class MyRect implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
-        A.x += x; A.y += y;
-        B.x += x; B.y += y;
-        C.x += x; C.y += y;
-        D.x += x; D.y += y;
+        A.x =originalA.x+ x; A.y =originalA.y+ y;
+        B.x =originalB.x+ x; B.y =originalB.y+ y;
+        C.x =originalC.x+x; C.y =originalC.y+y;
+        D.x =originalD.x+x; D.y =originalD.y+y;
+    }
+
+    @Override
+    public void bienDang(double heSoBienDang) {
+        A.x =(int) Math.round(originalA.x*heSoBienDang)-originalA.x; A.y =(int) Math.round(originalA.y*heSoBienDang)-originalA.y;
+        B.x =(int) Math.round(originalB.x*heSoBienDang)-originalA.x; B.y =(int) Math.round(originalB.y*heSoBienDang)-originalA.y;
+        C.x =(int) Math.round(originalC.x*heSoBienDang)-originalA.x; C.y =(int) Math.round(originalC.y*heSoBienDang)-originalA.y;
+        D.x =(int) Math.round(originalD.x*heSoBienDang)-originalA.x; D.y =(int) Math.round(originalD.y*heSoBienDang)-originalA.y;
+    }
+
+    @Override
+    public void doiXungOx() {
+        A.y = -A.y;
+        B.y = -B.y;
+        C.y = -C.y;
+        D.y=-D.y;
+    }
+
+    @Override
+    public void doiXungOy() {
+        A.x = -A.x; 
+        B.x = -B.x;
+        C.x = -C.x;
+        D.x=-D.x;
     }
     
     
