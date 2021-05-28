@@ -220,11 +220,15 @@ public class Ellipse implements Shapes2D {
 
     @Override
     public void draw(Graphics g, Color c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void fill(Graphics g, Color color) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void xoay(double radian, Point anchor) {
+        O = Rotation.rotateAroundO(O.x, O.y, radian, anchor);
     }
 }

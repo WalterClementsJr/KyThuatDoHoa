@@ -46,4 +46,15 @@ public class MyRect implements Shapes2D {
     public void fill(Graphics g, Color color) {
     }
 
+    @Override
+    public void xoay(double radian, Point anchor) {
+        A = Rotation.rotateAroundO(A.x, A.y, radian, anchor);
+        B = Rotation.rotateAroundO(B.x, B.y, radian, anchor);
+        C = Rotation.rotateAroundO(C.x, C.y, radian, anchor);
+        D = Rotation.rotateAroundO(D.x, D.y, radian, anchor);
+        
+    }
+    
+    
+
 }

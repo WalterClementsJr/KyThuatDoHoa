@@ -49,7 +49,7 @@ public class Triangle implements Shapes2D {
         C.y = Math.min(a.y, b.y);
 
     }
-
+    
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.BLACK);
@@ -70,16 +70,14 @@ public class Triangle implements Shapes2D {
 
     @Override
     public void fill(Graphics g, Color color) {
-//        Polygon triangle = new Polygon();
-//        Point x = TrucToaDo.convertPointDescart(A);
-//        Point y = TrucToaDo.convertPointDescart(B);
-//        Point z = TrucToaDo.convertPointDescart(C);
-//
-//        triangle.addPoint(x.x, x.y);
-//        triangle.addPoint(y.x, y.y);
-//        triangle.addPoint(z.x, z.y);
-//        g.setColor(color);
-//        g.fillPolygon(triangle);
+    }
+
+    @Override
+    public void xoay(double radian, Point anchor) {
+        A = Rotation.rotateAroundO(A.x, A.y, radian, anchor);
+        B = Rotation.rotateAroundO(B.x, B.y, radian, anchor);
+        C = Rotation.rotateAroundO(C.x, C.y, radian, anchor);
+        
     }
 
 }

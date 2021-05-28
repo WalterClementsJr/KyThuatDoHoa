@@ -43,4 +43,9 @@ public MyRect1(Point A, Point B, Point C, Point D) {
     public void fill(Graphics g, Color color) {
     }
 
+    @Override
+    public void xoay(double radian, Point anchor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

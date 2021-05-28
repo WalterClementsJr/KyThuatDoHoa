@@ -72,4 +72,9 @@ public class Circle implements Shapes2D {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void xoay(double radian, Point anchor) {
+        A = Rotation.rotateAroundO(A.x, A.y, radian, anchor);
+    }
+
 }

@@ -7,6 +7,7 @@ package Model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -48,6 +49,10 @@ public class MyFlag implements Shapes2D {
     @Override
     public void fill(Graphics g, Color color) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void xoay(double radian, Point anchor) {
     }
 
 }

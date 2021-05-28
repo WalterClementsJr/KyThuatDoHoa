@@ -12,4 +12,6 @@ public interface Shapes2D {
     public void draw(Graphics g, Color c);    
 
     public void fill(Graphics g, Color color);
+    
+    public void xoay(double radian, Point anchor);
 }
