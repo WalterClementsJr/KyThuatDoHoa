@@ -29,7 +29,13 @@ public class TrucToaDo extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         veTrucToaDo(g);
-        
+
+//        dash2DotLine(g, 0, 0, 40, 20);
+//        dashDotLine(g, 0, 0, 40, 20);
+//        dashedLine(g, 0, 0, 40, 20);
+//        drawArrow(g, 10, 10, 40, 10);
+
+
         for (Shapes2D shape : shapeList) {
             shape.draw(g);
         }
@@ -37,7 +43,7 @@ public class TrucToaDo extends JPanel {
         if (tempShape != null) {
             tempShape.draw(g);
         }
-        
+
         if (tempFlag != null) {
             tempFlag.draw(g);
         }
@@ -183,6 +189,101 @@ public class TrucToaDo extends JPanel {
         }
     }
 
+    public static void dashedLine(Graphics g, int x1, int y1, int x2, int y2) {
+        int x, y, dx, dy, p, const1, const2, dem, chieuDaiMoiDoan, khoangCachMoiDoan;
+        y = y1;
+        dx = x2 - x1;
+        dy = y2 - y1;
+        p = 2 * dy - dx;
+        const1 = 2 * dy;
+        const2 = 2 * (dy - dx);
+        dem = 0;
+        chieuDaiMoiDoan = 6;
+        khoangCachMoiDoan = 2;
+        for (x = x1; x <= x2; x++) {
+            dem++;
+            if (dem <= chieuDaiMoiDoan) {
+                putPixel(g, x, y);
+            } else {
+                if (dem > chieuDaiMoiDoan + khoangCachMoiDoan) {
+                    //reset bien dem
+                    dem = 1;
+                    putPixel(g, x, y);
+                }
+            }
+
+            if (p < 0) {
+                p += const1; // p=p + 2dy
+            } else {
+                p += const2; //p=p+2dy-2dx
+                y++;
+            }
+        }
+    }
+
+    public static void dash2DotLine(Graphics g, int x1, int y1, int x2, int y2) {
+        // DDA algorithm
+        int x, y, dx, dy, p, const1, const2, dem, chieuDaiMoiDoan, khoangCachMoiDoan;
+        y = y1;
+        dx = x2 - x1;
+        dy = y2 - y1;
+        p = 2 * dy - dx;
+        const1 = 2 * dy;
+        const2 = 2 * (dy - dx);
+        dem = 0;
+        chieuDaiMoiDoan = 6;
+        khoangCachMoiDoan = 2;
+
+        for (x = x1; x <= x2; x++) {
+            dem++;
+            if (dem <= chieuDaiMoiDoan) {
+                putPixel(g, x, y);
+            } else {
+                if ((dem > chieuDaiMoiDoan && dem <= chieuDaiMoiDoan + khoangCachMoiDoan)
+                        || (dem > chieuDaiMoiDoan + khoangCachMoiDoan + 1 && dem <= chieuDaiMoiDoan + 2 * khoangCachMoiDoan + 1)
+                        || (dem > chieuDaiMoiDoan + 2 * khoangCachMoiDoan + 2 && dem <= chieuDaiMoiDoan + 3 * khoangCachMoiDoan + 2)) //vẽ 2 khoảng trăng 2 bên chấm
+                {
+                    //không putPixel để vẽ khoảng trắng
+                } else {
+                    if ((dem == chieuDaiMoiDoan + khoangCachMoiDoan + 1) || (dem == chieuDaiMoiDoan + 2 * khoangCachMoiDoan + 2)) {
+                        putPixel(g, x, y); //vẽ chấm
+                    } else {
+                        dem = 1;
+                        putPixel(g, x, y);
+                    }
+                }
+            }
+
+            if (p < 0) {
+                p += const1; // p=p + 2dy
+            } else {
+                p += const2; //p=p+2dy-2dx
+                y++;
+            }
+        }
+    }
+
+    public static void drawArrow(Graphics g, int x1, int y1, int x2, int y2) {
+        int x, y, dx, dy, p, const1, const2;
+        y = y1;
+        dx = x2 - x1;
+        dy = y2 - y1;
+        p = 2 * dy - dx;
+        const1 = 2 * dy;
+        const2 = 2 * (dy - dx);
+        for (x = x1; x <= x2; x++) {
+            putPixel(g, x, y);
+            if (p < 0) {
+                p += const1; // p=p + 2dy
+            } else {
+                p += const2; //p=p+2dy-2dx
+                y++;
+            }
+        }
+        putPixel(g, x2 - 1, y2 - 1);
+        putPixel(g, x2 - 1, y2 + 1);
+    }
+
     /**
      * chuyển tọa độ real java sang fake
      *
@@ -249,4 +350,3 @@ public class TrucToaDo extends JPanel {
         return pointNew;
     }
 }
-
