@@ -14,4 +14,6 @@ public interface Shapes2D {
     public void fill(Graphics g, Color color);
     
     public void xoay(double radian, Point anchor);
+    
+    public void dich(int x, int y);
 }

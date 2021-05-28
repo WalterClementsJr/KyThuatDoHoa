@@ -77,4 +77,9 @@ public class Circle implements Shapes2D {
         A = Rotation.rotateAroundO(A.x, A.y, radian, anchor);
     }
 
+    @Override
+    public void dich(int x, int y) {
+        A.x += x; A.y += y;
+    }
+
 }

@@ -52,7 +52,14 @@ public class MyRect implements Shapes2D {
         B = Rotation.rotateAroundO(B.x, B.y, radian, anchor);
         C = Rotation.rotateAroundO(C.x, C.y, radian, anchor);
         D = Rotation.rotateAroundO(D.x, D.y, radian, anchor);
-        
+    }
+
+    @Override
+    public void dich(int x, int y) {
+        A.x += x; A.y += y;
+        B.x += x; B.y += y;
+        C.x += x; C.y += y;
+        D.x += x; D.y += y;
     }
     
     

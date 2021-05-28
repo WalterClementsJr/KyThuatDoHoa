@@ -55,4 +55,9 @@ public class MyFlag implements Shapes2D {
     public void xoay(double radian, Point anchor) {
     }
 
+    @Override
+    public void dich(int x, int y) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

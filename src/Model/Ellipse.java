@@ -231,4 +231,9 @@ public class Ellipse implements Shapes2D {
     public void xoay(double radian, Point anchor) {
         O = Rotation.rotateAroundO(O.x, O.y, radian, anchor);
     }
+
+    @Override
+    public void dich(int x, int y) {
+        O.x += x; O.y += y;
+    }
 }
