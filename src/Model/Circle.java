@@ -16,17 +16,18 @@ import java.awt.Point;
  */
 public class Circle implements Shapes2D {
 
-    Point A;
+    Point O, originalO;
     int radius;
 
     public Circle(Point A, int radius) {
-        this.A = A;
+        this.O = A;
         this.radius = radius;
+        originalO = O;
     }
     
     public Circle(Point A, Point B) {
-        this.A = A;
-        this.radius = radius;
+        this.O = A; originalO = A;
+        this.radius = (int) Math.sqrt((B.x - A.x) * (B.x - A.x) + (B.y - A.y) * (B.y - A.y)) / 5;
     }
 
     @Override
@@ -35,10 +36,10 @@ public class Circle implements Shapes2D {
         x = 0;
         y = radius;
         p = 3 - 2 * radius;
-        putPixel(g, A.x + radius, A.y + 0);
-        putPixel(g, A.x - radius, A.y - 0);
-        putPixel(g, A.x - 0, A.y + radius);
-        putPixel(g, A.x + 0, A.y - radius);
+        putPixel(g, O.x + radius, O.y + 0);
+        putPixel(g, O.x - radius, O.y - 0);
+        putPixel(g, O.x - 0, O.y + radius);
+        putPixel(g, O.x + 0, O.y - radius);
         while (x < y) {
             if (p < 0) {
                 p += 4 * x + 6;
@@ -47,19 +48,19 @@ public class Circle implements Shapes2D {
                 y--;
             }
             x++;
-            putPixel(g, A.x + x, A.y + y);
-            putPixel(g, A.x - x, A.y - y);
-            putPixel(g, A.x - y, A.y + x);
-            putPixel(g, A.x + y, A.y - x);
-            putPixel(g, A.x + y, A.y + x);
-            putPixel(g, A.x - y, A.y - x);
-            putPixel(g, A.x - x, A.y + y);
-            putPixel(g, A.x + x, A.y - y);
+            putPixel(g, O.x + x, O.y + y);
+            putPixel(g, O.x - x, O.y - y);
+            putPixel(g, O.x - y, O.y + x);
+            putPixel(g, O.x + y, O.y - x);
+            putPixel(g, O.x + y, O.y + x);
+            putPixel(g, O.x - y, O.y - x);
+            putPixel(g, O.x - x, O.y + y);
+            putPixel(g, O.x + x, O.y - y);
         }
-        putPixel(g, A.x + y, A.y + y);
-        putPixel(g, A.x - y, A.y - y);
-        putPixel(g, A.x - y, A.y + y);
-        putPixel(g, A.x + y, A.y - y);
+        putPixel(g, O.x + y, O.y + y);
+        putPixel(g, O.x - y, O.y - y);
+        putPixel(g, O.x - y, O.y + y);
+        putPixel(g, O.x + y, O.y - y);
     }
 
     @Override
@@ -74,12 +75,12 @@ public class Circle implements Shapes2D {
 
     @Override
     public void xoay(double radian, Point anchor) {
-        A = Rotation.rotateAroundO(A.x, A.y, radian, anchor);
+        O = Rotation.rotateAroundO(O.x, O.y, radian, anchor);
     }
 
     @Override
     public void dich(int x, int y) {
-        A.x += x; A.y += y;
+        O.x += x; O.y += y;
     }
 
 }

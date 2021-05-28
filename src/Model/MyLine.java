@@ -7,12 +7,13 @@ import java.awt.Point;
 
 public class MyLine implements Shapes2D {
 
-    private Point A, B;
-    Graphics g;
+    private Point A, B, originalA, originalB;
 
     public MyLine(Point a, Point b) {
         A = a;
         B = b;
+        originalA = a;
+        originalB = b;
     }
     public static void dashedLine(Graphics g, int x1, int y1, int x2, int y2) {
         int x, y, Dx, Dy, p, dem, chieuDaiMoiDoan, khoangCachMoiDoan;
@@ -108,6 +109,7 @@ public class MyLine implements Shapes2D {
     public void draw(Graphics g, Color c) {
         g.setColor(c);
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
+        A = originalA; B = originalB;
     }
 
     @Override

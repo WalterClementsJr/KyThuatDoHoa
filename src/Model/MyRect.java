@@ -8,13 +8,19 @@ import java.awt.Point;
 public class MyRect implements Shapes2D {
 
     private Point A, B,C,D;
+    private Point originalA, originalB, originalC, originalD;
+
 
     public MyRect(Point a, Point c) {
         A = a;
         C = c;
         B=new Point(C.x,A.y);
         D=new Point(A.x,C.y);
-    
+        
+        originalA = A;
+        originalB = B;
+        originalC = C;
+        originalD = D;
     }
 
     public MyRect(Point A, Point B, Point C, Point D) {
@@ -22,6 +28,10 @@ public class MyRect implements Shapes2D {
         this.B = B;
         this.C = C;
         this.D = D;
+        originalA = A;
+        originalB = B;
+        originalC = C;
+        originalD = D;
     }
 
     @Override
@@ -31,6 +41,7 @@ public class MyRect implements Shapes2D {
         bresenhamLine(g, B.x, B.y, C.x, C.y);
         bresenhamLine(g, C.x, C.y, D.x, D.y);
         bresenhamLine(g, D.x, D.y, A.x, A.y);
+        A = originalA; B = originalB; C = originalC; D = originalD;
     }
 
     @Override
@@ -40,6 +51,7 @@ public class MyRect implements Shapes2D {
         bresenhamLine(g, B.x, A.y, B.x, B.y);
         bresenhamLine(g, B.x, B.y, A.x, B.y);
         bresenhamLine(g, A.x, B.y, A.x, A.y);
+        A = originalA; B = originalB; C = originalC; D = originalD;
     }
 
     @Override

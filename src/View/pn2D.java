@@ -70,10 +70,9 @@ public class pn2D extends javax.swing.JPanel {
     int listIndexSelected = -1;
     String name = "";
     Point pQuay;  //TOA ĐỘ Cờ
-   public Thread thread=new Thread("Thread Rotation");
-   
-   
-   //QUAY HINH CHU NHAT
+    public Thread thread = new Thread("Thread Rotation");
+
+    //QUAY HINH CHU NHAT
     ArrayList<Point> listA = new ArrayList<>();
     ArrayList<Point> listB = new ArrayList<>();
     ArrayList<Point> listC = new ArrayList<>();
@@ -84,27 +83,21 @@ public class pn2D extends javax.swing.JPanel {
     ArrayList<Point> listTB = new ArrayList<>();
     ArrayList<Point> listTC = new ArrayList<>();
     //QUAY HINH Duong thăng
-    ArrayList<Point> listDt = new ArrayList<>(); 
-  
-    
-    
-    
-    
+    ArrayList<Point> listDt = new ArrayList<>();
 
     public pn2D() {
         initComponents();
         setListShape();
         lbFlag.setVisible(false);
-        
+
         //1 dinh duong thang
-         Point aD = new Point(5, 5);
-        
-           //3 dinh tam giac
+        Point aD = new Point(5, 5);
+
+        //3 dinh tam giac
         Point aT = new Point(5, 25);
         Point bT = new Point(10, 35);
         Point cT = new Point(50, 25);
-        
-        
+
         Point a = new Point(5, 30);
         Point b = new Point(50, 30);
         Point c = new Point(50, 5);
@@ -124,10 +117,10 @@ public class pn2D extends javax.swing.JPanel {
         Point c1T = cT;
         //1dinh duongthang
         Point a1D = aD;
-        
+
         double angle = (2 * Math.PI / 8);
         for (int i = 1; i <= (2 * Math.PI / angle); i++) {
-            
+
             Point a3 = new Point();
             Point b3 = new Point();
             Point c3 = new Point();
@@ -137,7 +130,7 @@ public class pn2D extends javax.swing.JPanel {
             b3 = Rotation.rotateAroundO(b1.x, b1.y, -angle * i, new Point(0, 0));
             c3 = Rotation.rotateAroundO(c1.x, c1.y, -angle * i, new Point(0, 0));
             d3 = Rotation.rotateAroundO(d1.x, d1.y, -angle * i, new Point(0, 0));
-            
+
             Point a3T = new Point();
             Point b3T = new Point();
             Point c3T = new Point();
@@ -146,8 +139,8 @@ public class pn2D extends javax.swing.JPanel {
             c3T = Rotation.rotateAroundO(c1T.x, c1T.y, -angle * i, new Point(0, 0));
             //DINH DUONG THANG
             Point a3D = new Point();
-            a3D=Rotation.rotateAroundO(a1T.x, a1T.y, -angle * i, new Point(0, 0));
-            
+            a3D = Rotation.rotateAroundO(a1T.x, a1T.y, -angle * i, new Point(0, 0));
+
             //CHU NHAT
             listA.add(a3);
             listB.add(b3);
@@ -160,7 +153,8 @@ public class pn2D extends javax.swing.JPanel {
             listTC.add(c3T);
         }
     }
-@Override
+
+    @Override
     public void paint(Graphics g) {
         super.paint(g); //To change body of generated methods, choose Tools | Templates.
 //   
@@ -168,13 +162,13 @@ public class pn2D extends javax.swing.JPanel {
         Point a0 = new Point(0, 0);
         Point b0 = new Point(5, 5);
 //         
-        
+
         a0 = TrucToaDo.expandX(a0);
         b0 = TrucToaDo.expandX(b0);
-        
+
         MyLine myline1 = new MyLine(a0, b0);
         myline1.draw(g);
-        
+
         {   //4 DIEM CHU NHAT
             Point aa = new Point();
             Point bb = new Point();
@@ -184,7 +178,7 @@ public class pn2D extends javax.swing.JPanel {
             Point aaT = new Point();
             Point bbT = new Point();
             Point ccT = new Point();
-            
+
             aa = listA.get(iAuto - 1);
             bb = listB.get(iAuto - 1);
             cc = listC.get(iAuto - 1);
@@ -194,33 +188,34 @@ public class pn2D extends javax.swing.JPanel {
             aaT = listTA.get(iAuto - 1);
             bbT = listTB.get(iAuto - 1);
             ccT = listTC.get(iAuto - 1);
-            
+
             Point aaa = new Point();
             Point bbb = new Point();
             Point ccc = new Point();
             Point ddd = new Point();
             aaa = TrucToaDo.expandX(aa);
             bbb = TrucToaDo.expandX(bb);
-               ccc = TrucToaDo.expandX(cc);
-                  ddd = TrucToaDo.expandX(dd);
+            ccc = TrucToaDo.expandX(cc);
+            ddd = TrucToaDo.expandX(dd);
 
             //  3 DIEM TAM GIAC
             Point aaaT = new Point();
             Point bbbT = new Point();
             Point cccT = new Point();
-            
+
             aaaT = TrucToaDo.expandX(aaT);
             bbbT = TrucToaDo.expandX(bbT);
             cccT = TrucToaDo.expandX(ccT);
-            
-            MyRect1 myReact2 = new MyRect1(aaa,bbb,ccc,ddd);
-            
+
+            MyRect1 myReact2 = new MyRect1(aaa, bbb, ccc, ddd);
+
             myReact2.draw(g);
-            
+
             Triangle triangle = new Triangle(aaaT, bbbT, cccT);
             triangle.draw(g);
         }
     }
+
     public void setListShape() {
         listShape.setModel(new DefaultListModel<>());
         dlm = (DefaultListModel<String>) listShape.getModel();
@@ -809,7 +804,7 @@ public class pn2D extends javax.swing.JPanel {
         int xJv = evt.getX() + 50;
         int yJv = evt.getY() + 50;
         toadoJava.setText(xJv + " : " + yJv);
- iAuto++;
+        iAuto++;
         if (iAuto <= 8) {
             try {
                 repaint();
@@ -882,8 +877,8 @@ public class pn2D extends javax.swing.JPanel {
             //selectXoay sai là dừng quay
         }
         repaint();
-        
-        
+
+
     }//GEN-LAST:event_pnMainMousePressed
 
     private void pnMainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseReleased
@@ -899,7 +894,7 @@ public class pn2D extends javax.swing.JPanel {
         Point end = TrucToaDo.convertDescart(evt.getPoint());
         shape.setxEnd(end.x);
         shape.setyEnd(end.y);
-        
+
         if (mode.equals(DRAW_LINE) && selectDuongThang) {
             shape.setline(numberName("Line"));
             TrucToaDo.shapeList.add(new MyLine(
@@ -1076,20 +1071,17 @@ public class pn2D extends javax.swing.JPanel {
             TrucToaDo.tempFlag = null;
             lbXoay.setBorder(null);
         }
-        
+
         repaint();
         selectXoay = !selectXoay;// TODO add your handling code here:
     }//GEN-LAST:event_lbXoayMousePressed
 
     private void jSliderGocQuayStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderGocQuayStateChanged
         // TODO add your handling code here:
-        double gocQuay=(double) jSliderGocQuay.getValue()*Math.PI/100;
-        if (TrucToaDo.shapeList.get(listIndexSelected) instanceof MyLine)
-        {
-            System.out.println("");
-//            TrucToaDo.shapeList.get(listIndexSelected).xoay(gocQuay, new Point(0,0));
-//            TrucToaDo.shapeList.get(listIndexSelected).dich((int) Math.round((double) jSliderGocQuay.getValue()*0.2),(int) Math.round((double) jSliderGocQuay.getValue()*0.2));
-        }
+        double gocQuay = (double) jSliderGocQuay.getValue() * Math.PI / 100 * 10;
+
+        TrucToaDo.shapeList.get(listIndexSelected).xoay(gocQuay, new Point(0, 0));
+//        TrucToaDo.shapeList.get(listIndexSelected).dich((int) Math.round((double) jSliderGocQuay.getValue() * 0.2), (int) Math.round((double) jSliderGocQuay.getValue() * 0.2));
         repaint();
     }//GEN-LAST:event_jSliderGocQuayStateChanged
 
