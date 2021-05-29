@@ -31,14 +31,16 @@ public class TrucToaDo2DAnimation extends JPanel {
 
     WindMill mill = new WindMill(new Point(-20, 0), 5, 40);
 
-    Timer timer;
-    TimerTask task;
+    public static Timer timer;
+    public static TimerTask task;
+    public static boolean pause = true;
 
     public static Shapes2D tempShape;
     private boolean drawGrid = true;
     private boolean drawOxy = true;
 
     public TrucToaDo2DAnimation() {
+        System.out.println("toa do 2d anime construct");
         canvasGraphics = this.canvas.getGraphics();
 
         timer = new Timer();
@@ -47,6 +49,7 @@ public class TrucToaDo2DAnimation extends JPanel {
             int counter = 1;
             @Override
             public void run() {
+                if (pause) return;
                 mill.draw(canvasGraphics);
                 mill.xoay(ANGLE + counter % 10, mill.getCenter());
                 counter++;

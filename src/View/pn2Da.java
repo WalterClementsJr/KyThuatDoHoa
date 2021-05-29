@@ -5,8 +5,13 @@
  */
 package View;
 
+import Model.TrucToaDo2DAnimation;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
@@ -24,6 +29,9 @@ public class pn2Da extends javax.swing.JPanel {
     boolean selectDiChuyen = false;
     boolean selectPlay = false;
     boolean selectXoa = false;
+    
+//    Timer timer = TrucToaDo2DAnimation.timer;
+//    TimerTask task = TrucToaDo2DAnimation.task;
 
     public pn2Da() {
         initComponents();
@@ -245,8 +253,11 @@ public class pn2Da extends javax.swing.JPanel {
             lbHinhChongChong.setBorder(null);
             lbDiChuyen.setBorder(null);
             lbXoa.setBorder(null);
+            
+            TrucToaDo2DAnimation.pause = selectPlay;
         } else {
             lbPlay.setBorder(null);
+            TrucToaDo2DAnimation.pause = selectPlay;
         }
         selectPlay = !selectPlay;// TODO add your handling code here:
     }//GEN-LAST:event_lbPlayMousePressed
