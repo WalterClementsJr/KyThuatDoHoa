@@ -211,9 +211,9 @@ public class pn2D extends javax.swing.JPanel {
        
     }
 
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g); //To change body of generated methods, choose Tools | Templates.
+//    @Override
+//    public void paint(Graphics g) {
+//        super.paint(g); //To change body of generated methods, choose Tools | Templates.
 //   
 
 //        Point a0 = new Point(0, 0);
@@ -228,68 +228,68 @@ public class pn2D extends javax.swing.JPanel {
 
 
         //4 DIEM CHU NHAT
-        if (tSet != null &&tGet.getRectThread()!=null&& tGet.getRectThread().getListA().size() > 0) {
-
-
-        {   //4 DIEM CHU NHAT
-
-            Point aa = new Point();
-            Point bb = new Point();
-            Point cc = new Point();
-            Point dd = new Point();
-
-
-
-            aa = tGet.getRectThread().getListA().get(tGet.getRectThread().index);
-            bb = tGet.getRectThread().getListB().get(tGet.getRectThread().index);
-            cc = tGet.getRectThread().getListC().get(tGet.getRectThread().index);
-            dd = tGet.getRectThread().getListD().get(tGet.getRectThread().index);
-
-
-            Point aaa = new Point();
-            Point bbb = new Point();
-            Point ccc = new Point();
-            Point ddd = new Point();
-
-            aaa = TrucToaDo.expandX(aa);
-            bbb = TrucToaDo.expandX(bb);
-            ccc = TrucToaDo.expandX(cc);
-            ddd = TrucToaDo.expandX(dd);
-
-            MyRect1 myReact2 = new MyRect1(aaa, bbb, ccc, ddd);
-            myReact2.draw(g);
-            
-        }
-        if(tamGiacThreadGet != null && tamGiacThreadGet.getTriangle()!=null&&tamGiacThreadGet.getTriangle().getListA().size() > 0)
-            {
-                 //3DIEM TAM GIAC
-            Point aaT = new Point();
-            Point bbT = new Point();
-            Point ccT = new Point();
-            
-            aaT = tamGiacThreadGet.getTriangle().getListA().get(tamGiacThreadGet.getTriangle().index);
-            bbT = tamGiacThreadGet.getTriangle().getListB().get(tamGiacThreadGet.getTriangle().index);
-            ccT = tamGiacThreadGet.getTriangle().getListC().get(tamGiacThreadGet.getTriangle().index);
-            
-
-
-
-            //  3 DIEM TAM GIAC
-            Point aaaT = new Point();
-            Point bbbT = new Point();
-            Point cccT = new Point();
-
-
-            aaaT = TrucToaDo.expandX(aaT);
-            bbbT = TrucToaDo.expandX(bbT);
-            cccT = TrucToaDo.expandX(ccT);
-
-
-            Triangle triangle = new Triangle(aaaT, bbbT, cccT);
-            triangle.draw(g);
-            }
-    }
-}
+//        if (tSet != null &&tGet.getRectThread()!=null&& tGet.getRectThread().getListA().size() > 0) {
+//
+//
+//        {   //4 DIEM CHU NHAT
+//
+//            Point aa = new Point();
+//            Point bb = new Point();
+//            Point cc = new Point();
+//            Point dd = new Point();
+//
+//
+//
+//            aa = tGet.getRectThread().getListA().get(tGet.getRectThread().index);
+//            bb = tGet.getRectThread().getListB().get(tGet.getRectThread().index);
+//            cc = tGet.getRectThread().getListC().get(tGet.getRectThread().index);
+//            dd = tGet.getRectThread().getListD().get(tGet.getRectThread().index);
+//
+//
+//            Point aaa = new Point();
+//            Point bbb = new Point();
+//            Point ccc = new Point();
+//            Point ddd = new Point();
+//
+//            aaa = TrucToaDo.expandX(aa);
+//            bbb = TrucToaDo.expandX(bb);
+//            ccc = TrucToaDo.expandX(cc);
+//            ddd = TrucToaDo.expandX(dd);
+//
+//            MyRect1 myReact2 = new MyRect1(aaa, bbb, ccc, ddd);
+//            myReact2.draw(g);
+//            
+//        }
+//        if(tamGiacThreadGet != null && tamGiacThreadGet.getTriangle()!=null&&tamGiacThreadGet.getTriangle().getListA().size() > 0)
+//            {
+//                 //3DIEM TAM GIAC
+//            Point aaT = new Point();
+//            Point bbT = new Point();
+//            Point ccT = new Point();
+//            
+//            aaT = tamGiacThreadGet.getTriangle().getListA().get(tamGiacThreadGet.getTriangle().index);
+//            bbT = tamGiacThreadGet.getTriangle().getListB().get(tamGiacThreadGet.getTriangle().index);
+//            ccT = tamGiacThreadGet.getTriangle().getListC().get(tamGiacThreadGet.getTriangle().index);
+//            
+//
+//
+//
+//            //  3 DIEM TAM GIAC
+//            Point aaaT = new Point();
+//            Point bbbT = new Point();
+//            Point cccT = new Point();
+//
+//
+//            aaaT = TrucToaDo.expandX(aaT);
+//            bbbT = TrucToaDo.expandX(bbT);
+//            cccT = TrucToaDo.expandX(ccT);
+//
+//
+//            Triangle triangle = new Triangle(aaaT, bbbT, cccT);
+//            triangle.draw(g);
+//            }
+//    }
+//}
     public void setListShape() {
         listShape.setModel(new DefaultListModel<>());
         dlm = (DefaultListModel<String>) listShape.getModel();
@@ -1042,7 +1042,7 @@ public class pn2D extends javax.swing.JPanel {
             //selectXoay sai là dừng quay
         }
 
-        repaint();
+//        repaint();
 
 
     }//GEN-LAST:event_pnMainMousePressed
@@ -1240,12 +1240,12 @@ public class pn2D extends javax.swing.JPanel {
             TrucToaDo.tempFlag = null;
             lbXoay.setBorder(null);
             // xoá danh sach khi bấm huỷ cờ 
-            if (tGet != null) {
-                tGet.getRectThread().getListA().clear();
-            }
-            if (tamGiacThreadGet != null) {
-                tamGiacThreadGet.getTriangle().getListA().clear();
-            }
+//            if (tGet != null) {
+////                tGet.getRectThread().getListA().clear();
+//            }
+//            if (tamGiacThreadGet != null) {
+//                tamGiacThreadGet.getTriangle().getListA().clear();
+//            }
 
         }
 
