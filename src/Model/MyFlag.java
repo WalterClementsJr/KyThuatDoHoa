@@ -68,7 +68,7 @@ public class MyFlag implements Shapes2D {
     }
 
     @Override
-    public void bienDang(double heSoBienDang) {
+    public void thuPhong(double heSoThuPhong) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -87,7 +87,6 @@ public class WindMill implements Shapes2D {
     public void doiXungOy() {
     }
 
-    @Override
     public void bienDang(double heSoBienDang) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -102,6 +101,11 @@ public class WindMill implements Shapes2D {
 
     public WindMillBody getBody() {
         return body;
+    }
+
+    @Override
+    public void thuPhong(double heSoThuPhong) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
@@ -171,8 +175,12 @@ class WindMillBody implements Shapes2D {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void bienDang(double heSoBienDang) {
+    }
+
+    @Override
+    public void thuPhong(double heSoThuPhong) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
