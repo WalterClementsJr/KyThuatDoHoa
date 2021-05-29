@@ -126,7 +126,7 @@ public class pn2D extends javax.swing.JPanel {
         timerTask = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("TimerTask executing counter is: " + counter);
+//                System.out.println("TimerTask executing counter is: " + counter);
                 counter++;//increments the counter
                 if (tGet != null) {
                     tGet.run();

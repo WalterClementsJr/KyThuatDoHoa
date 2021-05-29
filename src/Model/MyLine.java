@@ -109,7 +109,7 @@ public class MyLine implements Shapes2D {
     public void draw(Graphics g, Color c) {
         g.setColor(c);
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
-        A = originalA; B = originalB;
+//        A = originalA; B = originalB;
     }
 
     @Override

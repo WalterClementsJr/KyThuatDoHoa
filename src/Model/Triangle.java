@@ -116,9 +116,12 @@ public class Triangle implements Shapes2D {
 
     @Override
     public void xoay(double radian, Point anchor) {
-        A = Rotation.rotateAroundO(A.x, A.y, radian, anchor);
-        B = Rotation.rotateAroundO(B.x, B.y, radian, anchor);
-        C = Rotation.rotateAroundO(C.x, C.y, radian, anchor);
+//        if (radian > 6) {
+//            radian %= 6;
+//        }
+        A = Rotation.rotateAroundO(originalA.x, originalA.y, radian, anchor);
+        B = Rotation.rotateAroundO(originalB.x, originalB.y, radian, anchor);
+        C = Rotation.rotateAroundO(originalC.x, originalC.y, radian, anchor);
     }
 
     @Override
