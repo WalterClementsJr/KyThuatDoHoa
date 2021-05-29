@@ -9,8 +9,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -28,7 +32,11 @@ public class TrucToaDo2DAnimation extends JPanel {
 
     public static Graphics canvasGraphics;
 
-    WindMill mill = new WindMill(new Point(-20, 0), 5, 40);
+    Heli heli = new Heli(new Point(-20, -0), 10, 30);
+    Heli originHeli;
+
+    ArrayList<MyRect> stuffDraw = new ArrayList<>();
+//    ArrayList<MyRect> stuffOriginal;
 
     public static Timer timer;
     public static TimerTask task;
@@ -38,31 +46,50 @@ public class TrucToaDo2DAnimation extends JPanel {
     private boolean drawGrid = true;
     private boolean drawOxy = true;
 
+    Iterator<MyRect> iterator = stuffDraw.iterator();
+
     public TrucToaDo2DAnimation() {
         canvasGraphics = this.canvas.getGraphics();
 
-        timer = new Timer();
+        stuffDraw.add(MyRect.randomRect(150, 100, false));
+        stuffDraw.add(MyRect.randomRect(150, 100, false));
+        stuffDraw.add(MyRect.randomRect(150, 100, false));
+        stuffDraw.add(MyRect.randomRect(150, 100, false));
+        stuffDraw.add(MyRect.randomRect(150, 100, false));
+        stuffDraw.add(MyRect.randomRect(150, 100, false));
+        stuffDraw.add(MyRect.randomRect(150, 100, false));
+        stuffDraw.add(MyRect.randomRect(150, 100, false));
+        stuffDraw.add(MyRect.randomRect(150, 100, false));
+        stuffDraw.add(MyRect.randomRect(150, 100, false));
 
+        iterator = stuffDraw.iterator();
+
+        timer = new Timer();
         task = new TimerTask() {
             int counter = 1;
 
             @Override
             public void run() {
+                int t = 0;
                 if (pause) {
                     return;
                 }
-                mill.draw(canvasGraphics);
-                mill.xoay(ANGLE + counter % 10, mill.getCenter());
-                if (counter % 2 == 0) {
-                    mill.dich(2, 1);
-//                    mill.thuPhong(0.5);
+                
+                heli.draw(canvasGraphics);
+                heli.xoay(ANGLE + counter % 10, heli.getCenter());
+
+                for (int i = 0; i<stuffDraw.size(); i++) {
+                    stuffDraw.get(i).dich(0, -1);
+                    if (stuffDraw.get(i).isOut(100)) {
+                        stuffDraw.set(i, MyRect.randomRect(150, 100, true));
+                    }
                 }
                 counter++;
                 repaint();
             }
         };
 
-        timer.scheduleAtFixedRate(task, 0, 150);
+        timer.scheduleAtFixedRate(task, 0, 100);
     }
 
     @Override
@@ -75,7 +102,11 @@ public class TrucToaDo2DAnimation extends JPanel {
             veOxy(canvasGraphics);
         }
 
-        mill.draw(canvasGraphics);
+        heli.draw(canvasGraphics);
+
+        for (Shapes2D s : stuffDraw) {
+            s.draw(canvasGraphics);
+        }
 
         g.drawImage(canvas, 0, 0, this);
     }
@@ -112,5 +143,4 @@ public class TrucToaDo2DAnimation extends JPanel {
     public void setDrawOxy(boolean b) {
         drawOxy = b;
     }
-
 }

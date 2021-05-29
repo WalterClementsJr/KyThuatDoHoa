@@ -16,11 +16,11 @@ import java.util.ArrayList;
  *
  * @author walker
  */
-public class WindMill implements Shapes2D {
+public class Heli implements Shapes2D {
     Point center;
     ArrayList<Triangle> blades = new ArrayList<>();
 
-    WindMillBody body;
+    HeliBody body;
 
     /**
      * draw windmill from center
@@ -28,9 +28,10 @@ public class WindMill implements Shapes2D {
      * @param width
      * @param height 
      */
-    public WindMill(Point center, int width, int height) {
+    
+    public Heli(Point center, int width, int height) {
         this.center = center;
-        body = new WindMillBody(center, width, height);
+        body = new HeliBody(center, width, height);
         int h = height * 7 / 10;
         int w =  h / 3;
         blades.add(new Triangle(
@@ -76,6 +77,8 @@ public class WindMill implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
+        center.x += x;
+        center.y += y;
         body.dich(x, y);
         for (Triangle t : blades) {
             t.dich(x, y);
@@ -98,12 +101,15 @@ public class WindMill implements Shapes2D {
     public Point getCenter() {
         return center;
     }
+    public void setCenter(Point p) {
+        this.center = p;
+    }
 
     public ArrayList<Triangle> getBlades() {
         return blades;
     }
 
-    public WindMillBody getBody() {
+    public HeliBody getBody() {
         return body;
     }
 
@@ -119,15 +125,15 @@ public class WindMill implements Shapes2D {
 
 }
 
-class WindMillBody implements Shapes2D {
-    Triangle roof;
+class HeliBody implements Shapes2D {
+    Triangle head, tail;
     MyRect box;
 
-    public WindMillBody(Point top, int width, int height) {
-        roof = new Triangle(
-                new Point(top.x, top.y),
-                new Point(top.x - width / 2, top.y - height / 3),
-                new Point(top.x + width / 2, top.y - height / 3)) {
+    public HeliBody(Point center, int width, int height) {
+        head = new Triangle(
+                new Point(center.x, center.y + height / 5),
+                new Point(center.x - width / 2, center.y),
+                new Point(center.x + width / 2, center.y)) {
             @Override
             public void draw(Graphics g) {
                 g.setColor(DEFAULT_COLOR);
@@ -135,11 +141,18 @@ class WindMillBody implements Shapes2D {
                 TrucToaDo.bresenhamLine(g, getC().x, getC().y, getA().x, getA().y);
             }
         };
+        
+        tail = new Triangle(
+                new Point(center.x, center.y - height * 6 / 5),
+                new Point(center.x - width / 5, (center.y - height * 3 / 5)),
+                new Point(center.x + width / 5, (center.y - height * 3 / 5))
+        );
+
         box = new MyRect(
-                new Point(top.x - width / 2, top.y - height/3),
-                new Point(top.x + width / 2, top.y - height/3),
-                new Point(top.x + width / 2, (int) (top.y - height)),
-                new Point(top.x - width / 2, (int) (top.y - height))) {
+                new Point(center.x - width / 2, center.y),
+                new Point(center.x + width / 2, center.y),
+                new Point(center.x + width / 2, (int) (center.y - height * 3 / 5)),
+                new Point(center.x - width / 2, (int) (center.y - height * 3 / 5))) {
             @Override
             public void draw(Graphics g) {
                 bresenhamLine(g, getB().x, getB().y, getC().x, getC().y);
@@ -151,8 +164,9 @@ class WindMillBody implements Shapes2D {
 
     @Override
     public void draw(Graphics g) {
-        roof.draw(g);
+        head.draw(g);
         box.draw(g);
+        tail.draw(g);
 
     }
 
@@ -170,8 +184,9 @@ class WindMillBody implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
-        roof.dich(x, y);
+        head.dich(x, y);
         box.dich(x, y);
+        tail.dich(x, y);
     }
 
     @Override
@@ -189,7 +204,7 @@ class WindMillBody implements Shapes2D {
 
     @Override
     public void thuPhong(double heSoThuPhong) {
-        roof.thuPhong(heSoThuPhong);
+        head.thuPhong(heSoThuPhong);
         box.thuPhong(heSoThuPhong);
     }
 

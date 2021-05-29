@@ -7,20 +7,19 @@ import java.awt.Point;
 
 public class MyRect implements Shapes2D {
 
-    private Point A, B,C,D;
+    private Point A, B, C, D;
     private Point originalA, originalB, originalC, originalD;
-
 
     public MyRect(Point a, Point c) {
         A = a;
         C = c;
-        B=new Point(C.x,A.y);
-        D=new Point(A.x,C.y);
-        
-        originalA = new Point(A.x,A.y);
-        originalB = new Point(B.x,B.y);
-        originalC = new Point(C.x,C.y);
-        originalD = new Point(D.x,D.y);
+        B = new Point(C.x, A.y);
+        D = new Point(A.x, C.y);
+
+        originalA = new Point(A.x, A.y);
+        originalB = new Point(B.x, B.y);
+        originalC = new Point(C.x, C.y);
+        originalD = new Point(D.x, D.y);
     }
 
     public MyRect(Point A, Point B, Point C, Point D) {
@@ -28,10 +27,10 @@ public class MyRect implements Shapes2D {
         this.B = B;
         this.C = C;
         this.D = D;
-        originalA = new Point(this.A.x,this.A.y);
-        originalB = new Point(this.B.x,this.B.y);
-        originalC = new Point(this.C.x,this.C.y);
-        originalD = new Point(this.D.x,this.D.y);
+        originalA = new Point(this.A.x, this.A.y);
+        originalB = new Point(this.B.x, this.B.y);
+        originalC = new Point(this.C.x, this.C.y);
+        originalD = new Point(this.D.x, this.D.y);
     }
 
     @Override
@@ -51,7 +50,10 @@ public class MyRect implements Shapes2D {
         bresenhamLine(g, B.x, A.y, B.x, B.y);
         bresenhamLine(g, B.x, B.y, A.x, B.y);
         bresenhamLine(g, A.x, B.y, A.x, A.y);
-        A = originalA; B = originalB; C = originalC; D = originalD;
+        A = originalA;
+        B = originalB;
+        C = originalC;
+        D = originalD;
     }
 
     @Override
@@ -96,47 +98,51 @@ public class MyRect implements Shapes2D {
         B = Rotation.rotateAroundO(originalB.x, originalB.y, radian, anchor);
         C = Rotation.rotateAroundO(originalC.x, originalC.y, radian, anchor);
         D = Rotation.rotateAroundO(originalD.x, originalD.y, radian, anchor);
-        
+
     }
 
     @Override
     public void dich(int x, int y) {
-        A.x =A.x+ x; A.y =A.y+ y;
-        B.x =B.x+ x; B.y =B.y+ y;
-        C.x =C.x+x; C.y =C.y+y;
-        D.x =D.x+x; D.y =D.y+y;
+        A.x = A.x + x;
+        A.y = A.y + y;
+        B.x = B.x + x;
+        B.y = B.y + y;
+        C.x = C.x + x;
+        C.y = C.y + y;
+        D.x = D.x + x;
+        D.y = D.y + y;
     }
 
     @Override
     public void thuPhong(double heSoThuPhong) {
         //thu phóng rồi tịnh tiến về A
         double tempAx = originalA.x;
-        tempAx=tempAx*heSoThuPhong;
-        int dentaX=originalA.x - (int) Math.round(tempAx);        
-        A.x=originalA.x;
-        double tempAy=A.y;
-        tempAy=tempAy*heSoThuPhong;
-        int dentaY=originalA.y - (int) Math.round(tempAy);
-        A.y =originalA.y;
-        
+        tempAx = tempAx * heSoThuPhong;
+        int dentaX = originalA.x - (int) Math.round(tempAx);
+        A.x = originalA.x;
+        double tempAy = A.y;
+        tempAy = tempAy * heSoThuPhong;
+        int dentaY = originalA.y - (int) Math.round(tempAy);
+        A.y = originalA.y;
+
         double tempBx = originalB.x;
-        tempBx=tempBx*heSoThuPhong;
-        B.x =(int) Math.round(tempBx)+dentaX;
+        tempBx = tempBx * heSoThuPhong;
+        B.x = (int) Math.round(tempBx) + dentaX;
         double tempBy = originalB.y;
-        tempBy=tempBy*heSoThuPhong;
-        B.y =(int) Math.round(tempBy)+dentaY;
+        tempBy = tempBy * heSoThuPhong;
+        B.y = (int) Math.round(tempBy) + dentaY;
         double tempCx = originalC.x;
-        tempCx=tempCx*heSoThuPhong;
-        C.x =(int) Math.round(tempCx)+dentaX;
+        tempCx = tempCx * heSoThuPhong;
+        C.x = (int) Math.round(tempCx) + dentaX;
         double tempCy = originalC.y;
-        tempCy=tempCy*heSoThuPhong;
-        C.y =(int) Math.round(tempCy)+dentaY;
+        tempCy = tempCy * heSoThuPhong;
+        C.y = (int) Math.round(tempCy) + dentaY;
         double tempDx = originalD.x;
-        tempDx=tempDx*heSoThuPhong;
-        D.x =(int) Math.round(tempDx)+dentaX;
+        tempDx = tempDx * heSoThuPhong;
+        D.x = (int) Math.round(tempDx) + dentaX;
         double tempDy = originalD.y;
-        tempDy=tempDy*heSoThuPhong;
-        D.y =(int) Math.round(tempDy)+dentaY;
+        tempDy = tempDy * heSoThuPhong;
+        D.y = (int) Math.round(tempDy) + dentaY;
     }
 
     @Override
@@ -144,15 +150,37 @@ public class MyRect implements Shapes2D {
         A.y = -A.y;
         B.y = -B.y;
         C.y = -C.y;
-        D.y=-D.y;
+        D.y = -D.y;
     }
 
     @Override
     public void doiXungOy() {
-        A.x = -A.x; 
+        A.x = -A.x;
         B.x = -B.x;
         C.x = -C.x;
-        D.x=-D.x;
+        D.x = -D.x;
     }
-   
+    
+    public boolean isOut(int maxHeight) {
+        if (A.y < -1 * maxHeight / 2) {
+            return true;
+        }
+        return false;
+    }
+
+    public static MyRect randomRect(int maxWidth, int maxHeight, boolean fromTop) {
+        int x = (int) (Math.random() * maxWidth - maxWidth / 2);
+        int y = (int) (Math.random() * maxHeight - maxHeight / 2);
+        
+        int x1 = (int) (Math.random() * maxWidth / 5);
+        int y1 = (int) (Math.random() * maxHeight / 5);
+        
+        if (!fromTop) {
+            return new MyRect(new Point(x, y), new Point(x + x1, y + y1));
+        } else {
+            return new MyRect(
+                    new Point(x, maxHeight / 2),
+                    new Point(x + x1, (int) (maxHeight / 2 + Math.random() * 10)));
+        }
+    }
 }

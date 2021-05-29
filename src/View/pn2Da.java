@@ -29,10 +29,9 @@ public class pn2Da extends javax.swing.JPanel {
     boolean selectDiChuyen = false;
     boolean selectPlay = false;
     boolean selectXoa = false;
-    
+
 //    Timer timer = TrucToaDo2DAnimation.timer;
 //    TimerTask task = TrucToaDo2DAnimation.task;
-
     public pn2Da() {
         initComponents();
     }
@@ -120,6 +119,11 @@ public class pn2Da extends javax.swing.JPanel {
 
         lbXoay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_rotate_30px.png"))); // NOI18N
         lbXoay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbXoay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbXoayMousePressed(evt);
+            }
+        });
         pnFooter.add(lbXoay, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
 
         lbLatOy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flip_vertical_30px_1.png"))); // NOI18N
@@ -253,7 +257,7 @@ public class pn2Da extends javax.swing.JPanel {
             lbHinhChongChong.setBorder(null);
             lbDiChuyen.setBorder(null);
             lbXoa.setBorder(null);
-            
+
             TrucToaDo2DAnimation.pause = selectPlay;
         } else {
             lbPlay.setBorder(null);
@@ -264,10 +268,10 @@ public class pn2Da extends javax.swing.JPanel {
 
     private void pnMainMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseEntered
         if (selectHinhChongChong || selectHinhSao || selectXoa) {
-            pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR)); 
+            pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
         }
         if (selectDiChuyen) {
-            pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR)); 
+            pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
         }// TODO add your handling code here:
     }//GEN-LAST:event_pnMainMouseEntered
 
@@ -291,6 +295,11 @@ public class pn2Da extends javax.swing.JPanel {
         }
         selectXoa = !selectXoa;// TODO add your handling code here:
     }//GEN-LAST:event_lbXoaMousePressed
+
+    private void lbXoayMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbXoayMousePressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_lbXoayMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

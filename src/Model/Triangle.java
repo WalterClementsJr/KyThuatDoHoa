@@ -8,7 +8,6 @@ package Model;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Polygon;
 
 /**
  *
@@ -58,7 +57,9 @@ public class Triangle implements Shapes2D {
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, C.x, C.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, A.x, A.y, C.x, C.y);
-        A = originalA; B = originalB; C = originalC;
+        A = originalA;
+        B = originalB;
+        C = originalC;
     }
 
     @Override
@@ -121,6 +122,13 @@ public class Triangle implements Shapes2D {
         B.y = B.y + y;
         C.x = C.x + x;
         C.y = C.y + y;
+        
+        originalA.x = originalA.x + x;
+        originalA.y = originalA.y + y;
+        originalB.x = originalB.x + x;
+        originalB.y = originalB.y + y;
+        originalC.x = originalC.x + x;
+        originalC.y = originalC.y + y;
     }
 
     @Override
