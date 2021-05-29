@@ -143,10 +143,29 @@ public class Triangle implements Shapes2D {
 }
 
     @Override
-    public void bienDang(double heSoBienDang) {
-        A.x =(int) Math.round(originalA.x*heSoBienDang)-originalA.x; A.y =(int) Math.round(originalA.y*heSoBienDang)-originalA.y;
-        B.x =(int) Math.round(originalC.x*heSoBienDang)-originalA.x; B.y =(int) Math.round(originalC.y*heSoBienDang)-originalA.y;
-        C.x =(int) Math.round(originalC.x*heSoBienDang)-originalA.x; C.y =(int) Math.round(originalC.y*heSoBienDang)-originalA.y;
+    public void thuPhong(double heSoThuPhong) {
+        //thu phóng rồi tịnh tiến về A
+        double tempAx = A.x;
+        tempAx=tempAx*heSoThuPhong;
+        int dentaX=originalA.x - (int) Math.round(tempAx);        
+        A.x=originalA.x;
+        double tempAy=A.y;
+        tempAy=tempAy*heSoThuPhong;
+        int dentaY=originalA.y - (int) Math.round(tempAy);
+        A.y =originalA.y;
+        
+        double tempBx = originalB.x;
+        tempBx=tempBx*heSoThuPhong;
+        B.x =(int) Math.round(tempBx)+dentaX;
+        double tempBy = originalB.y;
+        tempBy=tempBy*heSoThuPhong;
+        B.y =(int) Math.round(tempBy)+dentaY;
+        double tempCx = originalC.x;
+        tempCx=tempCx*heSoThuPhong;
+        C.x =(int) Math.round(tempCx)+dentaX;
+        double tempCy = originalC.y;
+        tempCy=tempCy*heSoThuPhong;
+        C.y =(int) Math.round(tempCy)+dentaY;
     }
     
 }

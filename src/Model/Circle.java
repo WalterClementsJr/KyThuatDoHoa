@@ -96,8 +96,8 @@ public class Circle implements Shapes2D {
     }
 
     @Override
-    public void bienDang(double heSoBienDang) {
-        radius=(int) Math.round(originalRadius*heSoBienDang);
+    public void thuPhong(double heSoThuPhong) {
+        radius=(int) Math.round(originalRadius*heSoThuPhong);
     }
     
     

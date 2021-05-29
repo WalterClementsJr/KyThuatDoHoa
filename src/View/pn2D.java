@@ -126,7 +126,7 @@ public class pn2D extends javax.swing.JPanel {
         timerTask = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("TimerTask executing counter is: " + counter);
+//               System.out.println("TimerTask executing counter is: " + counter);
                 counter++;//increments the counter
                 if (tGet != null) {
                     tGet.run();
@@ -218,15 +218,15 @@ public class pn2D extends javax.swing.JPanel {
         super.paint(g); //To change body of generated methods, choose Tools | Templates.
 //   
 
-        Point a0 = new Point(0, 0);
-        Point b0 = new Point(5, 5);
+//        Point a0 = new Point(0, 0);
+//        Point b0 = new Point(5, 5);
 //         
 
-        a0 = TrucToaDo.expandX(a0);
-        b0 = TrucToaDo.expandX(b0);
-
-        MyLine myline1 = new MyLine(a0, b0);
-        myline1.draw(g);
+//        a0 = TrucToaDo.expandX(a0);
+//        b0 = TrucToaDo.expandX(b0);
+//
+//        MyLine myline1 = new MyLine(a0, b0);
+//        myline1.draw(g);
 
 
         //4 DIEM CHU NHAT
@@ -374,11 +374,11 @@ public class pn2D extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         lbXoay = new javax.swing.JLabel();
         jSliderGocQuay = new javax.swing.JSlider();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jSpinnerTinhTienX = new javax.swing.JSpinner();
-        jSpinnerTinhTienY = new javax.swing.JSpinner();
-        jSpinnerBienDang = new javax.swing.JSpinner();
+        jTextFieldDiemDenX = new javax.swing.JTextField();
+        jTextFieldDiemDenY = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jTextFieldThuPhong = new javax.swing.JTextField();
         pnChucNang = new javax.swing.JPanel();
         lbHinhCN = new javax.swing.JLabel();
         lbHinhTamGiac = new javax.swing.JLabel();
@@ -724,34 +724,34 @@ public class pn2D extends javax.swing.JPanel {
         });
         pnFooter.add(jSliderGocQuay, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
 
-        jLabel18.setText("Tịnh tiến");
-        pnFooter.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
+        jTextFieldDiemDenX.setToolTipText("Nhập khoảng cách x");
+        pnFooter.add(jTextFieldDiemDenX, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 30, 30));
 
-        jLabel19.setText("Thu phóng");
-        pnFooter.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, -1, -1));
+        jTextFieldDiemDenY.setToolTipText("Nhập khoảng cách y");
+        pnFooter.add(jTextFieldDiemDenY, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 30, 30));
 
-        jSpinnerTinhTienX.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinnerTinhTienXStateChanged(evt);
+        jButton1.setText("Tịnh tiến");
+        jButton1.setToolTipText("Tịnh tiến 1 khoảng x, y");
+        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
-        pnFooter.add(jSpinnerTinhTienX, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 40, -1));
+        pnFooter.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 60, 20));
 
-        jSpinnerTinhTienY.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinnerTinhTienYStateChanged(evt);
+        jButton2.setText("Thu phóng");
+        jButton2.setToolTipText("Thu phóng");
+        jButton2.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
-        pnFooter.add(jSpinnerTinhTienY, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 40, -1));
+        pnFooter.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 30, 60, 20));
 
-        jSpinnerBienDang.setModel(new javax.swing.SpinnerNumberModel(1.0d, 0.25d, 2.0d, 0.5d));
-        jSpinnerBienDang.setOpaque(false);
-        jSpinnerBienDang.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinnerBienDangStateChanged(evt);
-            }
-        });
-        pnFooter.add(jSpinnerBienDang, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 40, -1));
+        jTextFieldThuPhong.setToolTipText("Nhập hệ số thu phóng");
+        pnFooter.add(jTextFieldThuPhong, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 60, 30));
 
         add(pnFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 1000, 50));
 
@@ -1266,29 +1266,6 @@ public class pn2D extends javax.swing.JPanel {
         repaint();
     }//GEN-LAST:event_jSliderGocQuayStateChanged
 
-    private void jSpinnerTinhTienXStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerTinhTienXStateChanged
-        // TODO add your handling code here:
-        TrucToaDo.shapeList.get(listIndexSelected).dich((int) jSpinnerTinhTienX.getValue(), (int) jSpinnerTinhTienY.getValue());
-        TrucToaDo.tempShape=null;
-        repaint();
-    }//GEN-LAST:event_jSpinnerTinhTienXStateChanged
-
-    private void jSpinnerTinhTienYStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerTinhTienYStateChanged
-        // TODO add your handling code here:
-        jSpinnerTinhTienXStateChanged(evt);
-    }//GEN-LAST:event_jSpinnerTinhTienYStateChanged
-
-    private void jSpinnerBienDangStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinnerBienDangStateChanged
-        // TODO add your handling code here:
-        double heSoBienDang=(double) jSpinnerBienDang.getValue();
-        if (heSoBienDang!=1)
-        {
-            TrucToaDo.shapeList.get(listIndexSelected).bienDang(heSoBienDang);
-            TrucToaDo.tempShape = null;
-            repaint();
-        }
-    }//GEN-LAST:event_jSpinnerBienDangStateChanged
-
     private void lbLatOyMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLatOyMousePressed
         // TODO add your handling code here:
         TrucToaDo.shapeList.get(listIndexSelected).doiXungOy();
@@ -1303,8 +1280,25 @@ public class pn2D extends javax.swing.JPanel {
         repaint();
     }//GEN-LAST:event_lbLatOxMousePressed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        TrucToaDo.shapeList.get(listIndexSelected).dich(Integer.valueOf(jTextFieldDiemDenX.getText()), Integer.valueOf(jTextFieldDiemDenY.getText()));
+        TrucToaDo.tempShape = null;
+        repaint();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        TrucToaDo.shapeList.get(listIndexSelected).thuPhong(Double.valueOf(jTextFieldThuPhong.getText()));
+        TrucToaDo.tempShape = null;
+        repaint();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1314,8 +1308,6 @@ public class pn2D extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1327,9 +1319,9 @@ public class pn2D extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSlider jSliderGocQuay;
-    private javax.swing.JSpinner jSpinnerBienDang;
-    private javax.swing.JSpinner jSpinnerTinhTienX;
-    private javax.swing.JSpinner jSpinnerTinhTienY;
+    private javax.swing.JTextField jTextFieldDiemDenX;
+    private javax.swing.JTextField jTextFieldDiemDenY;
+    private javax.swing.JTextField jTextFieldThuPhong;
     private javax.swing.JLabel lbDelete;
     private javax.swing.JLabel lbFlag;
     private javax.swing.JLabel lbHinhCN;

@@ -12,8 +12,8 @@ public class MyLine implements Shapes2D {
     public MyLine(Point a, Point b) {
         A = a;
         B = b;
-        originalA = a;
-        originalB = b;
+        originalA = A;
+        originalB = B;
     }
     public static void dashedLine(Graphics g, int x1, int y1, int x2, int y2) {
         int x, y, Dx, Dy, p, dem, chieuDaiMoiDoan, khoangCachMoiDoan;
@@ -109,7 +109,7 @@ public class MyLine implements Shapes2D {
     public void draw(Graphics g, Color c) {
         g.setColor(c);
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
-        A = originalA; B = originalB;
+//        A = originalA; B = originalB;
     }
 
     @Override
@@ -142,11 +142,27 @@ public class MyLine implements Shapes2D {
     }
 
     @Override
-    public void bienDang(double heSoBienDang) {
+    public void thuPhong(double heSoThuPhong) {
         //thu phóng và tịnh tiến về lại điểm A
-        A.x =(int) Math.round(originalA.x*heSoBienDang)-originalA.x; A.y =(int) Math.round(originalA.y*heSoBienDang)-originalA.y;
-        B.x =(int) Math.round(originalB.x*heSoBienDang)-originalA.x; B.y =(int) Math.round(originalB.y*heSoBienDang)-originalA.y;
+        double tempAx = originalA.x;
+        System.out.println(originalA);
+        tempAx=tempAx*heSoThuPhong;
+        int dentaX=originalA.x - (int) Math.round(tempAx);        
+        A.x=originalA.x;
+        double tempAy=A.y;
+        tempAy=tempAy*heSoThuPhong;
+        int dentaY=originalA.y - (int) Math.round(tempAy);
+        A.y =originalA.y;
         
+        double tempBx = originalB.x;
+        System.out.println(originalB);
+        tempBx=tempBx*heSoThuPhong;
+        B.x =(int) Math.round(tempBx)+dentaX;
+        double tempBy = originalB.y;
+        tempBy=tempBy*heSoThuPhong;
+        B.y =(int) Math.round(tempBy)+dentaY;
+          
+
     }
     
     

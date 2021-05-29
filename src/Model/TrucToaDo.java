@@ -40,6 +40,7 @@ public class TrucToaDo extends JPanel {
 
         if (tempShape != null) {
             tempShape.draw(g);
+            tempShape=null;
         }
 
         if (tempFlag != null) {

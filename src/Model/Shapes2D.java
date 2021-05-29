@@ -21,5 +21,5 @@ public interface Shapes2D {
     
     public void doiXungOy();
     
-    public void bienDang(double heSoBienDang);
+    public void thuPhong(double heSoThuPhong);
 }

@@ -22,8 +22,8 @@ public class TrucToaDo2DAnimation extends JPanel {
 
     public static ArrayList<Shapes2D> shapeList = new ArrayList<>();
     public static Shapes2D tempShape;
-    private boolean drawGrid = false;
-    private boolean drawOxy = false;
+    private boolean drawGrid = true;
+    private boolean drawOxy = true;
 
     @Override
     public void paint(Graphics g) {
