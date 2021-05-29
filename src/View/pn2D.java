@@ -1000,11 +1000,15 @@ public class pn2D extends javax.swing.JPanel {
             }
 
         } else {
+                    repaint();
             TrucToaDo.tempFlag = null;
             //selectXoay sai là dừng quay
         }
 
 //        repaint();
+
+
+
     }//GEN-LAST:event_pnMainMousePressed
 
     private void pnMainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseReleased
