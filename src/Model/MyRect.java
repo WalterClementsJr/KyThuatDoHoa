@@ -17,10 +17,10 @@ public class MyRect implements Shapes2D {
         B=new Point(C.x,A.y);
         D=new Point(A.x,C.y);
         
-        originalA = A;
-        originalB = B;
-        originalC = C;
-        originalD = D;
+        originalA = new Point(A.x,A.y);
+        originalB = new Point(B.x,B.y);
+        originalC = new Point(C.x,C.y);
+        originalD = new Point(D.x,D.y);
     }
 
     public MyRect(Point A, Point B, Point C, Point D) {
@@ -28,10 +28,10 @@ public class MyRect implements Shapes2D {
         this.B = B;
         this.C = C;
         this.D = D;
-        originalA = A;
-        originalB = B;
-        originalC = C;
-        originalD = D;
+        originalA = new Point(this.A.x,this.A.y);
+        originalB = new Point(this.B.x,this.B.y);
+        originalC = new Point(this.C.x,this.C.y);
+        originalD = new Point(this.D.x,this.D.y);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class MyRect implements Shapes2D {
         bresenhamLine(g, B.x, B.y, C.x, C.y);
         bresenhamLine(g, C.x, C.y, D.x, D.y);
         bresenhamLine(g, D.x, D.y, A.x, A.y);
-        A = originalA; B = originalB; C = originalC; D = originalD;
+//        A = originalA; B = originalB; C = originalC; D = originalD;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class MyRect implements Shapes2D {
         bresenhamLine(g, B.x, A.y, B.x, B.y);
         bresenhamLine(g, B.x, B.y, A.x, B.y);
         bresenhamLine(g, A.x, B.y, A.x, A.y);
-        A = originalA; B = originalB; C = originalC; D = originalD;
+//        A = originalA; B = originalB; C = originalC; D = originalD;
     }
 
     @Override
@@ -110,7 +110,11 @@ public class MyRect implements Shapes2D {
     @Override
     public void thuPhong(double heSoThuPhong) {
         //thu phóng rồi tịnh tiến về A
-        double tempAx = A.x;
+        System.out.println(originalA);
+        System.out.println(originalB);
+        System.out.println(originalC);
+        System.out.println(originalD);
+        double tempAx = originalA.x;
         tempAx=tempAx*heSoThuPhong;
         int dentaX=originalA.x - (int) Math.round(tempAx);        
         A.x=originalA.x;

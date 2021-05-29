@@ -22,7 +22,7 @@ public class Circle implements Shapes2D {
     public Circle(Point A, int radius) {
         this.O = A;
         this.radius = radius;
-        originalO = O;
+        originalO = new Point(O.x,O.y);
         originalRadius=radius;
     }
     

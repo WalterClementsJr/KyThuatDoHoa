@@ -35,9 +35,9 @@ public class Triangle implements Shapes2D {
         this.A = A;
         this.B = B;
         this.C = C;
-        this.originalA = A;
-        this.originalB = B;
-        this.originalC = C;
+        this.originalA = new Point(A.x,A.y);
+        this.originalB = new Point(B.x,B.y);
+        this.originalC = new Point(C.x,C.y);
     }
 
     public Triangle(Point a, Point b) {
@@ -52,9 +52,9 @@ public class Triangle implements Shapes2D {
         C.x = Math.max(a.x, b.x);
         C.y = Math.min(a.y, b.y);
         
-        this.originalA = A;
-        this.originalB = B;
-        this.originalC = C;
+        this.originalA = new Point(A.x,A.y);
+        this.originalB = new Point(B.x,B.y);
+        this.originalC = new Point(C.x,C.y);
     }
     
     @Override
@@ -148,7 +148,7 @@ public class Triangle implements Shapes2D {
     @Override
     public void thuPhong(double heSoThuPhong) {
         //thu phóng rồi tịnh tiến về A
-        double tempAx = A.x;
+        double tempAx = originalA.x;
         tempAx=tempAx*heSoThuPhong;
         int dentaX=originalA.x - (int) Math.round(tempAx);        
         A.x=originalA.x;

@@ -12,8 +12,8 @@ public class MyLine implements Shapes2D {
     public MyLine(Point a, Point b) {
         A = a;
         B = b;
-        originalA = A;
-        originalB = B;
+        originalA = new Point(A.x,A.y);
+        originalB = new Point(B.x,B.y);
     }
     public static void dashedLine(Graphics g, int x1, int y1, int x2, int y2) {
         int x, y, Dx, Dy, p, dem, chieuDaiMoiDoan, khoangCachMoiDoan;

@@ -25,7 +25,7 @@ public class Ellipse implements Shapes2D {
         cao = Math.abs(A.y - B.y);
         O.x = (A.x + B.x) / 2;
         O.y = (A.y + B.y) / 2;
-        originalO = O;
+        originalO = new Point(O.x,O.y);
         originalDai=dai;
         originalCao=cao;
     }
