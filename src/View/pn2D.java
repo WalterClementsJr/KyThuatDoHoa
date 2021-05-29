@@ -80,10 +80,9 @@ public class pn2D extends javax.swing.JPanel {
     ArrayList<ShapeInfo> listShapeInfo = new ArrayList<>();
     ShapeInfo shape;
     DefaultListModel<String> dlm;
-    int listIndexSelected = -1;
+    int[] listIndexSelected = null;
     String name = "";
     Point pQuay;  //TOA ĐỘ Cờ
-
 
 
 
@@ -1102,7 +1101,7 @@ public class pn2D extends javax.swing.JPanel {
         tfX2.setText("");
         tfY1.setText("");
         tfY2.setText("");
-        listIndexSelected = -1;
+        listIndexSelected = null;
         if (shape.getName() != null) {
             listShapeInfo.add(shape);
             setListShape();
@@ -1134,28 +1133,28 @@ public class pn2D extends javax.swing.JPanel {
 
     private void listShapeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listShapeMousePressed
         try {
-            listIndexSelected = listShape.getSelectedIndices()[0];
+            listIndexSelected = listShape.getSelectedIndices();
         } catch (Exception e) {
-            listIndexSelected = -1;
+            listIndexSelected = null;
         }
-        if (listIndexSelected != -1) {
-            shape = listShapeInfo.get(listIndexSelected);
-            name = listShapeInfo.get(listIndexSelected).getName();
-            selectedRotating = listIndexSelected;
-            tfx0.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getX0()));
-            tfx1.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getX1()));
-            tfx2.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getX2()));
-            tfy0.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getY0()));
-            tfy1.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getY1()));
-            tfy2.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getY2()));
-            tfa.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getA()));
-            tfb.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getB()));
-            tfr.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getR()));
-            tfh.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getH()));
-            tfX1.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getxStart()));
-            tfX2.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getxEnd()));
-            tfY1.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getyStart()));
-            tfY2.setText(String.valueOf(listShapeInfo.get(listIndexSelected).getyEnd()));
+        if (listIndexSelected != null) {
+            shape = listShapeInfo.get(listIndexSelected[0]);
+            name = listShapeInfo.get(listIndexSelected[0]).getName();
+            selectedRotating = listIndexSelected[0];
+            tfx0.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getX0()));
+            tfx1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getX1()));
+            tfx2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getX2()));
+            tfy0.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getY0()));
+            tfy1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getY1()));
+            tfy2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getY2()));
+            tfa.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getA()));
+            tfb.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getB()));
+            tfr.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getR()));
+            tfh.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getH()));
+            tfX1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getxStart()));
+            tfX2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getxEnd()));
+            tfY1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getyStart()));
+            tfY2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getyEnd()));
         }
 
 // TODO add your handling code here:
@@ -1163,15 +1162,15 @@ public class pn2D extends javax.swing.JPanel {
     }//GEN-LAST:event_listShapeMousePressed
 
     private void lbDeleteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeleteMousePressed
-        if (listIndexSelected != -1) {
+        if (listIndexSelected != null) {
             int select = JOptionPane.showConfirmDialog(this, "XÓA", "Xóa " + name + "", JOptionPane.YES_NO_OPTION, 0);
             if (select == 0) {
-                TrucToaDo.shapeList.remove(listIndexSelected);
+                TrucToaDo.shapeList.remove(listIndexSelected[0]);
                 TrucToaDo.tempShape = null;
-                listShapeInfo.remove(listIndexSelected);
+                listShapeInfo.remove(listIndexSelected[0]);
                 pnMain.repaint();
                 setListShape();
-                listIndexSelected = -1;
+                listIndexSelected = null;
                 tfx0.setText("");
                 tfx1.setText("");
                 tfx2.setText("");
@@ -1203,7 +1202,7 @@ public class pn2D extends javax.swing.JPanel {
                 listShapeInfo.clear();
                 pnMain.repaint();
                 setListShape();
-                listIndexSelected = -1;
+                listIndexSelected = null;
                 tfx0.setText("");
                 tfx1.setText("");
                 tfx2.setText("");
@@ -1237,7 +1236,6 @@ public class pn2D extends javax.swing.JPanel {
             lbHinhOval.setBorder(null);
             lbHinhTamGiac.setBorder(null);
             lbHinhTron.setBorder(null);
-
         } else {
             TrucToaDo.tempFlag = null;
             lbXoay.setBorder(null);
@@ -1259,39 +1257,56 @@ public class pn2D extends javax.swing.JPanel {
     private void jSliderGocQuayStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderGocQuayStateChanged
         // TODO add your handling code here:
         double gocQuay = (double) jSliderGocQuay.getValue() * Math.PI / 100 * 10;
-
-        TrucToaDo.shapeList.get(listIndexSelected).xoay(gocQuay, new Point(0, 0));
-//        TrucToaDo.shapeList.get(listIndexSelected).dich((int) Math.round((double) jSliderGocQuay.getValue() * 0.2), (int) Math.round((double) jSliderGocQuay.getValue() * 0.2));
-        repaint();
+        Point trucQuay=TrucToaDo.convertDescart(pQuay);
+        for (int i=0;i<listIndexSelected.length;i++)
+        {
+            TrucToaDo.shapeList.get(listIndexSelected[i]).xoay(gocQuay, trucQuay);
+    //        TrucToaDo.shapeList.get(listIndexSelected).dich((int) Math.round((double) jSliderGocQuay.getValue() * 0.2), (int) Math.round((double) jSliderGocQuay.getValue() * 0.2));
+            repaint();
+        }
     }//GEN-LAST:event_jSliderGocQuayStateChanged
 
     private void lbLatOyMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLatOyMousePressed
         // TODO add your handling code here:
-        TrucToaDo.shapeList.get(listIndexSelected).doiXungOy();
-        TrucToaDo.tempShape = null;
-        repaint();
+        for (int i=0; i<listIndexSelected.length;i++)
+        {
+            TrucToaDo.shapeList.get(listIndexSelected[i]).doiXungOy();
+            TrucToaDo.tempShape = null;
+            repaint();
+        }
     }//GEN-LAST:event_lbLatOyMousePressed
 
     private void lbLatOxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLatOxMousePressed
         // TODO add your handling code here:
-        TrucToaDo.shapeList.get(listIndexSelected).doiXungOx();
-        TrucToaDo.tempShape = null;
-        repaint();
+        for (int i=0; i<listIndexSelected.length;i++)
+        {
+            TrucToaDo.shapeList.get(listIndexSelected[i]).doiXungOx();
+            TrucToaDo.tempShape = null;
+            repaint();
+        }
+        
     }//GEN-LAST:event_lbLatOxMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        TrucToaDo.shapeList.get(listIndexSelected).dich(Integer.valueOf(jTextFieldDiemDenX.getText()), Integer.valueOf(jTextFieldDiemDenY.getText()));
-        TrucToaDo.tempShape = null;
-        repaint();
-        
+        for (int i=0; i<listIndexSelected.length;i++)
+        {
+            TrucToaDo.shapeList.get(listIndexSelected[i]).dich(Integer.valueOf(jTextFieldDiemDenX.getText()), Integer.valueOf(jTextFieldDiemDenY.getText()));
+            TrucToaDo.tempShape = null;
+            repaint();
+            
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        TrucToaDo.shapeList.get(listIndexSelected).thuPhong(Double.valueOf(jTextFieldThuPhong.getText()));
-        TrucToaDo.tempShape = null;
-        repaint();
+        
+        for (int i=0; i<listIndexSelected.length;i++)
+        {
+            TrucToaDo.shapeList.get(listIndexSelected[i]).thuPhong(Double.valueOf(jTextFieldThuPhong.getText()));
+            TrucToaDo.tempShape = null;
+            repaint();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

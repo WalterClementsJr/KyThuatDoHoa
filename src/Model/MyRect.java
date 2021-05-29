@@ -110,10 +110,6 @@ public class MyRect implements Shapes2D {
     @Override
     public void thuPhong(double heSoThuPhong) {
         //thu phóng rồi tịnh tiến về A
-        System.out.println(originalA);
-        System.out.println(originalB);
-        System.out.println(originalC);
-        System.out.println(originalD);
         double tempAx = originalA.x;
         tempAx=tempAx*heSoThuPhong;
         int dentaX=originalA.x - (int) Math.round(tempAx);        
