@@ -120,6 +120,11 @@ public class Heli implements Shapes2D {
             t.thuPhong(heSoThuPhong);
         }
     }
+
+    @Override
+    public void setRadianAndAnchor(double radian, Point anchor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 
@@ -174,6 +179,11 @@ class HeliBody implements Shapes2D {
     public void draw(Graphics g, Color c) {
     }
 
+    @Override
+    public void setRadianAndAnchor(double radian, Point anchor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     @Override
     public void fill(Graphics g, Color color) {
     }

@@ -40,7 +40,7 @@ public class MyFlag implements Shapes2D {
             Logger.getLogger(MyFlag.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @Override
     public void draw(Graphics g, Color c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -69,6 +69,11 @@ public class MyFlag implements Shapes2D {
 
     @Override
     public void thuPhong(double heSoThuPhong) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setRadianAndAnchor(double radian, Point anchor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

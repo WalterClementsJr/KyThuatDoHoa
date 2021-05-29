@@ -63,6 +63,13 @@ public MyRect1(Point A, Point B, Point C, Point D) {
     }
 
     @Override
+    public void setRadianAndAnchor(double radian, Point anchor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+
+    @Override
     public void draw(Graphics g, Color c) {
         g.setColor(c);
         bresenhamLine(g, A.x, A.y, B.x, A.y);

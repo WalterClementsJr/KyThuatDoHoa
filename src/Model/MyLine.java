@@ -119,10 +119,17 @@ public class MyLine implements Shapes2D {
 
     @Override
     public void xoay(double radian, Point anchor) {
-        A = Rotation.rotateAroundO(A.x, A.y, radian, anchor);
-        B = Rotation.rotateAroundO(B.x, B.y, radian, anchor);
+        A = Rotation.rotateAroundO(originalA.x, originalA.y, radian, anchor);
+        B = Rotation.rotateAroundO(originalB.x, originalB.y, radian, anchor);
     }
 
+    @Override
+    public void setRadianAndAnchor(double radian, Point anchor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    
     @Override
     public void dich(int x, int y) {
         A.x =A.x+ x; A.y =A.y+ y;

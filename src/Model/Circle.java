@@ -27,7 +27,8 @@ public class Circle implements Shapes2D {
     }
     
     public Circle(Point A, Point B) {
-        this.O = A; originalO=new Point(O.x,O.y);
+        this.O = A; 
+        originalO=new Point(O.x,O.y);
         this.radius = (int) Math.sqrt((B.x - A.x) * (B.x - A.x) + (B.y - A.y) * (B.y - A.y)) / 5;
         originalRadius=radius;
     }
@@ -77,7 +78,7 @@ public class Circle implements Shapes2D {
 
     @Override
     public void xoay(double radian, Point anchor) {
-        O = Rotation.rotateAroundO(O.x, O.y, radian, anchor);
+        O = Rotation.rotateAroundO(originalO.x, originalO.y, radian, anchor);
     }
 
     @Override
@@ -99,7 +100,12 @@ public class Circle implements Shapes2D {
     public void thuPhong(double heSoThuPhong) {
         radius=(int) Math.round(originalRadius*heSoThuPhong);
     }
-    
+
+    @Override
+    public void setRadianAndAnchor(double radian, Point anchor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     
 }

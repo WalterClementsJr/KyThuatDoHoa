@@ -9,7 +9,9 @@ public interface Shapes2D {
 
     public void draw(Graphics g);
     
-    public void draw(Graphics g, Color c);    
+    public void draw(Graphics g, Color c);   
+    
+    public void setRadianAndAnchor(double radian, Point anchor);//dành cho vẽ elip
 
     public void fill(Graphics g, Color color);
     

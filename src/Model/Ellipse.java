@@ -18,6 +18,8 @@ public class Ellipse implements Shapes2D {
     Point O, originalO;
     int dai, cao,originalDai, originalCao;
     static int dem = 0;
+    double radian=0;
+    Point anchor=new Point(0,0);
 
     public Ellipse(Point A, Point B) {
         O = new Point();
@@ -30,6 +32,12 @@ public class Ellipse implements Shapes2D {
         originalCao=cao;
     }
 
+    @Override
+    public void setRadianAndAnchor(double radian,Point anchor) {
+        this.radian = radian;
+        this.anchor = anchor;
+    }
+    
     public static void drawHalfDottedEllipse(Graphics g, Point a, int dai) {
         double dx, dy, d1, d2;
         int x, y, cao = (int) dai / 2;
@@ -160,6 +168,16 @@ public class Ellipse implements Shapes2D {
         putPixel(g, xc + x, yc - y);
         putPixel(g, xc - x, yc - y);
     }
+    static void plotWithRotate(Graphics g, int xc, int yc, int x, int y,double radian, Point anchor) {
+        Point a=Rotation.rotateAroundO(xc + x, yc + y, radian, anchor);
+        Point b=Rotation.rotateAroundO(xc - x, yc + y,radian,anchor);
+        Point c=Rotation.rotateAroundO(xc + x, yc - y,radian,anchor);
+        Point d=Rotation.rotateAroundO(xc - x, yc - y,radian,anchor);
+        putPixel(g, a.x, a.y);
+        putPixel(g, b.x, b.y);
+        putPixel(g, c.x, c.y);
+        putPixel(g, d.x, d.y);
+    }
 
     static void plotDash(Graphics g, int xc, int yc, int x, int y, int chieuDaiMoiDoan, int khoangCachMoiDoan) {
 
@@ -188,7 +206,7 @@ public class Ellipse implements Shapes2D {
         b2 = cao * cao; // cao^2
         fx = 0;
         fy = 2 * a2 * y; // 2a^2y
-        plot(g, O.x, O.y, Math.round(x), Math.round(y));
+        plotWithRotate(g, originalO.x, originalO.y, Math.round(x), Math.round(y),radian,anchor);
         p = Math.round(b2 - (a2 * cao) + (0.25 * dai));
 
         while (fx < fy) {
@@ -202,7 +220,7 @@ public class Ellipse implements Shapes2D {
 
                 fy -= 2 * a2; // 2a2
             }
-            plot(g, O.x, O.y, Math.round(x), Math.round(y));
+            plotWithRotate(g, originalO.x, originalO.y, Math.round(x), Math.round(y),radian,anchor);
         }
         p = Math.round(b2 * (x + 0.5) * (x + 0.5) + a2 * (y) * (y) - a2 * b2);
 
@@ -217,11 +235,13 @@ public class Ellipse implements Shapes2D {
                 p += b2 * (2 * x + 2) + a2 * (-2 * y + 3);
 
             }
-            plot(g, O.x, O.y, Math.round(x), Math.round(y));
+            plotWithRotate(g, originalO.x, originalO.y, Math.round(x), Math.round(y),radian,anchor);
         }
         O = originalO;
     }
 
+    
+    
     @Override
     public void draw(Graphics g, Color c) {
     }
@@ -233,7 +253,7 @@ public class Ellipse implements Shapes2D {
 
     @Override
     public void xoay(double radian, Point anchor) {
-        O = Rotation.rotateAroundO(O.x, O.y, radian, anchor);
+        O = Rotation.rotateAroundO(originalO.x, originalO.y, radian, anchor);        
     }
 
     @Override

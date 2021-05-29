@@ -33,6 +33,13 @@ public class Triangle implements Shapes2D {
         this.originalC = new Point(C.x, C.y);
     }
 
+    @Override
+    public void setRadianAndAnchor(double radian, Point anchor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
     public Triangle(Point a, Point b) {
         A = new Point();
         B = new Point();

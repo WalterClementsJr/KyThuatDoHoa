@@ -1260,9 +1260,17 @@ public class pn2D extends javax.swing.JPanel {
         Point trucQuay=TrucToaDo.convertDescart(pQuay);
         for (int i=0;i<listIndexSelected.length;i++)
         {
-            TrucToaDo.shapeList.get(listIndexSelected[i]).xoay(gocQuay, trucQuay);
-    //        TrucToaDo.shapeList.get(listIndexSelected).dich((int) Math.round((double) jSliderGocQuay.getValue() * 0.2), (int) Math.round((double) jSliderGocQuay.getValue() * 0.2));
-            repaint();
+            if (TrucToaDo.shapeList.get(i)instanceof Ellipse)
+            {
+                TrucToaDo.shapeList.get(listIndexSelected[i]).xoay(gocQuay, trucQuay);
+                TrucToaDo.shapeList.get(listIndexSelected[i]).setRadianAndAnchor(gocQuay, trucQuay);
+                repaint();
+            }
+            else
+            {
+                TrucToaDo.shapeList.get(listIndexSelected[i]).xoay(gocQuay, trucQuay);
+                repaint();
+            }
         }
     }//GEN-LAST:event_jSliderGocQuayStateChanged
 
