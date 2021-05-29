@@ -17,6 +17,7 @@ import java.util.ArrayList;
  * @author walker
  */
 public class Heli implements Shapes2D {
+
     Point center;
     ArrayList<Triangle> blades = new ArrayList<>();
 
@@ -24,16 +25,16 @@ public class Heli implements Shapes2D {
 
     /**
      * draw windmill from center
+     *
      * @param center
      * @param width
-     * @param height 
+     * @param height
      */
-    
     public Heli(Point center, int width, int height) {
         this.center = center;
         body = new HeliBody(center, width, height);
         int h = height * 7 / 10;
-        int w =  h / 3;
+        int w = h / 3;
         blades.add(new Triangle(
                 new Point(center.x, center.y),
                 new Point(center.x + w, center.y + h),
@@ -44,8 +45,8 @@ public class Heli implements Shapes2D {
                 new Point(center.x + h, center.y - w)));
         blades.add(new Triangle(
                 new Point(center.x, center.y),
-                new Point(center.x - w , center.y - h),
-                new Point(center.x + w , center.y - h)));
+                new Point(center.x - w, center.y - h),
+                new Point(center.x + w, center.y - h)));
         blades.add(new Triangle(
                 new Point(center.x, center.y),
                 new Point(center.x - h, center.y + w),
@@ -101,6 +102,7 @@ public class Heli implements Shapes2D {
     public Point getCenter() {
         return center;
     }
+
     public void setCenter(Point p) {
         this.center = p;
     }
@@ -125,12 +127,15 @@ public class Heli implements Shapes2D {
     public void setRadianAndAnchor(double radian, Point anchor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
+    public boolean isOut(int maxHeight) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
 
 class HeliBody implements Shapes2D {
+
     Triangle head, tail;
     MyRect box;
 
@@ -146,7 +151,7 @@ class HeliBody implements Shapes2D {
                 TrucToaDo.bresenhamLine(g, getC().x, getC().y, getA().x, getA().y);
             }
         };
-        
+
         tail = new Triangle(
                 new Point(center.x, center.y - height * 6 / 5),
                 new Point(center.x - width / 5, (center.y - height * 3 / 5)),
@@ -183,7 +188,7 @@ class HeliBody implements Shapes2D {
     public void setRadianAndAnchor(double radian, Point anchor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public void fill(Graphics g, Color color) {
     }
@@ -216,6 +221,11 @@ class HeliBody implements Shapes2D {
     public void thuPhong(double heSoThuPhong) {
         head.thuPhong(heSoThuPhong);
         box.thuPhong(heSoThuPhong);
+    }
+
+    @Override
+    public boolean isOut(int maxHeight) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

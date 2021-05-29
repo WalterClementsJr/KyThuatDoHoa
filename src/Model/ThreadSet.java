@@ -23,12 +23,11 @@ public class ThreadSet extends Thread {
     private String nameThread = "HinhChuNhat";
     private RectThread rectThread;
 
-
     public ThreadSet(RectThread rectThread) {
         this.rectThread = rectThread;
-        
+
         System.out.println("Creating " + nameThread);
-        
+
     }
 
     public RectThread getRectThread() {
@@ -41,8 +40,8 @@ public class ThreadSet extends Thread {
 
     @Override
     public void run() {
-         
-         {  
+
+        {
             System.out.println("Running " + nameThread);
             Point a1 = rectThread.getA();
             Point b1 = rectThread.getB();
@@ -56,9 +55,9 @@ public class ThreadSet extends Thread {
                 Point c3 = new Point();
                 Point d3 = new Point();
 
-                a3 = Rotation.rotateAroundO(a1.x, a1.y, -angle * i,rectThread.coordinateNew);
+                a3 = Rotation.rotateAroundO(a1.x, a1.y, -angle * i, rectThread.coordinateNew);
                 b3 = Rotation.rotateAroundO(b1.x, b1.y, -angle * i, rectThread.coordinateNew);
-                c3 = Rotation.rotateAroundO(c1.x, c1.y, -angle * i,rectThread.coordinateNew);
+                c3 = Rotation.rotateAroundO(c1.x, c1.y, -angle * i, rectThread.coordinateNew);
                 d3 = Rotation.rotateAroundO(d1.x, d1.y, -angle * i, rectThread.coordinateNew);
 
 //                Point aaa = new Point();

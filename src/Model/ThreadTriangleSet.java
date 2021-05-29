@@ -7,7 +7,6 @@ package Model;
 
 import java.awt.Point;
 
-
 /**
  *
  * @author MinhTo
@@ -38,35 +37,28 @@ public class ThreadTriangleSet extends Thread {
         this.triangleThread = triangleThread;
     }
 
-
-    
-
     @Override
     public void run() {
-         
-         {  
+
+        {
             System.out.println("Running " + nameThread);
             Point a1 = triangleThread.getA();
             Point b1 = triangleThread.getB();
-              Point c1 = triangleThread.getC();
-
+            Point c1 = triangleThread.getC();
 
             double angle = triangleThread.getAngle();
             for (int i = 1; i <= (2 * Math.PI / angle); i++) {
                 Point a3 = new Point();
                 Point b3 = new Point();
                 Point c3 = new Point();
-             
 
-                a3 = Rotation.rotateAroundO(a1.x, a1.y, -angle * i,triangleThread.coordinateNew);
+                a3 = Rotation.rotateAroundO(a1.x, a1.y, -angle * i, triangleThread.coordinateNew);
                 b3 = Rotation.rotateAroundO(b1.x, b1.y, -angle * i, triangleThread.coordinateNew);
-                c3 = Rotation.rotateAroundO(c1.x, c1.y, -angle * i,triangleThread.coordinateNew);
-         
+                c3 = Rotation.rotateAroundO(c1.x, c1.y, -angle * i, triangleThread.coordinateNew);
 
                 triangleThread.getListA().add(a3);
                 triangleThread.getListB().add(b3);
                 triangleThread.getListC().add(c3);
-               
 
                 System.out.println("Tam giac quay " + i);
 

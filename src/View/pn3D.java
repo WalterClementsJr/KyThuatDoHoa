@@ -386,9 +386,8 @@ public class pn3D extends javax.swing.JPanel {
         Point point = TrucToaDo.convertDescart(evt.getPoint());
         String xyCurrent = (int) point.getX() + " : " + (int) point.getY();
         toaDoCurrent.setText(xyCurrent);
-        
-    }//GEN-LAST:event_pnMainMouseMoved
 
+    }//GEN-LAST:event_pnMainMouseMoved
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

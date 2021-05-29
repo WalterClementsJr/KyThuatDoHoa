@@ -7,15 +7,16 @@ import java.awt.Point;
 
 public class MyRect1 implements Shapes2D {
 
-    private Point A, B,C,D;
+    private Point A, B, C, D;
 
     public MyRect1(Point a, Point c) {
-         A = a;
+        A = a;
         C = c;
-        B=new Point(C.x,A.y);
-        D=new Point(A.x,C.y);
+        B = new Point(C.x, A.y);
+        D = new Point(A.x, C.y);
     }
-public MyRect1(Point A, Point B, Point C, Point D) {
+
+    public MyRect1(Point A, Point B, Point C, Point D) {
         this.A = A;
         this.B = B;
         this.C = C;
@@ -53,6 +54,7 @@ public MyRect1(Point A, Point B, Point C, Point D) {
     public void setD(Point D) {
         this.D = D;
     }
+
     @Override
     public void draw(Graphics g) {
         g.setColor(DEFAULT_COLOR);
@@ -106,6 +108,10 @@ public MyRect1(Point A, Point B, Point C, Point D) {
     public void thuPhong(double heSoThuPhong) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
+    @Override
+    public boolean isOut(int maxHeight) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

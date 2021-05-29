@@ -13,7 +13,7 @@ public class Projection {
         this.z = z;
     }
 
-     public static Point cavalier(int x, int y, int z) {
+    public static Point cavalier(int x, int y, int z) {
         int x1 = x - y;
         int y1 = z - y;
         return new Point(x1, y1);

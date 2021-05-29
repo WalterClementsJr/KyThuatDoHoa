@@ -31,8 +31,8 @@ public class MyFlag implements Shapes2D {
     @Override
     public void draw(Graphics g) {
         try {
-            BufferedImage image =
-                    ImageIO.read(new File("src/pictrue/icons8_flag_filled_20px_2.png"));
+            BufferedImage image
+                    = ImageIO.read(new File("src/pictrue/icons8_flag_filled_20px_2.png"));
             if (image != null) {
                 g.drawImage(image, x, y, null);
             }
@@ -40,7 +40,7 @@ public class MyFlag implements Shapes2D {
             Logger.getLogger(MyFlag.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
     public void draw(Graphics g, Color c) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -59,6 +59,7 @@ public class MyFlag implements Shapes2D {
     public void dich(int x, int y) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     @Override
     public void doiXungOx() {
     }
@@ -76,5 +77,8 @@ public class MyFlag implements Shapes2D {
     public void setRadianAndAnchor(double radian, Point anchor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    public boolean isOut(int maxHeight) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

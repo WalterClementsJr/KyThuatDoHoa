@@ -78,6 +78,5 @@ public class TriangleThread extends Triangle {
     public void setCoordinateNew(Point coordinateNew) {
         this.coordinateNew = coordinateNew;
     }
-    
 
 }

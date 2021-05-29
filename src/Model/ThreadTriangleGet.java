@@ -51,10 +51,6 @@ public class ThreadTriangleGet extends Thread {
         this.cp = cp;
     }
 
- 
-
-  
-
     @Override
     public void run() {
         {

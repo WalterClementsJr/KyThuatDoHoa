@@ -56,7 +56,7 @@ public class TrucToaDo3D extends JPanel {
         }
         //vẽ 2 trục Ox, Oy, Oz
         g.setColor(Color.red);
-        bresenhamLine(g, 0,0, 0, deltaY);
+        bresenhamLine(g, 0, 0, 0, deltaY);
         bresenhamLine(g, 0, 0, deltaX - 1, 0);
         bresenhamLine(g, -49, -49, 0, 0);
 //            veDoanThang(g, 0, -deltaY + 1, 0, deltaY);
@@ -84,7 +84,8 @@ public class TrucToaDo3D extends JPanel {
         }
         g.fillRect(x, y, 5, 5);
     }
-    public static void veChu(Graphics g,String str, int x, int y) {
+
+    public static void veChu(Graphics g, String str, int x, int y) {
         if (x > 0 && y > 0) {
             x = (x + deltaX) * 5;
             y = (deltaY - y) * 5;
@@ -101,9 +102,8 @@ public class TrucToaDo3D extends JPanel {
             x = (x + deltaX) * 5;
             y = (y + deltaY) * 5;
         }
-        g.drawString(str,x,y);
+        g.drawString(str, x, y);
     }
-    
 
     public static void bresenhamLine(Graphics g, int x1, int y1, int x2, int y2) {
         int x, y, Dx, Dy, p;

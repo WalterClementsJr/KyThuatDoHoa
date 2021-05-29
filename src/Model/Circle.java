@@ -22,15 +22,17 @@ public class Circle implements Shapes2D {
     public Circle(Point A, int radius) {
         this.O = A;
         this.radius = radius;
-        originalO = new Point(O.x,O.y);
-        originalRadius=radius;
+        originalO = new Point(O.x, O.y);
+        originalRadius = radius;
     }
-    
+
     public Circle(Point A, Point B) {
         this.O = A; 
         originalO=new Point(O.x,O.y);
+        this.O = A;
+        originalO = new Point(O.x, O.y);
         this.radius = (int) Math.sqrt((B.x - A.x) * (B.x - A.x) + (B.y - A.y) * (B.y - A.y)) / 5;
-        originalRadius=radius;
+        originalRadius = radius;
     }
 
     @Override
@@ -83,22 +85,30 @@ public class Circle implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
-        O.x = O.x+x; O.y = O.y + y;
+        O.x = O.x + x;
+        O.y = O.y + y;
     }
 
     @Override
     public void doiXungOx() {
-        O.y=-O.y;
-}
+        O.y = -O.y;
+    }
 
     @Override
     public void doiXungOy() {
-        O.x=-O.x;      
+        O.x = -O.x;
     }
 
     @Override
     public void thuPhong(double heSoThuPhong) {
-        radius=(int) Math.round(originalRadius*heSoThuPhong);
+        radius = (int) Math.round(originalRadius * heSoThuPhong);
+    }
+
+    public boolean isOut(int maxHeight) {
+        if (O.y < -1 * maxHeight / 2 - 5) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -106,6 +116,17 @@ public class Circle implements Shapes2D {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-    
+    public static Circle random(int maxWidth, int maxHeight, boolean fromTop) {
+        int x = (int) (Math.random() * maxWidth - maxWidth / 2);
+        int y = (int) (Math.random() * maxHeight - maxHeight / 2);
+
+        int r = (int) (Math.random() * maxWidth / 5);
+
+        if (!fromTop) {
+            return new Circle(new Point(x, y), r);
+        } else {
+            return new Circle(new Point(x, maxHeight / 2 + 5), r);
+
+        }
+    }
 }

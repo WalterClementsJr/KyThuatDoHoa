@@ -129,7 +129,7 @@ public class Triangle implements Shapes2D {
         B.y = B.y + y;
         C.x = C.x + x;
         C.y = C.y + y;
-        
+
         originalA.x = originalA.x + x;
         originalA.y = originalA.y + y;
         originalB.x = originalB.x + x;
@@ -177,6 +177,11 @@ public class Triangle implements Shapes2D {
         double tempCy = originalC.y;
         tempCy = tempCy * heSoThuPhong;
         C.y = (int) Math.round(tempCy) + dentaY;
+    }
+
+    @Override
+    public boolean isOut(int maxHeight) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

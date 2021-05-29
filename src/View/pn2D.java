@@ -10,49 +10,27 @@ import Model.Ellipse;
 import Model.MyFlag;
 import Model.MyLine;
 import Model.MyRect;
-import Model.MyRect1;
 import Model.RectThread;
-import Model.Rotation;
 import Model.ShapeInfo;
-import Model.Shapes2D;
 
 import Model.ThreadGet;
 import Model.ThreadSet;
 import Model.ThreadTriangleGet;
 import Model.ThreadTriangleSet;
 import Model.Triangle;
-        
-
-
 
 import Model.TriangleThread;
 import Model.TrucToaDo;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import static java.awt.Frame.HAND_CURSOR;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.image.ImageObserver;
-import static java.awt.image.ImageObserver.ALLBITS;
-import java.text.AttributedCharacterIterator;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.ToolTipManager;
-import javax.swing.UIManager;
-import javax.swing.border.LineBorder;
 
 /**
  *
@@ -84,10 +62,7 @@ public class pn2D extends javax.swing.JPanel {
     String name = "";
     Point pQuay;  //TOA ĐỘ Cờ
 
-
-
     //QUAY HINH CHU NHAT
-
     ArrayList<Point> listA = new ArrayList<>();
     ArrayList<Point> listB = new ArrayList<>();
     ArrayList<Point> listC = new ArrayList<>();
@@ -99,7 +74,6 @@ public class pn2D extends javax.swing.JPanel {
     ArrayList<Point> listTC = new ArrayList<>();
     //QUAY HINH Duong thăng
     ArrayList<Point> listDt = new ArrayList<>();
-
 
     // luong quay hình chứ nhật
     public static ThreadSet tSet = null;
@@ -115,7 +89,6 @@ public class pn2D extends javax.swing.JPanel {
     public static int counter = 1;
     TimerTask timerTask;
     public static int selectedRotating = 0;
-
 
     public pn2D() {
         initComponents();
@@ -200,34 +173,25 @@ public class pn2D extends javax.swing.JPanel {
 //            listTB.add(b3T);
 //            listTC.add(c3T);
 //        }
-
-
-       
-
 //        a= TrucToaDo.getPointInAxisNew(a, 10, 10);
 //        b= TrucToaDo.getPointInAxisNew(b, 10, 10);
 //        c=TrucToaDo.getPointInAxisNew(c, 10, 10);
 //        d=TrucToaDo.getPointInAxisNew(d, 10, 10);
-       
     }
 
 //    @Override
 //    public void paint(Graphics g) {
 //        super.paint(g); //To change body of generated methods, choose Tools | Templates.
 //   
-
 //        Point a0 = new Point(0, 0);
 //        Point b0 = new Point(5, 5);
 //         
-
 //        a0 = TrucToaDo.expandX(a0);
 //        b0 = TrucToaDo.expandX(b0);
 //
 //        MyLine myline1 = new MyLine(a0, b0);
 //        myline1.draw(g);
-
-
-        //4 DIEM CHU NHAT
+    //4 DIEM CHU NHAT
 //        if (tSet != null &&tGet.getRectThread()!=null&& tGet.getRectThread().getListA().size() > 0) {
 //
 //
@@ -893,7 +857,6 @@ public class pn2D extends javax.swing.JPanel {
 //        mode = DRAW_CIRCLE;
         mode = DRAW_ELLIPSE;
 
-
     }//GEN-LAST:event_lbHinhOvalMousePressed
 
     private void pnMainMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseEntered
@@ -1005,8 +968,7 @@ public class pn2D extends javax.swing.JPanel {
                 }
 
                 //selectXoay đúng là quay luôn
-            } 
-            else if (shape != null && shape.getName().contains("Triangle")) {
+            } else if (shape != null && shape.getName().contains("Triangle")) {
                 Triangle myTriangle = (Triangle) TrucToaDo.shapeList.get(selectedRotating);
                 double angle = (2 * Math.PI / 50);
                 if (tamGiacThreadSet != null) {
@@ -1043,8 +1005,6 @@ public class pn2D extends javax.swing.JPanel {
         }
 
 //        repaint();
-
-
     }//GEN-LAST:event_pnMainMousePressed
 
     private void pnMainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseReleased
@@ -1158,7 +1118,6 @@ public class pn2D extends javax.swing.JPanel {
         }
 
 // TODO add your handling code here:
-
     }//GEN-LAST:event_listShapeMousePressed
 
     private void lbDeleteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeleteMousePressed
@@ -1257,17 +1216,13 @@ public class pn2D extends javax.swing.JPanel {
     private void jSliderGocQuayStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderGocQuayStateChanged
         // TODO add your handling code here:
         double gocQuay = (double) jSliderGocQuay.getValue() * Math.PI / 100 * 10;
-        Point trucQuay=TrucToaDo.convertDescart(pQuay);
-        for (int i=0;i<listIndexSelected.length;i++)
-        {
-            if (TrucToaDo.shapeList.get(i)instanceof Ellipse)
-            {
+        Point trucQuay = TrucToaDo.convertDescart(pQuay);
+        for (int i = 0; i < listIndexSelected.length; i++) {
+            if (TrucToaDo.shapeList.get(i) instanceof Ellipse) {
                 TrucToaDo.shapeList.get(listIndexSelected[i]).xoay(gocQuay, trucQuay);
                 TrucToaDo.shapeList.get(listIndexSelected[i]).setRadianAndAnchor(gocQuay, trucQuay);
                 repaint();
-            }
-            else
-            {
+            } else {
                 TrucToaDo.shapeList.get(listIndexSelected[i]).xoay(gocQuay, trucQuay);
                 repaint();
             }
@@ -1276,8 +1231,7 @@ public class pn2D extends javax.swing.JPanel {
 
     private void lbLatOyMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLatOyMousePressed
         // TODO add your handling code here:
-        for (int i=0; i<listIndexSelected.length;i++)
-        {
+        for (int i = 0; i < listIndexSelected.length; i++) {
             TrucToaDo.shapeList.get(listIndexSelected[i]).doiXungOy();
             TrucToaDo.tempShape = null;
             repaint();
@@ -1286,37 +1240,33 @@ public class pn2D extends javax.swing.JPanel {
 
     private void lbLatOxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLatOxMousePressed
         // TODO add your handling code here:
-        for (int i=0; i<listIndexSelected.length;i++)
-        {
+        for (int i = 0; i < listIndexSelected.length; i++) {
             TrucToaDo.shapeList.get(listIndexSelected[i]).doiXungOx();
             TrucToaDo.tempShape = null;
             repaint();
         }
-        
+
     }//GEN-LAST:event_lbLatOxMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        for (int i=0; i<listIndexSelected.length;i++)
-        {
+        for (int i = 0; i < listIndexSelected.length; i++) {
             TrucToaDo.shapeList.get(listIndexSelected[i]).dich(Integer.valueOf(jTextFieldDiemDenX.getText()), Integer.valueOf(jTextFieldDiemDenY.getText()));
             TrucToaDo.tempShape = null;
             repaint();
-            
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
-        for (int i=0; i<listIndexSelected.length;i++)
-        {
+
+        for (int i = 0; i < listIndexSelected.length; i++) {
             TrucToaDo.shapeList.get(listIndexSelected[i]).thuPhong(Double.valueOf(jTextFieldThuPhong.getText()));
             TrucToaDo.tempShape = null;
             repaint();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

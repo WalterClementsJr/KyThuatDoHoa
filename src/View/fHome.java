@@ -35,7 +35,7 @@ public class fHome extends javax.swing.JFrame {
     boolean select2Da = false;
     boolean select3D = false;
     CardLayout c;
-    
+
     public fHome() {
         initComponents();
         setResizable(false);
@@ -55,7 +55,7 @@ public class fHome extends javax.swing.JFrame {
         UIManager.put("control", Color.WHITE);
         UIManager.put("OptionPane.border", new LineBorder(new Color(214, 224, 250), 1));
         ToolTipManager.sharedInstance().setInitialDelay(600);
-        
+
     }
 
     /**
@@ -200,7 +200,6 @@ public class fHome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void lb2DMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb2DMouseEntered
         lb2D.setFont(new Font("Tahoma", Font.BOLD, 22));
 
@@ -250,7 +249,7 @@ public class fHome extends javax.swing.JFrame {
         select3D = false;
         lb2Da.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lb3D.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        
+
         c.show(pnMain, "pn2D");
     }//GEN-LAST:event_lb2DMousePressed
 
@@ -260,7 +259,7 @@ public class fHome extends javax.swing.JFrame {
         select3D = false;
         lb2D.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lb3D.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        
+
         c.show(pnMain, "pn2Da");// TODO add your handling code here:
     }//GEN-LAST:event_lb2DaMousePressed
 
@@ -270,7 +269,7 @@ public class fHome extends javax.swing.JFrame {
         select3D = true;
         lb2Da.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lb2D.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        
+
         c.show(pnMain, "pn3D");// TODO add your handling code here:
     }//GEN-LAST:event_lb3DMousePressed
 

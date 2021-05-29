@@ -11,6 +11,4 @@ package Model;
  */
 public class TableAndBall {
 
-    
-    
 }

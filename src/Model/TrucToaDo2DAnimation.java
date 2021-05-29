@@ -35,8 +35,7 @@ public class TrucToaDo2DAnimation extends JPanel {
     Heli heli = new Heli(new Point(-20, -0), 10, 30);
     Heli originHeli;
 
-    ArrayList<MyRect> stuffDraw = new ArrayList<>();
-//    ArrayList<MyRect> stuffOriginal;
+    ArrayList<Shapes2D> stuffDraw = new ArrayList<>();
 
     public static Timer timer;
     public static TimerTask task;
@@ -46,23 +45,19 @@ public class TrucToaDo2DAnimation extends JPanel {
     private boolean drawGrid = true;
     private boolean drawOxy = true;
 
-    Iterator<MyRect> iterator = stuffDraw.iterator();
-
     public TrucToaDo2DAnimation() {
         canvasGraphics = this.canvas.getGraphics();
 
-        stuffDraw.add(MyRect.randomRect(150, 100, false));
-        stuffDraw.add(MyRect.randomRect(150, 100, false));
-        stuffDraw.add(MyRect.randomRect(150, 100, false));
-        stuffDraw.add(MyRect.randomRect(150, 100, false));
-        stuffDraw.add(MyRect.randomRect(150, 100, false));
-        stuffDraw.add(MyRect.randomRect(150, 100, false));
-        stuffDraw.add(MyRect.randomRect(150, 100, false));
-        stuffDraw.add(MyRect.randomRect(150, 100, false));
-        stuffDraw.add(MyRect.randomRect(150, 100, false));
-        stuffDraw.add(MyRect.randomRect(150, 100, false));
-
-        iterator = stuffDraw.iterator();
+        stuffDraw.add(MyRect.random(150, 100, false));
+        stuffDraw.add(Circle.random(150, 100, false));
+        stuffDraw.add(MyRect.random(150, 100, false));
+        stuffDraw.add(MyRect.random(150, 100, false));
+        stuffDraw.add(Ellipse.random(150, 100, false));
+        stuffDraw.add(MyRect.random(150, 100, false));
+        stuffDraw.add(Ellipse.random(150, 100, false));
+        stuffDraw.add(MyRect.random(150, 100, false));
+        stuffDraw.add(Ellipse.random(150, 100, false));
+        stuffDraw.add(MyRect.random(150, 100, false));
 
         timer = new Timer();
         task = new TimerTask() {
@@ -74,14 +69,20 @@ public class TrucToaDo2DAnimation extends JPanel {
                 if (pause) {
                     return;
                 }
-                
+
                 heli.draw(canvasGraphics);
                 heli.xoay(ANGLE + counter % 10, heli.getCenter());
 
-                for (int i = 0; i<stuffDraw.size(); i++) {
+                for (int i = 0; i < stuffDraw.size(); i++) {
                     stuffDraw.get(i).dich(0, -1);
                     if (stuffDraw.get(i).isOut(100)) {
-                        stuffDraw.set(i, MyRect.randomRect(150, 100, true));
+                        if (stuffDraw.get(i) instanceof MyRect) {
+                            stuffDraw.set(i, MyRect.random(150, 100, true));
+                        } else if (stuffDraw.get(i) instanceof Circle) {
+                            stuffDraw.set(i, Circle.random(150, 100, true));
+                        } else if (stuffDraw.get(i) instanceof Ellipse) {
+                            stuffDraw.set(i, Ellipse.random(150, 100, true));
+                        }
                     }
                 }
                 counter++;

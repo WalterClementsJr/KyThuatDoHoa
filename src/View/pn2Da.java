@@ -301,7 +301,6 @@ public class pn2Da extends javax.swing.JPanel {
 
     }//GEN-LAST:event_lbXoayMousePressed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel lbDiChuyen;

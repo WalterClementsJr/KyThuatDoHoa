@@ -12,5 +12,6 @@ import java.awt.Graphics;
  * @author Tuong
  */
 public interface Shapes3D {
+
     public void draw(Graphics g); 	//Vẽ đối tượng
 }

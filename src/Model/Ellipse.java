@@ -15,8 +15,9 @@ import java.awt.Point;
  * @author walker
  */
 public class Ellipse implements Shapes2D {
+
     Point O, originalO;
-    int dai, cao,originalDai, originalCao;
+    int dai, cao, originalDai, originalCao;
     static int dem = 0;
     double radian=0;
     Point anchor=new Point(0,0);
@@ -27,9 +28,9 @@ public class Ellipse implements Shapes2D {
         cao = Math.abs(A.y - B.y);
         O.x = (A.x + B.x) / 2;
         O.y = (A.y + B.y) / 2;
-        originalO = new Point(O.x,O.y);
-        originalDai=dai;
-        originalCao=cao;
+        originalO = new Point(O.x, O.y);
+        originalDai = dai;
+        originalCao = cao;
     }
 
     @Override
@@ -258,23 +259,50 @@ public class Ellipse implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
-        O.x =O.x+ x;
-        O.y =O.y+ y;
+        O.x = O.x + x;
+        O.y = O.y + y;
     }
+
     @Override
     public void doiXungOx() {
-        O.y=-O.y;
-}
+        O.y = -O.y;
+    }
 
     @Override
     public void doiXungOy() {
-        O.x=-O.x;      
+        O.x = -O.x;
     }
 
     @Override
     public void thuPhong(double heSoThuPhong) {
-        dai=(int) Math.round(originalDai*heSoThuPhong);
-        cao=(int) Math.round(originalCao*heSoThuPhong);
+        dai = (int) Math.round(originalDai * heSoThuPhong);
+        cao = (int) Math.round(originalCao * heSoThuPhong);
     }
-    
+
+    @Override
+    public boolean isOut(int maxHeight) {
+        if (O.y - dai / 2 < -1 * maxHeight / 2 - 5) {
+            return true;
+        }
+        return false;
+    }
+
+    public static Ellipse random(int maxWidth, int maxHeight, boolean fromTop) {
+        int x = (int) (Math.random() * maxWidth - maxWidth / 2);
+        int y = (int) (Math.random() * maxHeight - maxHeight / 2);
+
+        int h = (int) (Math.random() * maxWidth / 5);
+        int w = (int) (Math.random() * maxHeight / 5);
+
+        if (!fromTop) {
+            return new Ellipse(
+                    new Point(x, y),
+                    new Point(x + h, y + w));
+        } else {
+            return new Ellipse(
+                    new Point(x, maxHeight / 2 + 5),
+                    new Point(x + h, (int) (maxHeight / 2 + Math.random() * 10)));
+        }
+    }
+
 }

@@ -12,9 +12,10 @@ public class MyLine implements Shapes2D {
     public MyLine(Point a, Point b) {
         A = a;
         B = b;
-        originalA = new Point(A.x,A.y);
-        originalB = new Point(B.x,B.y);
+        originalA = new Point(A.x, A.y);
+        originalB = new Point(B.x, B.y);
     }
+
     public static void dashedLine(Graphics g, int x1, int y1, int x2, int y2) {
         int x, y, Dx, Dy, p, dem, chieuDaiMoiDoan, khoangCachMoiDoan;
         Dx = Math.abs(x2 - x1);
@@ -22,7 +23,7 @@ public class MyLine implements Shapes2D {
         x = x1;
         y = y1;
         TrucToaDo.putPixel(g, x, y);
-        
+
         int x_unit = 1, y_unit = 1;
         dem = 0;
         chieuDaiMoiDoan = 3;
@@ -49,17 +50,12 @@ public class MyLine implements Shapes2D {
                 if (dem <= chieuDaiMoiDoan) {
                     System.out.println("put");
                     TrucToaDo.putPixel(g, x, y);
-                }
-                else
-                {
-                    if (dem>chieuDaiMoiDoan&&dem<=chieuDaiMoiDoan+khoangCachMoiDoan)
-                    {
+                } else {
+                    if (dem > chieuDaiMoiDoan && dem <= chieuDaiMoiDoan + khoangCachMoiDoan) {
                         System.out.println("no put");
                         //không put pixel
-                    }
-                    else
-                    {
-                        dem=1;
+                    } else {
+                        dem = 1;
                         System.out.println("put");
                         TrucToaDo.putPixel(g, x, y);
                     }
@@ -80,17 +76,12 @@ public class MyLine implements Shapes2D {
                 if (dem <= chieuDaiMoiDoan) {
                     System.out.println("put");
                     TrucToaDo.putPixel(g, x, y);
-                }
-                else
-                {
-                    if (dem>chieuDaiMoiDoan&&dem<=chieuDaiMoiDoan+khoangCachMoiDoan)
-                    {
+                } else {
+                    if (dem > chieuDaiMoiDoan && dem <= chieuDaiMoiDoan + khoangCachMoiDoan) {
                         System.out.println("no put");
                         //không put pixel
-                    }
-                    else
-                    {
-                        dem=1;
+                    } else {
+                        dem = 1;
                         System.out.println("put");
                         TrucToaDo.putPixel(g, x, y);
                     }
@@ -132,20 +123,22 @@ public class MyLine implements Shapes2D {
     
     @Override
     public void dich(int x, int y) {
-        A.x =A.x+ x; A.y =A.y+ y;
-        B.x =B.x+ x; B.y =B.y+ y;
+        A.x = A.x + x;
+        A.y = A.y + y;
+        B.x = B.x + x;
+        B.y = B.y + y;
     }
 
     @Override
     public void doiXungOx() {
-        A.y = -A.y; 
-        B.y=-B.y;
-}
+        A.y = -A.y;
+        B.y = -B.y;
+    }
 
     @Override
     public void doiXungOy() {
-        A.x=-A.x;
-        B.x=-B.x;
+        A.x = -A.x;
+        B.x = -B.x;
     }
 
     @Override
@@ -153,25 +146,27 @@ public class MyLine implements Shapes2D {
         //thu phóng và tịnh tiến về lại điểm A
         double tempAx = originalA.x;
         System.out.println(originalA);
-        tempAx=tempAx*heSoThuPhong;
-        int dentaX=originalA.x - (int) Math.round(tempAx);        
-        A.x=originalA.x;
-        double tempAy=A.y;
-        tempAy=tempAy*heSoThuPhong;
-        int dentaY=originalA.y - (int) Math.round(tempAy);
-        A.y =originalA.y;
-        
+        tempAx = tempAx * heSoThuPhong;
+        int dentaX = originalA.x - (int) Math.round(tempAx);
+        A.x = originalA.x;
+        double tempAy = A.y;
+        tempAy = tempAy * heSoThuPhong;
+        int dentaY = originalA.y - (int) Math.round(tempAy);
+        A.y = originalA.y;
+
         double tempBx = originalB.x;
         System.out.println(originalB);
-        tempBx=tempBx*heSoThuPhong;
-        B.x =(int) Math.round(tempBx)+dentaX;
+        tempBx = tempBx * heSoThuPhong;
+        B.x = (int) Math.round(tempBx) + dentaX;
         double tempBy = originalB.y;
-        tempBy=tempBy*heSoThuPhong;
-        B.y =(int) Math.round(tempBy)+dentaY;
-          
+        tempBy = tempBy * heSoThuPhong;
+        B.y = (int) Math.round(tempBy) + dentaY;
 
     }
-    
-    
-}
 
+    @Override
+    public boolean isOut(int maxHeight) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+}

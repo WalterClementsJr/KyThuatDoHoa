@@ -167,27 +167,27 @@ public class MyRect implements Shapes2D {
         C.x = -C.x;
         D.x = -D.x;
     }
-    
+
     public boolean isOut(int maxHeight) {
-        if (A.y < -1 * maxHeight / 2) {
+        if (A.y < -1 * maxHeight / 2 - 5) {
             return true;
         }
         return false;
     }
 
-    public static MyRect randomRect(int maxWidth, int maxHeight, boolean fromTop) {
+    public static MyRect random(int maxWidth, int maxHeight, boolean fromTop) {
         int x = (int) (Math.random() * maxWidth - maxWidth / 2);
         int y = (int) (Math.random() * maxHeight - maxHeight / 2);
-        
-        int x1 = (int) (Math.random() * maxWidth / 5);
-        int y1 = (int) (Math.random() * maxHeight / 5);
-        
+
+        int dai = (int) (Math.random() * maxWidth / 5);
+        int rong = (int) (Math.random() * maxHeight / 5);
+
         if (!fromTop) {
-            return new MyRect(new Point(x, y), new Point(x + x1, y + y1));
+            return new MyRect(new Point(x, y), new Point(x + dai, y + rong));
         } else {
             return new MyRect(
                     new Point(x, maxHeight / 2),
-                    new Point(x + x1, (int) (maxHeight / 2 + Math.random() * 10)));
+                    new Point(x + dai, (int) (maxHeight / 2 + Math.random() * 10)));
         }
     }
 }
