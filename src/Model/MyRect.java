@@ -51,13 +51,12 @@ public class MyRect implements Shapes2D {
         bresenhamLine(g, B.x, A.y, B.x, B.y);
         bresenhamLine(g, B.x, B.y, A.x, B.y);
         bresenhamLine(g, A.x, B.y, A.x, A.y);
-//        A = originalA; B = originalB; C = originalC; D = originalD;
+        A = originalA; B = originalB; C = originalC; D = originalD;
     }
 
     @Override
     public void fill(Graphics g, Color color) {
     }
-
 
     public Point getA() {
         return A;
@@ -93,10 +92,11 @@ public class MyRect implements Shapes2D {
 
     @Override
     public void xoay(double radian, Point anchor) {
-        A = Rotation.rotateAroundO(A.x, A.y, radian, anchor);
-        B = Rotation.rotateAroundO(B.x, B.y, radian, anchor);
-        C = Rotation.rotateAroundO(C.x, C.y, radian, anchor);
-        D = Rotation.rotateAroundO(D.x, D.y, radian, anchor);
+        A = Rotation.rotateAroundO(originalA.x, originalA.y, radian, anchor);
+        B = Rotation.rotateAroundO(originalB.x, originalB.y, radian, anchor);
+        C = Rotation.rotateAroundO(originalC.x, originalC.y, radian, anchor);
+        D = Rotation.rotateAroundO(originalD.x, originalD.y, radian, anchor);
+        
     }
 
     @Override

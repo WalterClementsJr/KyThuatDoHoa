@@ -76,6 +76,10 @@ public class WindMill implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
+        body.dich(x, y);
+        for (Triangle t : blades) {
+            t.dich(x, y);
+        }
     }
 
     @Override
@@ -105,7 +109,10 @@ public class WindMill implements Shapes2D {
 
     @Override
     public void thuPhong(double heSoThuPhong) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        body.thuPhong(heSoThuPhong);
+        for (Triangle t : blades) {
+            t.thuPhong(heSoThuPhong);
+        }
     }
     
     
@@ -163,6 +170,8 @@ class WindMillBody implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
+        roof.dich(x, y);
+        box.dich(x, y);
     }
 
     @Override
@@ -180,7 +189,8 @@ class WindMillBody implements Shapes2D {
 
     @Override
     public void thuPhong(double heSoThuPhong) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        roof.thuPhong(heSoThuPhong);
+        box.thuPhong(heSoThuPhong);
     }
 
 }

@@ -22,7 +22,6 @@ public class TrucToaDo2DAnimation extends JPanel {
     public static int deltaX = 375 / 5;//nửa chiều dài của trục Ox chia cho độ lớn 1 pixel
     public static int deltaY = 250 / 5;//nửa chiều dài của trục oy chia cho độ lớn 1 pixel
     public static final double ANGLE = (2 * Math.PI / 8);
-    
 
     public BufferedImage canvas
             = new BufferedImage(750, 500, BufferedImage.TYPE_INT_ARGB);
@@ -40,23 +39,29 @@ public class TrucToaDo2DAnimation extends JPanel {
     private boolean drawOxy = true;
 
     public TrucToaDo2DAnimation() {
-        System.out.println("toa do 2d anime construct");
         canvasGraphics = this.canvas.getGraphics();
 
         timer = new Timer();
 
         task = new TimerTask() {
             int counter = 1;
+
             @Override
             public void run() {
-                if (pause) return;
+                if (pause) {
+                    return;
+                }
                 mill.draw(canvasGraphics);
                 mill.xoay(ANGLE + counter % 10, mill.getCenter());
+                if (counter % 2 == 0) {
+                    mill.dich(2, 1);
+//                    mill.thuPhong(0.5);
+                }
                 counter++;
                 repaint();
             }
         };
-        
+
         timer.scheduleAtFixedRate(task, 0, 150);
     }
 
