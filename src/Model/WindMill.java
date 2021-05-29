@@ -76,10 +76,10 @@ public class WindMill implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
-        body.dich(x, y);
-        for (Triangle t : blades) {
-            t.dich(x, y);
-        }
+//        body.dich(x, y);
+//        for (Triangle t : blades) {
+//            t.dich(x, y);
+//        }
     }
 
     @Override

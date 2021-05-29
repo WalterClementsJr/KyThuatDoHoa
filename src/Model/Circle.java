@@ -27,7 +27,7 @@ public class Circle implements Shapes2D {
     }
     
     public Circle(Point A, Point B) {
-        this.O = A; originalO = A;
+        this.O = A; originalO=new Point(O.x,O.y);
         this.radius = (int) Math.sqrt((B.x - A.x) * (B.x - A.x) + (B.y - A.y) * (B.y - A.y)) / 5;
         originalRadius=radius;
     }

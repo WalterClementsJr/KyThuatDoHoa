@@ -50,14 +50,14 @@ public class HinhHop implements Shapes3D{
         TrucToaDo.bresenhamLine(g, F.x, F.y, C.x, C.y);
         
         //vẽ đỉnh
-        TrucToaDo3D.veChu(g, "O", O.x+2, O.y+2);
-        TrucToaDo3D.veChu(g, "A", A.x+2, A.y+2);
-        TrucToaDo3D.veChu(g, "B", B.x-2, B.y);
-        TrucToaDo3D.veChu(g, "C", C.x-2, C.y+2);
-        TrucToaDo3D.veChu(g, "D", D.x+2, D.y+2);
-        TrucToaDo3D.veChu(g, "E", E.x+2, E.y+2);
-        TrucToaDo3D.veChu(g, "F", F.x-2, F.y-2);
-        TrucToaDo3D.veChu(g, "G", G.x-2, G.y);
+        TrucToaDo3D.veChu(g, "O("+x0+";"+y0+";"+z0+")", O.x+2, O.y+2);
+        TrucToaDo3D.veChu(g, "A("+(x0+dai)+";"+y0+";"+z0+")", A.x+2, A.y+2);
+        TrucToaDo3D.veChu(g, "B("+(x0+dai)+";"+(y0+rong)+";"+z0+")", B.x+3, B.y);
+        TrucToaDo3D.veChu(g, "C("+x0+";"+(y0+rong)+";"+z0+")", C.x-9, C.y+2);
+        TrucToaDo3D.veChu(g, "D("+(x0+dai)+";"+y0+";"+(z0+cao)+")", D.x+2, D.y+2);
+        TrucToaDo3D.veChu(g, "E("+x0+";"+y0+";"+(z0+cao)+")", E.x+2, E.y+2);
+        TrucToaDo3D.veChu(g, "F("+x0+";"+(y0+rong)+";"+(z0+cao)+")", F.x-10, F.y-2);
+        TrucToaDo3D.veChu(g, "G("+(x0+dai)+";"+(y0+rong)+";"+(z0+cao)+")", G.x+3, G.y);
         
     }
     

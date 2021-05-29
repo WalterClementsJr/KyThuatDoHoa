@@ -30,7 +30,7 @@ public class HinhCau implements Shapes3D{
         TrucToaDo3D.tempShape.draw(g);
         Ellipse.drawHalfDashed(g, O.x, O.y, banKinh, banKinh/2);
         //vẽ đỉnh
-        TrucToaDo3D.veChu(g, "O", O.x+2, O.y+2);
+        TrucToaDo3D.veChu(g, "O("+x0+";"+y0+";"+z0+")", O.x+2, O.y+2);
         
     }
 }

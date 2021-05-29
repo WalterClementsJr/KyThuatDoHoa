@@ -11,6 +11,7 @@ import Model.TrucToaDo;
 import Model.TrucToaDo3D;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Point;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -71,6 +72,8 @@ public class pn3D extends javax.swing.JPanel {
         pnMain = new Model.TrucToaDo3D();
         pnFooter = new javax.swing.JPanel();
         lbXoa = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        toaDoCurrent = new javax.swing.JLabel();
         pnChucNang = new javax.swing.JPanel();
         lbHinhCau = new javax.swing.JLabel();
         lbHinhHop = new javax.swing.JLabel();
@@ -205,6 +208,11 @@ public class pn3D extends javax.swing.JPanel {
         add(pnThongTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 200, 550));
 
         pnMain.setBackground(new java.awt.Color(255, 255, 255));
+        pnMain.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pnMainMouseMoved(evt);
+            }
+        });
         pnMain.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 pnMainMouseEntered(evt);
@@ -239,6 +247,17 @@ public class pn3D extends javax.swing.JPanel {
             }
         });
         pnFooter.add(lbXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_move_30px.png"))); // NOI18N
+        jLabel9.setText("Descartes:");
+        pnFooter.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 110, -1));
+
+        toaDoCurrent.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        toaDoCurrent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        toaDoCurrent.setText("Ox : Oy");
+        toaDoCurrent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnFooter.add(toaDoCurrent, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 60, 30));
 
         add(pnFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 1000, 50));
 
@@ -362,6 +381,14 @@ public class pn3D extends javax.swing.JPanel {
         jSpinnerYoStateChanged(evt);
     }//GEN-LAST:event_jSpinnerBanKinhStateChanged
 
+    private void pnMainMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseMoved
+        // TODO add your handling code here:
+        Point point = TrucToaDo.convertDescart(evt.getPoint());
+        String xyCurrent = (int) point.getX() + " : " + (int) point.getY();
+        toaDoCurrent.setText(xyCurrent);
+        
+    }//GEN-LAST:event_pnMainMouseMoved
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -373,6 +400,7 @@ public class pn3D extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner jSpinner6;
     private javax.swing.JSpinner jSpinnerBanKinh;
     private javax.swing.JSpinner jSpinnerCao;
@@ -388,5 +416,6 @@ public class pn3D extends javax.swing.JPanel {
     private javax.swing.JPanel pnFooter;
     private javax.swing.JPanel pnMain;
     private javax.swing.JPanel pnThongTin;
+    private javax.swing.JLabel toaDoCurrent;
     // End of variables declaration//GEN-END:variables
 }
