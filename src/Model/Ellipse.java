@@ -238,8 +238,8 @@ public class Ellipse implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
-        O.x =originalO.x+ x;
-        O.y =originalO.y+ y;
+        O.x =O.x+ x;
+        O.y =O.y+ y;
     }
     @Override
     public void doiXungOx() {

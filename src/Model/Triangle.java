@@ -126,9 +126,9 @@ public class Triangle implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
-        A.x =originalA.x +x; A.y =originalA.y +y;
-        B.x =originalB.x +x; B.y =originalB.y +y;
-        C.x =originalC.x +x; C.y =originalC.y +y;
+        A.x =A.x +x; A.y =A.y +y;
+        B.x =B.x +x; B.y =B.y +y;
+        C.x =C.x +x; C.y =C.y +y;
     }
     @Override
     public void doiXungOx() {
