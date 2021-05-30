@@ -105,7 +105,6 @@ public class MyRect implements Shapes2D {
         B = Rotation.rotateAroundO(originalB.x, originalB.y, radian, anchor);
         C = Rotation.rotateAroundO(originalC.x, originalC.y, radian, anchor);
         D = Rotation.rotateAroundO(originalD.x, originalD.y, radian, anchor);
-
     }
 
     @Override
@@ -118,6 +117,14 @@ public class MyRect implements Shapes2D {
         C.y = C.y + y;
         D.x = D.x + x;
         D.y = D.y + y;
+        originalA.x = A.x;
+        originalA.y = A.y;
+        originalB.x = B.x;
+        originalB.y = B.y;
+        originalC.x = C.x;
+        originalC.y = C.y;
+        originalD.x = D.x;
+        originalD.y = D.y;
     }
 
     @Override
@@ -150,6 +157,14 @@ public class MyRect implements Shapes2D {
         double tempDy = originalD.y;
         tempDy = tempDy * heSoThuPhong;
         D.y = (int) Math.round(tempDy) + dentaY;
+        originalA.x = A.x;
+        originalA.y = A.y;
+        originalB.x = B.x;
+        originalB.y = B.y;
+        originalC.x = C.x;
+        originalC.y = C.y;
+        originalD.x = D.x;
+        originalD.y = D.y;
     }
 
     @Override
@@ -158,6 +173,10 @@ public class MyRect implements Shapes2D {
         B.y = -B.y;
         C.y = -C.y;
         D.y = -D.y;
+        originalA.y = A.y;
+        originalB.y = B.y;
+        originalC.y = C.y;
+        originalD.y = D.y;
     }
 
     @Override
@@ -166,6 +185,10 @@ public class MyRect implements Shapes2D {
         B.x = -B.x;
         C.x = -C.x;
         D.x = -D.x;
+        originalA.x = A.x;
+        originalB.x = B.x;
+        originalC.x = C.x;
+        originalD.x = D.x;
     }
 
     public boolean isOut(int maxHeight) {

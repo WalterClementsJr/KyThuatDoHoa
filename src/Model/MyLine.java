@@ -127,18 +127,26 @@ public class MyLine implements Shapes2D {
         A.y = A.y + y;
         B.x = B.x + x;
         B.y = B.y + y;
+        originalA.x=A.x;
+        originalA.y=A.y;
+        originalB.x=B.x;
+        originalB.y=B.y;
     }
 
     @Override
     public void doiXungOx() {
         A.y = -A.y;
         B.y = -B.y;
+        originalA.y=A.y;
+        originalB.y=B.y;
     }
 
     @Override
     public void doiXungOy() {
         A.x = -A.x;
         B.x = -B.x;
+        originalA.x=A.x;
+        originalB.x=B.x;
     }
 
     @Override
@@ -161,7 +169,10 @@ public class MyLine implements Shapes2D {
         double tempBy = originalB.y;
         tempBy = tempBy * heSoThuPhong;
         B.y = (int) Math.round(tempBy) + dentaY;
-
+        originalA.x=A.x;
+        originalA.y=A.y;
+        originalB.x=B.x;
+        originalB.y=B.y;
     }
 
     @Override

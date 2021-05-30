@@ -929,83 +929,81 @@ public class pn2D extends javax.swing.JPanel {
         System.out.println(selectXoay);
         x1 = evt.getX();
         y1 = evt.getY();
-        Point start = TrucToaDo.convertDescart(new Point(x1, y1));
+       Point start = TrucToaDo.convertDescart(new Point(x1, y1));
 
         if (selectXoay && shape != null) {
             TrucToaDo.tempFlag = new MyFlag(x1, y1);
             pQuay = new Point(x1, y1);
             shape = listShapeInfo.get(selectedRotating);
-            if (shape != null && shape.getName().contains("Rectangle")) {
-
-                MyRect myRect = (MyRect) TrucToaDo.shapeList.get(selectedRotating);
-                double angle = (2 * Math.PI / 8);
-                if (tSet != null) {
-                    tSet.interrupt();
-                    tGet.interrupt();
-                    tSet.setRectThread(null);
-                    tGet.setRectThread(null);
-                }
-                // QUAY HINH CHU NHAT
-                listA = new ArrayList<>();
-                listB = new ArrayList<>();
-                listC = new ArrayList<>();
-                listD = new ArrayList<>();
-
-                //
-                Point trucQuay = TrucToaDo.convertDescart(pQuay); //chuyển trục quay sang toạ độ của mình
-
-                RectThread rectThread = new RectThread(listA, listB, listC, listD, angle, myRect.getA(), myRect.getB(), myRect.getC(), myRect.getD(), trucQuay);
-                tSet = new ThreadSet(rectThread);
-                tGet = new ThreadGet(rectThread, this);
-                tSet.start();
-                tGet.start();
-                // wait for threads to end
-                try {
-                    tSet.join();
-                    tGet.join();
-                } catch (Exception e) {
-                    System.out.println("Interrupted");
-                }
-
-                //selectXoay đúng là quay luôn
-            } else if (shape != null && shape.getName().contains("Triangle")) {
-                Triangle myTriangle = (Triangle) TrucToaDo.shapeList.get(selectedRotating);
-                double angle = (2 * Math.PI / 50);
-                if (tamGiacThreadSet != null) {
-                    tamGiacThreadSet.interrupt();
-                    tamGiacThreadGet.interrupt();
-                    tamGiacThreadSet.setTriangleThread(null);
-                    tamGiacThreadGet.setTriangle(null);
-                }
-                // QUAY HINH CHU NHAT
-                listA = new ArrayList<>();
-                listB = new ArrayList<>();
-                listC = new ArrayList<>();
-
-                Point trucQuay = TrucToaDo.convertDescart(pQuay); //chuyển trục quay sang toạ độ của mình
-                TriangleThread triangleThread = new TriangleThread(listA, listB, listC, angle, trucQuay, myTriangle.getA(), myTriangle.getB(), myTriangle.getC());
-
-                tamGiacThreadSet = new ThreadTriangleSet(triangleThread);
-                tamGiacThreadGet = new ThreadTriangleGet(triangleThread, this);
-                tamGiacThreadSet.start();
-                tamGiacThreadGet.start();
-                // wait for threads to end
-                try {
-                    tamGiacThreadSet.join();
-                    tamGiacThreadGet.join();
-                } catch (Exception e) {
-                    System.out.println("Interrupted");
-                }
-
-            }
+//            if (shape != null && shape.getName().contains("Rectangle")) {
+//
+//                MyRect myRect = (MyRect) TrucToaDo.shapeList.get(selectedRotating);
+//                double angle = (2 * Math.PI / 8);
+//                if (tSet != null) {
+//                    tSet.interrupt();
+//                    tGet.interrupt();
+//                    tSet.setRectThread(null);
+//                    tGet.setRectThread(null);
+//                }
+//                // QUAY HINH CHU NHAT
+//                listA = new ArrayList<>();
+//                listB = new ArrayList<>();
+//                listC = new ArrayList<>();
+//                listD = new ArrayList<>();
+//
+//                //
+//                Point trucQuay = TrucToaDo.convertDescart(pQuay); //chuyển trục quay sang toạ độ của mình
+//
+//                RectThread rectThread = new RectThread(listA, listB, listC, listD, angle, myRect.getA(), myRect.getB(), myRect.getC(), myRect.getD(), trucQuay);
+//                tSet = new ThreadSet(rectThread);
+//                tGet = new ThreadGet(rectThread, this);
+//                tSet.start();
+//                tGet.start();
+//                // wait for threads to end
+//                try {
+//                    tSet.join();
+//                    tGet.join();
+//                } catch (Exception e) {
+//                    System.out.println("Interrupted");
+//                }
+//
+//                //selectXoay đúng là quay luôn
+//            } else if (shape != null && shape.getName().contains("Triangle")) {
+//                Triangle myTriangle = (Triangle) TrucToaDo.shapeList.get(selectedRotating);
+//                double angle = (2 * Math.PI / 50);
+//                if (tamGiacThreadSet != null) {
+//                    tamGiacThreadSet.interrupt();
+//                    tamGiacThreadGet.interrupt();
+//                    tamGiacThreadSet.setTriangleThread(null);
+//                    tamGiacThreadGet.setTriangle(null);
+//                }
+//                // QUAY HINH CHU NHAT
+//                listA = new ArrayList<>();
+//                listB = new ArrayList<>();
+//                listC = new ArrayList<>();
+//
+//                Point trucQuay = TrucToaDo.convertDescart(pQuay); //chuyển trục quay sang toạ độ của mình
+//                TriangleThread triangleThread = new TriangleThread(listA, listB, listC, angle, trucQuay, myTriangle.getA(), myTriangle.getB(), myTriangle.getC());
+//
+//                tamGiacThreadSet = new ThreadTriangleSet(triangleThread);
+//                tamGiacThreadGet = new ThreadTriangleGet(triangleThread, this);
+//                tamGiacThreadSet.start();
+//                tamGiacThreadGet.start();
+//                // wait for threads to end
+//                try {
+//                    tamGiacThreadSet.join();
+//                    tamGiacThreadGet.join();
+//                } catch (Exception e) {
+//                    System.out.println("Interrupted");
+//                }
+//
+//            }
 
         } else {
-                    repaint();
             TrucToaDo.tempFlag = null;
             //selectXoay sai là dừng quay
         }
-
-//        repaint();
+        
 
 
 
@@ -1209,10 +1207,8 @@ public class pn2D extends javax.swing.JPanel {
 //            if (tamGiacThreadGet != null) {
 //                tamGiacThreadGet.getTriangle().getListA().clear();
 //            }
-
+            repaint();
         }
-
-        repaint();
 
         selectXoay = !selectXoay;// TODO add your handling code here:
     }//GEN-LAST:event_lbXoayMousePressed

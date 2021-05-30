@@ -19,18 +19,18 @@ public class Triangle implements Shapes2D {
     private Point originalA, originalB, originalC;
     int canh;
 
-    public Triangle(Point a, int canh) {
-        A = a;
-        this.canh = canh;
-    }
+//    public Triangle(Point a, int canh) {
+//        A = a;
+//        this.canh = canh;
+//    }
 
     public Triangle(Point A, Point B, Point C) {
         this.A = A;
         this.B = B;
         this.C = C;
-        this.originalA = new Point(A.x, A.y);
-        this.originalB = new Point(B.x, B.y);
-        this.originalC = new Point(C.x, C.y);
+        originalA = new Point(A.x, A.y);
+        originalB = new Point(B.x, B.y);
+        originalC = new Point(C.x, C.y);
     }
 
     @Override
@@ -64,9 +64,9 @@ public class Triangle implements Shapes2D {
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, C.x, C.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, A.x, A.y, C.x, C.y);
-        A = originalA;
-        B = originalB;
-        C = originalC;
+//        A = originalA;
+//        B = originalB;
+//        C = originalC;
     }
 
     @Override
@@ -130,12 +130,12 @@ public class Triangle implements Shapes2D {
         C.x = C.x + x;
         C.y = C.y + y;
 
-        originalA.x = originalA.x + x;
-        originalA.y = originalA.y + y;
-        originalB.x = originalB.x + x;
-        originalB.y = originalB.y + y;
-        originalC.x = originalC.x + x;
-        originalC.y = originalC.y + y;
+        originalA.x = A.x;
+        originalA.y = A.y;
+        originalB.x = B.x;
+        originalB.y = B.y;
+        originalC.x = C.x;
+        originalC.y = C.y;
     }
 
     @Override
@@ -143,6 +143,9 @@ public class Triangle implements Shapes2D {
         A.y = -A.y;
         B.y = -B.y;
         C.y = -C.y;
+        originalA.y = A.y;
+        originalB.y = B.y;
+        originalC.y = C.y;
     }
 
     @Override
@@ -150,7 +153,9 @@ public class Triangle implements Shapes2D {
         A.x = -A.x;
         B.x = -B.x;
         C.x = -C.x;
-
+        originalA.x = A.x;
+        originalB.x = B.x;
+        originalC.x = C.x;
     }
 
     @Override
@@ -177,6 +182,12 @@ public class Triangle implements Shapes2D {
         double tempCy = originalC.y;
         tempCy = tempCy * heSoThuPhong;
         C.y = (int) Math.round(tempCy) + dentaY;
+        originalA.x = A.x;
+        originalA.y = A.y;
+        originalB.x = B.x;
+        originalB.y = B.y;
+        originalC.x = C.x;
+        originalC.y = C.y;
     }
 
     @Override

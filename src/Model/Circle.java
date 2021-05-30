@@ -87,21 +87,26 @@ public class Circle implements Shapes2D {
     public void dich(int x, int y) {
         O.x = O.x + x;
         O.y = O.y + y;
+        originalO.x=O.x;
+        originalO.y=O.y;
     }
 
     @Override
     public void doiXungOx() {
         O.y = -O.y;
+        originalO.y=O.y;
     }
 
     @Override
     public void doiXungOy() {
         O.x = -O.x;
+        originalO.x=O.x;
     }
 
     @Override
     public void thuPhong(double heSoThuPhong) {
         radius = (int) Math.round(originalRadius * heSoThuPhong);
+        originalRadius=radius;
     }
 
     public boolean isOut(int maxHeight) {
