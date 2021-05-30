@@ -105,7 +105,7 @@ public class Circle implements Shapes2D {
     }
 
     public boolean isOut(int maxHeight) {
-        if (O.y < -1 * maxHeight / 2 - 5) {
+        if (O.y < -1 * maxHeight / 2 - 20) {
             return true;
         }
         return false;

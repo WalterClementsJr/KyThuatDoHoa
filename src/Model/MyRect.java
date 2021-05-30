@@ -169,7 +169,7 @@ public class MyRect implements Shapes2D {
     }
 
     public boolean isOut(int maxHeight) {
-        if (A.y < -1 * maxHeight / 2 - 5) {
+        if (A.y < -1 * maxHeight / 2 - 20) {
             return true;
         }
         return false;

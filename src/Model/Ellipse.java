@@ -241,8 +241,6 @@ public class Ellipse implements Shapes2D {
         O = originalO;
     }
 
-    
-    
     @Override
     public void draw(Graphics g, Color c) {
     }
@@ -281,7 +279,7 @@ public class Ellipse implements Shapes2D {
 
     @Override
     public boolean isOut(int maxHeight) {
-        if (O.y - dai / 2 < -1 * maxHeight / 2 - 5) {
+        if (O.y - dai / 2 < -1 * maxHeight / 2 - 20) {
             return true;
         }
         return false;

@@ -8,10 +8,6 @@ package View;
 import Model.TrucToaDo2DAnimation;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
@@ -88,6 +84,11 @@ public class pn2Da extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 pnMainMouseExited(evt);
+            }
+        });
+        pnMain.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pnMainKeyTyped(evt);
             }
         });
 
@@ -300,6 +301,11 @@ public class pn2Da extends javax.swing.JPanel {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_lbXoayMousePressed
+
+    private void pnMainKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnMainKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_pnMainKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel16;
