@@ -5,18 +5,10 @@
  */
 package View;
 
-import Model.MyRect;
-import Model.TrucToaDo;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.Locale;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
@@ -35,6 +27,11 @@ public class fHome extends javax.swing.JFrame {
     boolean select2Da = false;
     boolean select3D = false;
     CardLayout c;
+    
+    public static boolean left = false;
+    public static boolean up = false;
+    public static boolean down = false;
+    public static boolean right = false;
 
     public fHome() {
         initComponents();
@@ -193,7 +190,20 @@ public class fHome extends javax.swing.JFrame {
 
         getContentPane().add(pnHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 50));
 
+        pnMain.setFocusable(true);
+        pnMain.requestFocusInWindow();
         pnMain.setBackground(new java.awt.Color(255, 255, 255));
+        pnMain.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pnMainKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pnMainKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pnMainKeyTyped(evt);
+            }
+        });
         pnMain.setLayout(new java.awt.CardLayout());
         getContentPane().add(pnMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1000, 550));
 
@@ -282,6 +292,65 @@ public class fHome extends javax.swing.JFrame {
         JOptionPane d = new JOptionPane();
         d.showMessageDialog(this, info, "About Us", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_lbNhomTacGiaMousePressed
+
+    private void pnMainKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnMainKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnMainKeyTyped
+
+    private void pnMainKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnMainKeyReleased
+        // TODO add your handling code here:
+        switch (evt.getKeyCode()) {
+            case KeyEvent.VK_UP:
+                up = false;
+                break;
+            case KeyEvent.VK_DOWN:
+                down = false;
+                break;
+            case KeyEvent.VK_LEFT:
+                left = false;
+                break;
+            case KeyEvent.VK_RIGHT:
+                right = false;
+                break;
+        }
+    }//GEN-LAST:event_pnMainKeyReleased
+
+    private void pnMainKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnMainKeyPressed
+        // TODO add your handling code here:
+        int key = evt.getKeyCode();
+//        switch (key) {
+//            case KeyEvent.VK_UP:
+//                TrucToaDo2DAnimation.heliX = 0;
+//                TrucToaDo2DAnimation.heliY = 1;
+//                break;
+//            case KeyEvent.VK_DOWN:
+//                TrucToaDo2DAnimation.heliX = 0;
+//                TrucToaDo2DAnimation.heliY = -1;
+//                break;
+//            case KeyEvent.VK_LEFT:
+//                TrucToaDo2DAnimation.heliX = -1;
+//                TrucToaDo2DAnimation.heliY = 0;
+//                break;
+//            case KeyEvent.VK_RIGHT:
+//                TrucToaDo2DAnimation.heliX = 1;
+//                TrucToaDo2DAnimation.heliY = 0;
+//                break;
+//        }
+        switch (key) {
+            case KeyEvent.VK_UP:
+                up = true;
+                break;
+            case KeyEvent.VK_DOWN:
+                down = true;
+                break;
+            case KeyEvent.VK_LEFT:
+                left =  true;
+                break;
+            case KeyEvent.VK_RIGHT:
+                right =  true;
+                break;
+        }
+    }//GEN-LAST:event_pnMainKeyPressed
 
     /**
      * @param args the command line arguments

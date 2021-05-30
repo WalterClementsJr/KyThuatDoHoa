@@ -155,8 +155,14 @@ class HeliBody implements Shapes2D {
         tail = new Triangle(
                 new Point(center.x, center.y - height * 6 / 5),
                 new Point(center.x - width / 5, (center.y - height * 3 / 5)),
-                new Point(center.x + width / 5, (center.y - height * 3 / 5))
-        );
+                new Point(center.x + width / 5, (center.y - height * 3 / 5))) {
+            @Override
+            public void draw(Graphics g) {
+                g.setColor(DEFAULT_COLOR);
+                TrucToaDo.bresenhamLine(g, getA().x, getA().y, getB().x, getB().y);
+                TrucToaDo.bresenhamLine(g, getC().x, getC().y, getA().x, getA().y);
+            }
+        };
 
         box = new MyRect(
                 new Point(center.x - width / 2, center.y),
