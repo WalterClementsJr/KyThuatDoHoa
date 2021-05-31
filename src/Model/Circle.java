@@ -26,9 +26,17 @@ public class Circle implements Shapes2D {
         originalRadius = radius;
     }
 
+    public Point getO() {
+        return O;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
     public Circle(Point A, Point B) {
-        this.O = A; 
-        originalO=new Point(O.x,O.y);
+        this.O = A;
+        originalO = new Point(O.x, O.y);
         this.O = A;
         originalO = new Point(O.x, O.y);
         this.radius = (int) Math.sqrt((B.x - A.x) * (B.x - A.x) + (B.y - A.y) * (B.y - A.y)) / 5;
@@ -87,26 +95,26 @@ public class Circle implements Shapes2D {
     public void dich(int x, int y) {
         O.x = O.x + x;
         O.y = O.y + y;
-        originalO.x=O.x;
-        originalO.y=O.y;
+        originalO.x = O.x;
+        originalO.y = O.y;
     }
 
     @Override
     public void doiXungOx() {
         O.y = -O.y;
-        originalO.y=O.y;
+        originalO.y = O.y;
     }
 
     @Override
     public void doiXungOy() {
         O.x = -O.x;
-        originalO.x=O.x;
+        originalO.x = O.x;
     }
 
     @Override
     public void thuPhong(double heSoThuPhong) {
         radius = (int) Math.round(originalRadius * heSoThuPhong);
-        originalRadius=radius;
+        originalRadius = radius;
     }
 
     public boolean isOut(int maxHeight) {

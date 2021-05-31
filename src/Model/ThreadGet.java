@@ -5,13 +5,7 @@
  */
 package Model;
 
-import java.awt.Graphics;
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComponent;
-import sun.awt.www.content.image.gif;
 
 /**
  *
@@ -43,7 +37,6 @@ public class ThreadGet extends Thread {
     public ThreadGet(RectThread rectThread, JComponent c) {
         this.rectThread = rectThread;
         this.cp = c;
-        System.out.println("Creating " + nameThread);
     }
 
     @Override
@@ -54,10 +47,6 @@ public class ThreadGet extends Thread {
                     rectThread.index = 0;
                 } else {
                     rectThread.index++;
-                    System.out.println("Sending\t" + rectThread.index);
-
-                    System.out.println("\n" + rectThread.index + "Sent");
-
                 }
                 cp.repaint();
             }

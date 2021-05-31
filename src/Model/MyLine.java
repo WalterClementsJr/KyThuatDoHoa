@@ -1,6 +1,5 @@
 package Model;
 
-import static Model.TrucToaDo.putPixel;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -14,6 +13,14 @@ public class MyLine implements Shapes2D {
         B = b;
         originalA = new Point(A.x, A.y);
         originalB = new Point(B.x, B.y);
+    }
+
+    public Point getA() {
+        return A;
+    }
+
+    public Point getB() {
+        return B;
     }
 
     public static void dashedLine(Graphics g, int x1, int y1, int x2, int y2) {
@@ -48,15 +55,15 @@ public class MyLine implements Shapes2D {
                 }
                 x += x_unit;
                 if (dem <= chieuDaiMoiDoan) {
-                    System.out.println("put");
+                    
                     TrucToaDo.putPixel(g, x, y);
                 } else {
                     if (dem > chieuDaiMoiDoan && dem <= chieuDaiMoiDoan + khoangCachMoiDoan) {
-                        System.out.println("no put");
+                        
                         //không put pixel
                     } else {
                         dem = 1;
-                        System.out.println("put");
+                        
                         TrucToaDo.putPixel(g, x, y);
                     }
                 }
@@ -74,15 +81,15 @@ public class MyLine implements Shapes2D {
                 }
                 y += y_unit;
                 if (dem <= chieuDaiMoiDoan) {
-                    System.out.println("put");
+                    
                     TrucToaDo.putPixel(g, x, y);
                 } else {
                     if (dem > chieuDaiMoiDoan && dem <= chieuDaiMoiDoan + khoangCachMoiDoan) {
-                        System.out.println("no put");
+                        
                         //không put pixel
                     } else {
                         dem = 1;
-                        System.out.println("put");
+                        
                         TrucToaDo.putPixel(g, x, y);
                     }
                 }
@@ -100,7 +107,6 @@ public class MyLine implements Shapes2D {
     public void draw(Graphics g, Color c) {
         g.setColor(c);
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
-//        A = originalA; B = originalB;
     }
 
     @Override
@@ -119,41 +125,39 @@ public class MyLine implements Shapes2D {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-    
     @Override
     public void dich(int x, int y) {
         A.x = A.x + x;
         A.y = A.y + y;
         B.x = B.x + x;
         B.y = B.y + y;
-        originalA.x=A.x;
-        originalA.y=A.y;
-        originalB.x=B.x;
-        originalB.y=B.y;
+        originalA.x = A.x;
+        originalA.y = A.y;
+        originalB.x = B.x;
+        originalB.y = B.y;
     }
 
     @Override
     public void doiXungOx() {
         A.y = -A.y;
         B.y = -B.y;
-        originalA.y=A.y;
-        originalB.y=B.y;
+        originalA.y = A.y;
+        originalB.y = B.y;
     }
 
     @Override
     public void doiXungOy() {
         A.x = -A.x;
         B.x = -B.x;
-        originalA.x=A.x;
-        originalB.x=B.x;
+        originalA.x = A.x;
+        originalB.x = B.x;
     }
 
     @Override
     public void thuPhong(double heSoThuPhong) {
         //thu phóng và tịnh tiến về lại điểm A
         double tempAx = originalA.x;
-        System.out.println(originalA);
+        
         tempAx = tempAx * heSoThuPhong;
         int dentaX = originalA.x - (int) Math.round(tempAx);
         A.x = originalA.x;
@@ -163,21 +167,20 @@ public class MyLine implements Shapes2D {
         A.y = originalA.y;
 
         double tempBx = originalB.x;
-        System.out.println(originalB);
+        
         tempBx = tempBx * heSoThuPhong;
         B.x = (int) Math.round(tempBx) + dentaX;
         double tempBy = originalB.y;
         tempBy = tempBy * heSoThuPhong;
         B.y = (int) Math.round(tempBy) + dentaY;
-        originalA.x=A.x;
-        originalA.y=A.y;
-        originalB.x=B.x;
-        originalB.y=B.y;
+        originalA.x = A.x;
+        originalA.y = A.y;
+        originalB.x = B.x;
+        originalB.y = B.y;
     }
 
     @Override
     public boolean isOut(int maxHeight) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

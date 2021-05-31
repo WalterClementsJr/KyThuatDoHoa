@@ -48,8 +48,6 @@ public class MyRect implements Shapes2D {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-
     @Override
     public void draw(Graphics g, Color c) {
         g.setColor(c);

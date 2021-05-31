@@ -19,8 +19,20 @@ public class Ellipse implements Shapes2D {
     Point O, originalO;
     int dai, cao, originalDai, originalCao;
     static int dem = 0;
-    double radian=0;
-    Point anchor=new Point(0,0);
+    double radian = 0;
+    Point anchor = new Point(0, 0);
+
+    public Point getO() {
+        return O;
+    }
+
+    public int getDai() {
+        return dai;
+    }
+
+    public int getCao() {
+        return cao;
+    }
 
     public Ellipse(Point A, Point B) {
         O = new Point();
@@ -34,11 +46,11 @@ public class Ellipse implements Shapes2D {
     }
 
     @Override
-    public void setRadianAndAnchor(double radian,Point anchor) {
+    public void setRadianAndAnchor(double radian, Point anchor) {
         this.radian = radian;
         this.anchor = anchor;
     }
-    
+
     public static void drawHalfDottedEllipse(Graphics g, Point a, int dai) {
         double dx, dy, d1, d2;
         int x, y, cao = (int) dai / 2;
@@ -54,14 +66,10 @@ public class Ellipse implements Shapes2D {
 
         while (dx < dy) {
             if (x % 5 == 0) {
-//                ctx.fillRect((x + xc), (y + yc), 4, 4);
-//                ctx.fillRect((-x + xc), (y + yc), 4, 4);
                 TrucToaDo.putPixel(g, x + a.x, y + a.y);
                 TrucToaDo.putPixel(g, -x + a.x, y + a.y);
                 count++;
                 if (count % 4 != 0) {
-//                    ctx.fillRect((x + xc), (-y + yc), 4, 4);
-//                    ctx.fillRect((-x + xc), (-y + yc), 4, 4);
                     TrucToaDo.putPixel(g, x + a.x, -y + a.y);
                     TrucToaDo.putPixel(g, -x + a.x, -y + a.y);
                 }
@@ -89,21 +97,16 @@ public class Ellipse implements Shapes2D {
         while (y >= 0) {
 
             if (y % 5 == 0) {
-//                ctx.fillRect((x + xc), (y + yc), 4, 4);
-//                ctx.fillRect((-x + xc), (y + yc), 4, 4);
                 TrucToaDo.putPixel(g, x + a.x, y + a.y);
                 TrucToaDo.putPixel(g, -x + a.x, y + a.y);
                 count2++;
                 if (count2 % 4 != 0) {
-//                    ctx.fillRect((x + xc), (-y + yc), 4, 4);
-//                    ctx.fillRect((-x + xc), (-y + yc), 4, 4);
                     TrucToaDo.putPixel(g, x + a.x, -y + a.y);
                     TrucToaDo.putPixel(g, -x + a.x, -y + a.y);
                 }
             }
 
-            // Checking and updating parameter
-            // value based on algorithm
+            // Checking and updating parameter value based on algorithm
             if (d2 > 0) {
                 y--;
                 dy = dy - (2 * dai * dai);
@@ -169,11 +172,12 @@ public class Ellipse implements Shapes2D {
         putPixel(g, xc + x, yc - y);
         putPixel(g, xc - x, yc - y);
     }
-    static void plotWithRotate(Graphics g, int xc, int yc, int x, int y,double radian, Point anchor) {
-        Point a=Rotation.rotateAroundO(xc + x, yc + y, radian, anchor);
-        Point b=Rotation.rotateAroundO(xc - x, yc + y,radian,anchor);
-        Point c=Rotation.rotateAroundO(xc + x, yc - y,radian,anchor);
-        Point d=Rotation.rotateAroundO(xc - x, yc - y,radian,anchor);
+
+    static void plotWithRotate(Graphics g, int xc, int yc, int x, int y, double radian, Point anchor) {
+        Point a = Rotation.rotateAroundO(xc + x, yc + y, radian, anchor);
+        Point b = Rotation.rotateAroundO(xc - x, yc + y, radian, anchor);
+        Point c = Rotation.rotateAroundO(xc + x, yc - y, radian, anchor);
+        Point d = Rotation.rotateAroundO(xc - x, yc - y, radian, anchor);
         putPixel(g, a.x, a.y);
         putPixel(g, b.x, b.y);
         putPixel(g, c.x, c.y);
@@ -207,7 +211,7 @@ public class Ellipse implements Shapes2D {
         b2 = cao * cao; // cao^2
         fx = 0;
         fy = 2 * a2 * y; // 2a^2y
-        plotWithRotate(g, originalO.x, originalO.y, Math.round(x), Math.round(y),radian,anchor);
+        plotWithRotate(g, originalO.x, originalO.y, Math.round(x), Math.round(y), radian, anchor);
         p = Math.round(b2 - (a2 * cao) + (0.25 * dai));
 
         while (fx < fy) {
@@ -221,7 +225,7 @@ public class Ellipse implements Shapes2D {
 
                 fy -= 2 * a2; // 2a2
             }
-            plotWithRotate(g, originalO.x, originalO.y, Math.round(x), Math.round(y),radian,anchor);
+            plotWithRotate(g, originalO.x, originalO.y, Math.round(x), Math.round(y), radian, anchor);
         }
         p = Math.round(b2 * (x + 0.5) * (x + 0.5) + a2 * (y) * (y) - a2 * b2);
 
@@ -236,7 +240,7 @@ public class Ellipse implements Shapes2D {
                 p += b2 * (2 * x + 2) + a2 * (-2 * y + 3);
 
             }
-            plotWithRotate(g, originalO.x, originalO.y, Math.round(x), Math.round(y),radian,anchor);
+            plotWithRotate(g, originalO.x, originalO.y, Math.round(x), Math.round(y), radian, anchor);
         }
         O = originalO;
     }
@@ -247,40 +251,40 @@ public class Ellipse implements Shapes2D {
 
     @Override
     public void fill(Graphics g, Color color) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public void xoay(double radian, Point anchor) {
-        O = Rotation.rotateAroundO(originalO.x, originalO.y, radian, anchor);        
+        O = Rotation.rotateAroundO(originalO.x, originalO.y, radian, anchor);
     }
 
     @Override
     public void dich(int x, int y) {
         O.x = O.x + x;
         O.y = O.y + y;
-        originalO.x=O.x;
-        originalO.y=O.y;
+        originalO.x = O.x;
+        originalO.y = O.y;
     }
 
     @Override
     public void doiXungOx() {
         O.y = -O.y;
-        originalO.y=O.y;
+        originalO.y = O.y;
     }
 
     @Override
     public void doiXungOy() {
         O.x = -O.x;
-        originalO.x=O.x;
+        originalO.x = O.x;
     }
 
     @Override
     public void thuPhong(double heSoThuPhong) {
         dai = (int) Math.round(originalDai * heSoThuPhong);
         cao = (int) Math.round(originalCao * heSoThuPhong);
-        originalDai=dai;
-        originalCao=cao;
+        originalDai = dai;
+        originalCao = cao;
     }
 
     @Override

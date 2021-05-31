@@ -23,7 +23,6 @@ public class Triangle implements Shapes2D {
 //        A = a;
 //        this.canh = canh;
 //    }
-
     public Triangle(Point A, Point B, Point C) {
         this.A = A;
         this.B = B;
@@ -37,8 +36,6 @@ public class Triangle implements Shapes2D {
     public void setRadianAndAnchor(double radian, Point anchor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    
 
     public Triangle(Point a, Point b) {
         A = new Point();

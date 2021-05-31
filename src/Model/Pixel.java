@@ -21,7 +21,6 @@ public class Pixel extends JComponent {
     public Pixel(int x, int y) {
         this.x = x;
         this.y = y;
-
     }
 
     @Override
@@ -42,5 +41,4 @@ public class Pixel extends JComponent {
         }
         g.fillRect(x, y, 5, 5);
     }
-
 }

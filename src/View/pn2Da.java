@@ -5,9 +5,11 @@
  */
 package View;
 
+import Model.TrucToaDo;
 import Model.TrucToaDo2DAnimation;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Point;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
@@ -17,19 +19,11 @@ import javax.swing.JLabel;
  */
 public class pn2Da extends javax.swing.JPanel {
 
-    /**
-     * Creates new form pn2Da
-     */
-    boolean selectHinhSao = false;
-    boolean selectHinhChongChong = false;
-    boolean selectDiChuyen = false;
     boolean selectPlay = false;
-    boolean selectXoa = false;
 
-//    Timer timer = TrucToaDo2DAnimation.timer;
-//    TimerTask task = TrucToaDo2DAnimation.task;
     public pn2Da() {
         initComponents();
+        lbSelected(lbTrucThang);
     }
 
     public void lbSelected(JLabel lb) {
@@ -49,19 +43,11 @@ public class pn2Da extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         pnMain = new Model.TrucToaDo2DAnimation();
         pnFooter = new javax.swing.JPanel();
-        lbDiChuyen = new javax.swing.JLabel();
-        lbXoay = new javax.swing.JLabel();
-        lbLatOy = new javax.swing.JLabel();
-        lbXoa = new javax.swing.JLabel();
-        lbUndo_2Da = new javax.swing.JLabel();
-        lbRedu_2Da = new javax.swing.JLabel();
         lbPlay = new javax.swing.JLabel();
-        lbLatOx = new javax.swing.JLabel();
-        lbPhongTo = new javax.swing.JLabel();
-        lbThuNho = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        toaDoCurrent = new javax.swing.JLabel();
         pnChucNang = new javax.swing.JPanel();
-        lbHinhChongChong = new javax.swing.JLabel();
-        lbHinhSao = new javax.swing.JLabel();
+        lbTrucThang = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -72,12 +58,16 @@ public class pn2Da extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel16.setText("Thông tin chi tiết");
         jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        pnThongTin.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 140, 30));
+        pnThongTin.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 140, 30));
 
-        add(pnThongTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 200, 500));
+        add(pnThongTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, -50, 200, 600));
 
         pnMain.setBackground(new java.awt.Color(255, 255, 255));
-        pnMain.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnMain.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pnMainMouseMoved(evt);
+            }
+        });
         pnMain.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 pnMainMouseEntered(evt);
@@ -96,11 +86,11 @@ public class pn2Da extends javax.swing.JPanel {
         pnMain.setLayout(pnMainLayout);
         pnMainLayout.setHorizontalGroup(
             pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 748, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
         );
         pnMainLayout.setVerticalGroup(
             pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
 
         add(pnMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 750, 500));
@@ -109,65 +99,25 @@ public class pn2Da extends javax.swing.JPanel {
         pnFooter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnFooter.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbDiChuyen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_move_30px.png"))); // NOI18N
-        lbDiChuyen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbDiChuyen.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbDiChuyenMousePressed(evt);
-            }
-        });
-        pnFooter.add(lbDiChuyen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
-
-        lbXoay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_rotate_30px.png"))); // NOI18N
-        lbXoay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbXoay.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbXoayMousePressed(evt);
-            }
-        });
-        pnFooter.add(lbXoay, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, -1));
-
-        lbLatOy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flip_vertical_30px_1.png"))); // NOI18N
-        lbLatOy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbLatOy, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
-
-        lbXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_erase_30px_2.png"))); // NOI18N
-        lbXoa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbXoa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbXoaMousePressed(evt);
-            }
-        });
-        pnFooter.add(lbXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, -1, -1));
-
-        lbUndo_2Da.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_undo_30px_1.png"))); // NOI18N
-        lbUndo_2Da.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbUndo_2Da, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 10, -1, -1));
-
-        lbRedu_2Da.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_redo_30px.png"))); // NOI18N
-        lbRedu_2Da.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbRedu_2Da, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, -1, -1));
-
-        lbPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_play_30px.png"))); // NOI18N
+        lbPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_play_30px.png"))); // NOI18N
         lbPlay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbPlay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lbPlayMousePressed(evt);
             }
         });
-        pnFooter.add(lbPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        pnFooter.add(lbPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
 
-        lbLatOx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flip_horizontal_30px_1.png"))); // NOI18N
-        lbLatOx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbLatOx, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_move_30px.png"))); // NOI18N
+        jLabel1.setText("Descartes:");
+        pnFooter.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, -1));
 
-        lbPhongTo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_zoom_in_30px.png"))); // NOI18N
-        lbPhongTo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbPhongTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
-
-        lbThuNho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_zoom_out_30px.png"))); // NOI18N
-        lbThuNho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnFooter.add(lbThuNho, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
+        toaDoCurrent.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        toaDoCurrent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        toaDoCurrent.setText("Ox : Oy");
+        toaDoCurrent.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnFooter.add(toaDoCurrent, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 60, 30));
 
         add(pnFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 1000, 50));
 
@@ -175,155 +125,59 @@ public class pn2Da extends javax.swing.JPanel {
         pnChucNang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnChucNang.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbHinhChongChong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_pinwheel_30px_2.png"))); // NOI18N
-        lbHinhChongChong.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbHinhChongChong.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbTrucThang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_helicopter_30px_1.png"))); // NOI18N
+        lbTrucThang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbTrucThang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbHinhChongChongMousePressed(evt);
+                lbTrucThangMousePressed(evt);
             }
         });
-        pnChucNang.add(lbHinhChongChong, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        pnChucNang.add(lbTrucThang, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        lbHinhSao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_star_30px.png"))); // NOI18N
-        lbHinhSao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbHinhSao.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbHinhSaoMousePressed(evt);
-            }
-        });
-        pnChucNang.add(lbHinhSao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        add(pnChucNang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 500));
+        add(pnChucNang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 50, 600));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lbHinhSaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhSaoMousePressed
-        if (!selectHinhSao) {
-            selectHinhChongChong = false;
-            selectDiChuyen = false;
-            selectPlay = false;
-            selectXoa = false;
-            lbSelected(lbHinhSao);
-            lbHinhChongChong.setBorder(null);
-            lbDiChuyen.setBorder(null);
-            lbPlay.setBorder(null);
-            lbXoa.setBorder(null);
-        } else {
-            lbHinhSao.setBorder(null);
-        }
-        selectHinhSao = !selectHinhSao;// TODO add your handling code here:
-    }//GEN-LAST:event_lbHinhSaoMousePressed
+    private void lbTrucThangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbTrucThangMousePressed
 
-    private void lbHinhChongChongMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhChongChongMousePressed
-        if (!selectHinhChongChong) {
-            selectHinhSao = false;
-            selectDiChuyen = false;
-            selectPlay = false;
-            selectXoa = false;
-            lbSelected(lbHinhChongChong);
-            lbHinhSao.setBorder(null);
-            lbDiChuyen.setBorder(null);
-            lbPlay.setBorder(null);
-            lbXoa.setBorder(null);
-        } else {
-            lbHinhChongChong.setBorder(null);
-        }
-        selectHinhChongChong = !selectHinhChongChong;// TODO add your handling code here:
-    }//GEN-LAST:event_lbHinhChongChongMousePressed
-
-    private void lbDiChuyenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDiChuyenMousePressed
-        if (!selectDiChuyen) {
-            lbSelected(lbDiChuyen);
-            selectHinhSao = false;
-            selectHinhChongChong = false;
-            selectPlay = false;
-            selectXoa = false;
-            lbHinhSao.setBorder(null);
-            lbHinhChongChong.setBorder(null);
-            lbPlay.setBorder(null);
-            lbXoa.setBorder(null);
-        } else {
-            lbDiChuyen.setBorder(null);
-        }
-        selectDiChuyen = !selectDiChuyen;        // TODO add your handling code here:
-    }//GEN-LAST:event_lbDiChuyenMousePressed
+    }//GEN-LAST:event_lbTrucThangMousePressed
 
     private void lbPlayMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbPlayMousePressed
         if (!selectPlay) {
             lbSelected(lbPlay);
-            selectHinhSao = false;
-            selectHinhChongChong = false;
-            selectDiChuyen = false;
-            selectXoa = false;
-            lbHinhSao.setBorder(null);
-            lbHinhChongChong.setBorder(null);
-            lbDiChuyen.setBorder(null);
-            lbXoa.setBorder(null);
-
             TrucToaDo2DAnimation.pause = selectPlay;
         } else {
             lbPlay.setBorder(null);
             TrucToaDo2DAnimation.pause = selectPlay;
         }
-        selectPlay = !selectPlay;// TODO add your handling code here:
+        selectPlay = !selectPlay;
     }//GEN-LAST:event_lbPlayMousePressed
 
     private void pnMainMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseEntered
-        if (selectHinhChongChong || selectHinhSao || selectXoa) {
-            pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
-        }
-        if (selectDiChuyen) {
-            pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-        }// TODO add your handling code here:
     }//GEN-LAST:event_pnMainMouseEntered
 
     private void pnMainMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseExited
-        pnMain.setCursor(Cursor.getDefaultCursor());// TODO add your handling code here:
+        pnMain.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_pnMainMouseExited
 
-    private void lbXoaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbXoaMousePressed
-        if (!selectXoa) {
-            lbSelected(lbXoa);
-            selectHinhSao = false;
-            selectHinhChongChong = false;
-            selectDiChuyen = false;
-            selectPlay = false;
-            lbHinhSao.setBorder(null);
-            lbHinhChongChong.setBorder(null);
-            lbDiChuyen.setBorder(null);
-            lbPlay.setBorder(null);
-        } else {
-            lbXoa.setBorder(null);
-        }
-        selectXoa = !selectXoa;// TODO add your handling code here:
-    }//GEN-LAST:event_lbXoaMousePressed
-
-    private void lbXoayMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbXoayMousePressed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_lbXoayMousePressed
-
     private void pnMainKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnMainKeyTyped
-        // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_pnMainKeyTyped
 
+    private void pnMainMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseMoved
+        Point point = TrucToaDo.convertDescart(evt.getPoint());
+        String xyCurrent = (int) point.getX() + " : " + (int) point.getY();
+        toaDoCurrent.setText(xyCurrent);
+    }//GEN-LAST:event_pnMainMouseMoved
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel lbDiChuyen;
-    private javax.swing.JLabel lbHinhChongChong;
-    private javax.swing.JLabel lbHinhSao;
-    private javax.swing.JLabel lbLatOx;
-    private javax.swing.JLabel lbLatOy;
-    private javax.swing.JLabel lbPhongTo;
     private javax.swing.JLabel lbPlay;
-    private javax.swing.JLabel lbRedu_2Da;
-    private javax.swing.JLabel lbThuNho;
-    private javax.swing.JLabel lbUndo_2Da;
-    private javax.swing.JLabel lbXoa;
-    private javax.swing.JLabel lbXoay;
+    private javax.swing.JLabel lbTrucThang;
     private javax.swing.JPanel pnChucNang;
     private javax.swing.JPanel pnFooter;
     private javax.swing.JPanel pnMain;
     private javax.swing.JPanel pnThongTin;
+    private javax.swing.JLabel toaDoCurrent;
     // End of variables declaration//GEN-END:variables
 }

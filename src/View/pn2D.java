@@ -10,7 +10,6 @@ import Model.Ellipse;
 import Model.MyFlag;
 import Model.MyLine;
 import Model.MyRect;
-import Model.RectThread;
 import Model.ShapeInfo;
 
 import Model.ThreadGet;
@@ -19,7 +18,6 @@ import Model.ThreadTriangleGet;
 import Model.ThreadTriangleSet;
 import Model.Triangle;
 
-import Model.TriangleThread;
 import Model.TrucToaDo;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -38,7 +36,7 @@ import javax.swing.JOptionPane;
  */
 public class pn2D extends javax.swing.JPanel {
 
-    //mấy biến này đúng thì mới thực hiện chức năng nha
+    //mấy biến này đúng thì mới thực hiện chức năng
     boolean selectDuongThang = false; //vẽ đường thẳng
     boolean selectHCN = false; //vẽ hình chữ nhận
     boolean selectTamGiac = false; //vẽ hình tam giác
@@ -101,165 +99,116 @@ public class pn2D extends javax.swing.JPanel {
                 counter++;//increments the counter
                 if (tGet != null) {
                     tGet.run();
-
                 }
                 if (tamGiacThreadGet != null) {
-
                     tamGiacThreadGet.run();
                 }
             }
         };
         timer.scheduleAtFixedRate(timerTask, 30, 100);//this line starts the timer at the same time its executed
-
-//        //1 dinh duong thang
-//        Point aD = new Point(5, 5);
-//
-//        //3 dinh tam giac
-//        Point aT = new Point(5, 25);
-//        Point bT = new Point(10, 35);
-//        Point cT = new Point(50, 25);
-//
-//        Point a = new Point(5, 30);
-//        Point b = new Point(50, 30);
-//        Point c = new Point(50, 5);
-//        Point d = new Point(5, 5);
-//
-////        a= TrucToaDo.getPointInAxisNew(a, 10, 10);
-////        b= TrucToaDo.getPointInAxisNew(b, 10, 10);
-////        c=TrucToaDo.getPointInAxisNew(c, 10, 10);
-////        d=TrucToaDo.getPointInAxisNew(d, 10, 10);
-//        Point a1 = a;
-//        Point b1 = b;
-//        Point c1 = c;
-//        Point d1 = d;
-//        // 3dinh tam giac
-//        Point a1T = aT;
-//        Point b1T = bT;
-//        Point c1T = cT;
-//        //1dinh duongthang
-//        Point a1D = aD;
-//
-//        double angle = (2 * Math.PI / 8);
-//        for (int i = 1; i <= (2 * Math.PI / angle); i++) {
-//
-//            Point a3 = new Point();
-//            Point b3 = new Point();
-//            Point c3 = new Point();
-//            Point d3 = new Point();
-//            // 3DIEM TAM GIAC
-//            a3 = Rotation.rotateAroundO(a1.x, a1.y, -angle * i, new Point(0, 0));
-//            b3 = Rotation.rotateAroundO(b1.x, b1.y, -angle * i, new Point(0, 0));
-//            c3 = Rotation.rotateAroundO(c1.x, c1.y, -angle * i, new Point(0, 0));
-//            d3 = Rotation.rotateAroundO(d1.x, d1.y, -angle * i, new Point(0, 0));
-//
-//            Point a3T = new Point();
-//            Point b3T = new Point();
-//            Point c3T = new Point();
-//            a3T = Rotation.rotateAroundO(a1T.x, a1T.y, -angle * i, new Point(0, 0));
-//            b3T = Rotation.rotateAroundO(b1T.x, b1T.y, -angle * i, new Point(0, 0));
-//            c3T = Rotation.rotateAroundO(c1T.x, c1T.y, -angle * i, new Point(0, 0));
-//            //DINH DUONG THANG
-//            Point a3D = new Point();
-//            a3D = Rotation.rotateAroundO(a1T.x, a1T.y, -angle * i, new Point(0, 0));
-//
-//            //CHU NHAT
-////            listA.add(a3);
-////            listB.add(b3);
-////            listC.add(c3);
-////            listD.add(d3);
-//
-//            // TAM GIAC
-//            listTA.add(a3T);
-//            listTB.add(b3T);
-//            listTC.add(c3T);
-//        }
-//        a= TrucToaDo.getPointInAxisNew(a, 10, 10);
-//        b= TrucToaDo.getPointInAxisNew(b, 10, 10);
-//        c=TrucToaDo.getPointInAxisNew(c, 10, 10);
-//        d=TrucToaDo.getPointInAxisNew(d, 10, 10);
     }
 
-//    @Override
-//    public void paint(Graphics g) {
-//        super.paint(g); //To change body of generated methods, choose Tools | Templates.
-//   
-//        Point a0 = new Point(0, 0);
-//        Point b0 = new Point(5, 5);
-//         
-//        a0 = TrucToaDo.expandX(a0);
-//        b0 = TrucToaDo.expandX(b0);
-//
-//        MyLine myline1 = new MyLine(a0, b0);
-//        myline1.draw(g);
-    //4 DIEM CHU NHAT
-//        if (tSet != null &&tGet.getRectThread()!=null&& tGet.getRectThread().getListA().size() > 0) {
-//
-//
-//        {   //4 DIEM CHU NHAT
-//
-//            Point aa = new Point();
-//            Point bb = new Point();
-//            Point cc = new Point();
-//            Point dd = new Point();
-//
-//
-//
-//            aa = tGet.getRectThread().getListA().get(tGet.getRectThread().index);
-//            bb = tGet.getRectThread().getListB().get(tGet.getRectThread().index);
-//            cc = tGet.getRectThread().getListC().get(tGet.getRectThread().index);
-//            dd = tGet.getRectThread().getListD().get(tGet.getRectThread().index);
-//
-//
-//            Point aaa = new Point();
-//            Point bbb = new Point();
-//            Point ccc = new Point();
-//            Point ddd = new Point();
-//
-//            aaa = TrucToaDo.expandX(aa);
-//            bbb = TrucToaDo.expandX(bb);
-//            ccc = TrucToaDo.expandX(cc);
-//            ddd = TrucToaDo.expandX(dd);
-//
-//            MyRect1 myReact2 = new MyRect1(aaa, bbb, ccc, ddd);
-//            myReact2.draw(g);
-//            
-//        }
-//        if(tamGiacThreadGet != null && tamGiacThreadGet.getTriangle()!=null&&tamGiacThreadGet.getTriangle().getListA().size() > 0)
-//            {
-//                 //3DIEM TAM GIAC
-//            Point aaT = new Point();
-//            Point bbT = new Point();
-//            Point ccT = new Point();
-//            
-//            aaT = tamGiacThreadGet.getTriangle().getListA().get(tamGiacThreadGet.getTriangle().index);
-//            bbT = tamGiacThreadGet.getTriangle().getListB().get(tamGiacThreadGet.getTriangle().index);
-//            ccT = tamGiacThreadGet.getTriangle().getListC().get(tamGiacThreadGet.getTriangle().index);
-//            
-//
-//
-//
-//            //  3 DIEM TAM GIAC
-//            Point aaaT = new Point();
-//            Point bbbT = new Point();
-//            Point cccT = new Point();
-//
-//
-//            aaaT = TrucToaDo.expandX(aaT);
-//            bbbT = TrucToaDo.expandX(bbT);
-//            cccT = TrucToaDo.expandX(ccT);
-//
-//
-//            Triangle triangle = new Triangle(aaaT, bbbT, cccT);
-//            triangle.draw(g);
-//            }
-//    }
-//}
     public void setListShape() {
         listShape.setModel(new DefaultListModel<>());
         dlm = (DefaultListModel<String>) listShape.getModel();
         for (ShapeInfo shapeInfo : listShapeInfo) {
             dlm.addElement(shapeInfo.getName());
         }
+    }
+
+    public void setTriangleChanged(Triangle t, int index) {
+        tfx0.setText(String.valueOf(t.getA().x));
+        tfy0.setText(String.valueOf(t.getA().y));
+        tfx1.setText(String.valueOf(t.getB().x));
+        tfy1.setText(String.valueOf(t.getB().y));
+        tfx2.setText(String.valueOf(t.getC().x));
+        tfy2.setText(String.valueOf(t.getC().y));
+        listShapeInfo.get(index).setX0(t.getA().x);
+        listShapeInfo.get(index).setY0(t.getA().y);
+        listShapeInfo.get(index).setX1(t.getB().x);
+        listShapeInfo.get(index).setY1(t.getB().y);
+        listShapeInfo.get(index).setX2(t.getC().x);
+        listShapeInfo.get(index).setY2(t.getC().y);
+    }
+
+    public void setRectChanged(MyRect r, int index) {
+        tfx0.setText(String.valueOf(r.getA().x));
+        tfy0.setText(String.valueOf(r.getA().y));
+        tfx1.setText(String.valueOf(r.getB().x));
+        tfy1.setText(String.valueOf(r.getB().y));
+        tfx2.setText(String.valueOf(r.getC().x));
+        tfy2.setText(String.valueOf(r.getC().y));
+        listShapeInfo.get(index).setX0(r.getA().x);
+        listShapeInfo.get(index).setY0(r.getA().y);
+        listShapeInfo.get(index).setX1(r.getB().x);
+        listShapeInfo.get(index).setY1(r.getB().y);
+        listShapeInfo.get(index).setX2(r.getC().x);
+        listShapeInfo.get(index).setY2(r.getC().y);
+    }
+
+    public void setLineChanged(MyLine l, int index) {
+        tfX1.setText(String.valueOf(l.getA().x));
+        tfY1.setText(String.valueOf(l.getA().y));
+        tfX2.setText(String.valueOf(l.getB().x));
+        tfY2.setText(String.valueOf(l.getB().y));
+        listShapeInfo.get(index).setxStart(l.getA().x);
+        listShapeInfo.get(index).setyStart(l.getA().y);
+        listShapeInfo.get(index).setxEnd(l.getB().x);
+        listShapeInfo.get(index).setyEnd(l.getB().y);
+    }
+
+    public void setEllipseChanged(Ellipse e, int index) {
+        tfx0.setText(String.valueOf(e.getO().x));
+        tfy0.setText(String.valueOf(e.getO().y));
+        tfa.setText(String.valueOf(e.getDai()));
+        tfb.setText(String.valueOf(e.getCao()));
+        listShapeInfo.get(index).setX0(e.getO().x);
+        listShapeInfo.get(index).setY0(e.getO().y);
+        listShapeInfo.get(index).setA(e.getDai());
+        listShapeInfo.get(index).setA(e.getCao());
+    }
+
+    public void setCircleChanged(Circle c, int index) {
+        tfx0.setText(String.valueOf(c.getO().x));
+        tfy0.setText(String.valueOf(c.getO().y));
+        tfr.setText(String.valueOf(c.getRadius()));
+        listShapeInfo.get(index).setX0(c.getO().x);
+        listShapeInfo.get(index).setY0(c.getO().y);
+        listShapeInfo.get(index).setR(c.getRadius());
+    }
+
+    public void setNullTf() {
+        tfx0.setText("");
+        tfx1.setText("");
+        tfx2.setText("");
+        tfy0.setText("");
+        tfy1.setText("");
+        tfy2.setText("");
+        tfa.setText("");
+        tfb.setText("");
+        tfr.setText("");
+        tfh.setText("");
+        tfX1.setText("");
+        tfX2.setText("");
+        tfY1.setText("");
+        tfY2.setText("");
+    }
+
+    public void setTextTf() {
+        tfx0.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getX0()));
+        tfx1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getX1()));
+        tfx2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getX2()));
+        tfy0.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getY0()));
+        tfy1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getY1()));
+        tfy2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getY2()));
+        tfa.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getA()));
+        tfb.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getB()));
+        tfr.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getR()));
+        tfh.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getH()));
+        tfX1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getxStart()));
+        tfX2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getxEnd()));
+        tfY1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getyStart()));
+        tfY2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getyEnd()));
     }
 
     public void lbSelected(JLabel lb) {
@@ -328,13 +277,13 @@ public class pn2D extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         pnFooter = new javax.swing.JPanel();
-        lbLatOy = new javax.swing.JLabel();
-        lbLatOx = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         toadoJava = new javax.swing.JLabel();
         toaDoCurrent = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        lbXoay = new javax.swing.JLabel();
         jSliderGocQuay = new javax.swing.JSlider();
         jTextFieldDiemDenX = new javax.swing.JTextField();
         jTextFieldDiemDenY = new javax.swing.JTextField();
@@ -347,8 +296,12 @@ public class pn2D extends javax.swing.JPanel {
         lbHinhDuongThang = new javax.swing.JLabel();
         lbHinhTron = new javax.swing.JLabel();
         lbHinhOval = new javax.swing.JLabel();
+        lbXoay = new javax.swing.JLabel();
+        lbLatOy = new javax.swing.JLabel();
+        lbLatOx = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
 
-        lbFlag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flag_filled_20px_2.png"))); // NOI18N
+        lbFlag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_flag_filled_20px_2.png"))); // NOI18N
         lbFlag.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -546,7 +499,7 @@ public class pn2D extends javax.swing.JPanel {
 
         lbXoaTatCa.setBackground(new java.awt.Color(0, 0, 0));
         lbXoaTatCa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbXoaTatCa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_delete_database_20px.png"))); // NOI18N
+        lbXoaTatCa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_delete_database_20px.png"))); // NOI18N
         lbXoaTatCa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lbXoaTatCa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbXoaTatCa.setOpaque(true);
@@ -558,7 +511,7 @@ public class pn2D extends javax.swing.JPanel {
         pnThongTin.add(lbXoaTatCa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 70, 30));
 
         lbDelete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_trash_20px.png"))); // NOI18N
+        lbDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_trash_20px.png"))); // NOI18N
         lbDelete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lbDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbDelete.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -629,26 +582,17 @@ public class pn2D extends javax.swing.JPanel {
         pnFooter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnFooter.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbLatOy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flip_vertical_30px_1.png"))); // NOI18N
-        lbLatOy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbLatOy.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbLatOyMousePressed(evt);
-            }
-        });
-        pnFooter.add(lbLatOy, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, -1));
+        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
+        pnFooter.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 35, 30, 10));
 
-        lbLatOx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flip_horizontal_30px_1.png"))); // NOI18N
-        lbLatOx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbLatOx.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbLatOxMousePressed(evt);
-            }
-        });
-        pnFooter.add(lbLatOx, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, -1));
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
+        pnFooter.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 35, 30, 10));
+
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        pnFooter.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 35, 30, 10));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_move_30px.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_move_30px.png"))); // NOI18N
         jLabel2.setText("Java:");
         pnFooter.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
@@ -665,55 +609,61 @@ public class pn2D extends javax.swing.JPanel {
         pnFooter.add(toaDoCurrent, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 60, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_move_30px.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_move_30px.png"))); // NOI18N
         jLabel1.setText("Descartes:");
         pnFooter.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 110, -1));
-
-        lbXoay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbXoay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_flag_filled_30px_1.png"))); // NOI18N
-        lbXoay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lbXoay.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbXoayMousePressed(evt);
-            }
-        });
-        pnFooter.add(lbXoay, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
 
         jSliderGocQuay.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSliderGocQuayStateChanged(evt);
             }
         });
-        pnFooter.add(jSliderGocQuay, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
+        pnFooter.add(jSliderGocQuay, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, 30));
 
+        jTextFieldDiemDenX.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldDiemDenX.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldDiemDenX.setToolTipText("Nhập khoảng cách x");
-        pnFooter.add(jTextFieldDiemDenX, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 30, 30));
+        jTextFieldDiemDenX.setBorder(null);
+        jTextFieldDiemDenX.setSelectionColor(new java.awt.Color(153, 153, 153));
+        pnFooter.add(jTextFieldDiemDenX, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 30, 30));
 
+        jTextFieldDiemDenY.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldDiemDenY.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldDiemDenY.setToolTipText("Nhập khoảng cách y");
-        pnFooter.add(jTextFieldDiemDenY, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 30, 30));
+        jTextFieldDiemDenY.setBorder(null);
+        jTextFieldDiemDenY.setSelectionColor(new java.awt.Color(153, 153, 153));
+        pnFooter.add(jTextFieldDiemDenY, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 30, 30));
 
-        jButton1.setText("Tịnh tiến");
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_joystick_30px.png"))); // NOI18N
         jButton1.setToolTipText("Tịnh tiến 1 khoảng x, y");
+        jButton1.setBorder(null);
         jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        pnFooter.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 60, 20));
+        pnFooter.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 30, 30));
 
-        jButton2.setText("Thu phóng");
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_zoom_to_extents_30px.png"))); // NOI18N
         jButton2.setToolTipText("Thu phóng");
+        jButton2.setBorder(null);
         jButton2.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        pnFooter.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 30, 60, 20));
+        pnFooter.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 30, 30));
 
+        jTextFieldThuPhong.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldThuPhong.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldThuPhong.setToolTipText("Nhập hệ số thu phóng");
-        pnFooter.add(jTextFieldThuPhong, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 60, 30));
+        jTextFieldThuPhong.setBorder(null);
+        jTextFieldThuPhong.setSelectionColor(new java.awt.Color(153, 153, 153));
+        pnFooter.add(jTextFieldThuPhong, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, 30, 30));
 
         add(pnFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 1000, 50));
 
@@ -721,7 +671,7 @@ public class pn2D extends javax.swing.JPanel {
         pnChucNang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnChucNang.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbHinhCN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_rectangular_30px_1.png"))); // NOI18N
+        lbHinhCN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_rectangular_30px_1.png"))); // NOI18N
         lbHinhCN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbHinhCN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -730,7 +680,7 @@ public class pn2D extends javax.swing.JPanel {
         });
         pnChucNang.add(lbHinhCN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
-        lbHinhTamGiac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_triangle_30px.png"))); // NOI18N
+        lbHinhTamGiac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_triangle_30px.png"))); // NOI18N
         lbHinhTamGiac.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbHinhTamGiac.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -739,7 +689,7 @@ public class pn2D extends javax.swing.JPanel {
         });
         pnChucNang.add(lbHinhTamGiac, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
-        lbHinhDuongThang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_line_30px.png"))); // NOI18N
+        lbHinhDuongThang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_line_30px.png"))); // NOI18N
         lbHinhDuongThang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbHinhDuongThang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -748,7 +698,7 @@ public class pn2D extends javax.swing.JPanel {
         });
         pnChucNang.add(lbHinhDuongThang, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        lbHinhTron.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_circle_30px.png"))); // NOI18N
+        lbHinhTron.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_circle_30px.png"))); // NOI18N
         lbHinhTron.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbHinhTron.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -757,7 +707,7 @@ public class pn2D extends javax.swing.JPanel {
         });
         pnChucNang.add(lbHinhTron, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
-        lbHinhOval.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_oval_30px.png"))); // NOI18N
+        lbHinhOval.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_oval_30px.png"))); // NOI18N
         lbHinhOval.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbHinhOval.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -765,6 +715,37 @@ public class pn2D extends javax.swing.JPanel {
             }
         });
         pnChucNang.add(lbHinhOval, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+
+        lbXoay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbXoay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_flag_filled_30px_1.png"))); // NOI18N
+        lbXoay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbXoay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbXoayMousePressed(evt);
+            }
+        });
+        pnChucNang.add(lbXoay, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, -1, -1));
+
+        lbLatOy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_flip_vertical_30px_1.png"))); // NOI18N
+        lbLatOy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbLatOy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbLatOyMousePressed(evt);
+            }
+        });
+        pnChucNang.add(lbLatOy, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, -1, -1));
+
+        lbLatOx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_flip_horizontal_30px_1.png"))); // NOI18N
+        lbLatOx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbLatOx.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lbLatOxMousePressed(evt);
+            }
+        });
+        pnChucNang.add(lbLatOx, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, -1, -1));
+
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        pnChucNang.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 30, 10));
 
         add(pnChucNang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 50, 600));
     }// </editor-fold>//GEN-END:initComponents
@@ -809,7 +790,7 @@ public class pn2D extends javax.swing.JPanel {
         }
         selectHCN = !selectHCN;
 
-        // TODO add your handling code here:
+        
         mode = DRAW_RECT;
     }//GEN-LAST:event_lbHinhCNMousePressed
 
@@ -853,14 +834,14 @@ public class pn2D extends javax.swing.JPanel {
             lbHinhOval.setBorder(null);
         }
         selectOval = !selectOval;
-        // TODO add your handling code here:
+        
 //        mode = DRAW_CIRCLE;
         mode = DRAW_ELLIPSE;
 
     }//GEN-LAST:event_lbHinhOvalMousePressed
 
     private void pnMainMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseEntered
-        if (selectDuongThang || selectHCN || selectOval || selectTamGiac) {
+        if (selectDuongThang || selectHCN || selectOval || selectTamGiac || selectTron) {
             pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
         }
         if (selectXoay) {
@@ -870,11 +851,11 @@ public class pn2D extends javax.swing.JPanel {
     }//GEN-LAST:event_pnMainMouseEntered
 
     private void pnMainMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseExited
-        pnMain.setCursor(Cursor.getDefaultCursor());// TODO add your handling code here:
+        pnMain.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_pnMainMouseExited
 
     private void pnMainMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseMoved
-        // TODO add your handling code here:
+        
         Point point = TrucToaDo.convertDescart(evt.getPoint());
         String xyCurrent = (int) point.getX() + " : " + (int) point.getY();
         toaDoCurrent.setText(xyCurrent);
@@ -926,87 +907,20 @@ public class pn2D extends javax.swing.JPanel {
     }//GEN-LAST:event_pnMainMouseDragged
 
     private void pnMainMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMousePressed
-        System.out.println(selectXoay);
+        
         x1 = evt.getX();
         y1 = evt.getY();
-       Point start = TrucToaDo.convertDescart(new Point(x1, y1));
+        Point start = TrucToaDo.convertDescart(new Point(x1, y1));
 
-        if (selectXoay && shape != null) {
+        if (selectXoay) {
             TrucToaDo.tempFlag = new MyFlag(x1, y1);
             pQuay = new Point(x1, y1);
-            shape = listShapeInfo.get(selectedRotating);
-//            if (shape != null && shape.getName().contains("Rectangle")) {
-//
-//                MyRect myRect = (MyRect) TrucToaDo.shapeList.get(selectedRotating);
-//                double angle = (2 * Math.PI / 8);
-//                if (tSet != null) {
-//                    tSet.interrupt();
-//                    tGet.interrupt();
-//                    tSet.setRectThread(null);
-//                    tGet.setRectThread(null);
-//                }
-//                // QUAY HINH CHU NHAT
-//                listA = new ArrayList<>();
-//                listB = new ArrayList<>();
-//                listC = new ArrayList<>();
-//                listD = new ArrayList<>();
-//
-//                //
-//                Point trucQuay = TrucToaDo.convertDescart(pQuay); //chuyển trục quay sang toạ độ của mình
-//
-//                RectThread rectThread = new RectThread(listA, listB, listC, listD, angle, myRect.getA(), myRect.getB(), myRect.getC(), myRect.getD(), trucQuay);
-//                tSet = new ThreadSet(rectThread);
-//                tGet = new ThreadGet(rectThread, this);
-//                tSet.start();
-//                tGet.start();
-//                // wait for threads to end
-//                try {
-//                    tSet.join();
-//                    tGet.join();
-//                } catch (Exception e) {
-//                    System.out.println("Interrupted");
-//                }
-//
-//                //selectXoay đúng là quay luôn
-//            } else if (shape != null && shape.getName().contains("Triangle")) {
-//                Triangle myTriangle = (Triangle) TrucToaDo.shapeList.get(selectedRotating);
-//                double angle = (2 * Math.PI / 50);
-//                if (tamGiacThreadSet != null) {
-//                    tamGiacThreadSet.interrupt();
-//                    tamGiacThreadGet.interrupt();
-//                    tamGiacThreadSet.setTriangleThread(null);
-//                    tamGiacThreadGet.setTriangle(null);
-//                }
-//                // QUAY HINH CHU NHAT
-//                listA = new ArrayList<>();
-//                listB = new ArrayList<>();
-//                listC = new ArrayList<>();
-//
-//                Point trucQuay = TrucToaDo.convertDescart(pQuay); //chuyển trục quay sang toạ độ của mình
-//                TriangleThread triangleThread = new TriangleThread(listA, listB, listC, angle, trucQuay, myTriangle.getA(), myTriangle.getB(), myTriangle.getC());
-//
-//                tamGiacThreadSet = new ThreadTriangleSet(triangleThread);
-//                tamGiacThreadGet = new ThreadTriangleGet(triangleThread, this);
-//                tamGiacThreadSet.start();
-//                tamGiacThreadGet.start();
-//                // wait for threads to end
-//                try {
-//                    tamGiacThreadSet.join();
-//                    tamGiacThreadGet.join();
-//                } catch (Exception e) {
-//                    System.out.println("Interrupted");
-//                }
-//
-//            }
-
+            listShape.clearSelection();
+//            shape = listShapeInfo.get(selectedRotating);
         } else {
             TrucToaDo.tempFlag = null;
-            //selectXoay sai là dừng quay
         }
-        
-
-
-
+        repaint();
     }//GEN-LAST:event_pnMainMousePressed
 
     private void pnMainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseReleased
@@ -1049,27 +963,13 @@ public class pn2D extends javax.swing.JPanel {
                     start,
                     end));
         }
-        tfx0.setText("");
-        tfx1.setText("");
-        tfx2.setText("");
-        tfy0.setText("");
-        tfy1.setText("");
-        tfy2.setText("");
-        tfa.setText("");
-        tfb.setText("");
-        tfr.setText("");
-        tfh.setText("");
-        tfX1.setText("");
-        tfX2.setText("");
-        tfY1.setText("");
-        tfY2.setText("");
+        setNullTf();
         listIndexSelected = null;
         if (shape.getName() != null) {
             listShapeInfo.add(shape);
             setListShape();
             repaint();
         }
-
     }//GEN-LAST:event_pnMainMouseReleased
 
     private void lbHinhTronMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbHinhTronMousePressed
@@ -1090,7 +990,7 @@ public class pn2D extends javax.swing.JPanel {
         }
         selectTron = !selectTron;
 
-        mode = DRAW_CIRCLE;// TODO add your handling code here:
+        mode = DRAW_CIRCLE;
     }//GEN-LAST:event_lbHinhTronMousePressed
 
     private void listShapeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listShapeMousePressed
@@ -1103,23 +1003,10 @@ public class pn2D extends javax.swing.JPanel {
             shape = listShapeInfo.get(listIndexSelected[0]);
             name = listShapeInfo.get(listIndexSelected[0]).getName();
             selectedRotating = listIndexSelected[0];
-            tfx0.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getX0()));
-            tfx1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getX1()));
-            tfx2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getX2()));
-            tfy0.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getY0()));
-            tfy1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getY1()));
-            tfy2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getY2()));
-            tfa.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getA()));
-            tfb.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getB()));
-            tfr.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getR()));
-            tfh.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getH()));
-            tfX1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getxStart()));
-            tfX2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getxEnd()));
-            tfY1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getyStart()));
-            tfY2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getyEnd()));
+            setTextTf();
         }
 
-// TODO add your handling code here:
+
     }//GEN-LAST:event_listShapeMousePressed
 
     private void lbDeleteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbDeleteMousePressed
@@ -1132,26 +1019,16 @@ public class pn2D extends javax.swing.JPanel {
                 pnMain.repaint();
                 setListShape();
                 listIndexSelected = null;
-                tfx0.setText("");
-                tfx1.setText("");
-                tfx2.setText("");
-                tfy0.setText("");
-                tfy1.setText("");
-                tfy2.setText("");
-                tfa.setText("");
-                tfb.setText("");
-                tfr.setText("");
-                tfh.setText("");
-                tfX1.setText("");
-                tfX2.setText("");
-                tfY1.setText("");
-                tfY2.setText("");
+                setNullTf();
+                TrucToaDo.tempFlag = null;
+                selectXoay = false;
+                lbXoay.setBorder(null);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Chọn Shape");
         }
-
-        // TODO add your handling code here:
+        repaint();
+        
     }//GEN-LAST:event_lbDeleteMousePressed
 
     private void lbXoaTatCaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbXoaTatCaMousePressed
@@ -1164,24 +1041,15 @@ public class pn2D extends javax.swing.JPanel {
                 pnMain.repaint();
                 setListShape();
                 listIndexSelected = null;
-                tfx0.setText("");
-                tfx1.setText("");
-                tfx2.setText("");
-                tfy0.setText("");
-                tfy1.setText("");
-                tfy2.setText("");
-                tfa.setText("");
-                tfb.setText("");
-                tfr.setText("");
-                tfh.setText("");
-                tfX1.setText("");
-                tfX2.setText("");
-                tfY1.setText("");
-                tfY2.setText("");
+                setNullTf();
+                TrucToaDo.tempFlag = null;
+                selectXoay = false;
+                lbXoay.setBorder(null);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Danh sách rỗng");
-        }// TODO add your handling code here:
+        }
+        repaint();
     }//GEN-LAST:event_lbXoaTatCaMousePressed
 
     private void lbXoayMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbXoayMousePressed
@@ -1200,72 +1068,150 @@ public class pn2D extends javax.swing.JPanel {
         } else {
             TrucToaDo.tempFlag = null;
             lbXoay.setBorder(null);
-            // xoá danh sach khi bấm huỷ cờ 
-//            if (tGet != null) {
-////                tGet.getRectThread().getListA().clear();
-//            }
-//            if (tamGiacThreadGet != null) {
-//                tamGiacThreadGet.getTriangle().getListA().clear();
-//            }
-            repaint();
         }
-
-        selectXoay = !selectXoay;// TODO add your handling code here:
+        repaint();
+        selectXoay = !selectXoay;
     }//GEN-LAST:event_lbXoayMousePressed
 
     private void jSliderGocQuayStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderGocQuayStateChanged
-        // TODO add your handling code here:
-        double gocQuay = (double) jSliderGocQuay.getValue() * Math.PI / 100 * 10;
-        Point trucQuay = TrucToaDo.convertDescart(pQuay);
-        for (int i = 0; i < listIndexSelected.length; i++) {
-            if (TrucToaDo.shapeList.get(i) instanceof Ellipse) {
-                TrucToaDo.shapeList.get(listIndexSelected[i]).xoay(gocQuay, trucQuay);
-                TrucToaDo.shapeList.get(listIndexSelected[i]).setRadianAndAnchor(gocQuay, trucQuay);
-                repaint();
+        
+        if (selectXoay) {
+            if (listShape.getSelectedIndex() >= 0) {
+                double gocQuay = (double) jSliderGocQuay.getValue() * Math.PI / 100 * 10;
+                Point trucQuay = TrucToaDo.convertDescart(pQuay);
+                for (int i = 0; i < listIndexSelected.length; i++) {
+                    if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Ellipse) {
+                        TrucToaDo.shapeList.get(listIndexSelected[i]).xoay(gocQuay, trucQuay);
+                        TrucToaDo.shapeList.get(listIndexSelected[i]).setRadianAndAnchor(gocQuay, trucQuay);
+                        Ellipse e = (Ellipse) TrucToaDo.shapeList.get(listIndexSelected[i]);
+                        setEllipseChanged(e, listIndexSelected[i]);
+                        repaint();
+                    } else {
+                        TrucToaDo.shapeList.get(listIndexSelected[i]).xoay(gocQuay, trucQuay);
+                        if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Circle) {
+                            Circle c = (Circle) TrucToaDo.shapeList.get(listIndexSelected[i]);
+                            setCircleChanged(c, listIndexSelected[i]);
+
+                        } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyRect) {
+                            MyRect r = (MyRect) TrucToaDo.shapeList.get(listIndexSelected[i]);
+                            setRectChanged(r, listIndexSelected[i]);
+
+                        } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyLine) {
+                            MyLine l = (MyLine) TrucToaDo.shapeList.get(listIndexSelected[i]);
+                            setLineChanged(l, listIndexSelected[i]);
+
+                        } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Triangle) {
+                            Triangle t = (Triangle) TrucToaDo.shapeList.get(listIndexSelected[i]);
+                            setTriangleChanged(t, listIndexSelected[i]);
+                        }
+                        repaint();
+                    }
+                }
             } else {
-                TrucToaDo.shapeList.get(listIndexSelected[i]).xoay(gocQuay, trucQuay);
-                repaint();
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn shape!");
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn cờ!");
         }
     }//GEN-LAST:event_jSliderGocQuayStateChanged
 
     private void lbLatOyMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLatOyMousePressed
-        // TODO add your handling code here:
-        for (int i = 0; i < listIndexSelected.length; i++) {
-            TrucToaDo.shapeList.get(listIndexSelected[i]).doiXungOy();
-            TrucToaDo.tempShape = null;
-            repaint();
+        
+        if (listShape.getSelectedIndex() >= 0) {
+            for (int i = 0; i < listIndexSelected.length; i++) {
+                TrucToaDo.shapeList.get(listIndexSelected[i]).doiXungOy();
+                TrucToaDo.tempShape = null;
+                repaint();
+                if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Circle) {
+                    setCircleChanged((Circle) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyRect) {
+                    setRectChanged((MyRect) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyLine) {
+                    setLineChanged((MyLine) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Triangle) {
+                    setTriangleChanged((Triangle) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Ellipse) {
+                    setEllipseChanged((Ellipse) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn shape!");
         }
     }//GEN-LAST:event_lbLatOyMousePressed
 
     private void lbLatOxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLatOxMousePressed
-        // TODO add your handling code here:
-        for (int i = 0; i < listIndexSelected.length; i++) {
-            TrucToaDo.shapeList.get(listIndexSelected[i]).doiXungOx();
-            TrucToaDo.tempShape = null;
-            repaint();
-        }
+        
+        if (listShape.getSelectedIndex() >= 0) {
 
+            for (int i = 0; i < listIndexSelected.length; i++) {
+                TrucToaDo.shapeList.get(listIndexSelected[i]).doiXungOx();
+                TrucToaDo.tempShape = null;
+                repaint();
+                if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Circle) {
+                    setCircleChanged((Circle) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyRect) {
+                    setRectChanged((MyRect) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyLine) {
+                    setLineChanged((MyLine) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Triangle) {
+                    setTriangleChanged((Triangle) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Ellipse) {
+                    setEllipseChanged((Ellipse) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn shape!");
+        }
     }//GEN-LAST:event_lbLatOxMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        for (int i = 0; i < listIndexSelected.length; i++) {
-            TrucToaDo.shapeList.get(listIndexSelected[i]).dich(Integer.valueOf(jTextFieldDiemDenX.getText()), Integer.valueOf(jTextFieldDiemDenY.getText()));
-            TrucToaDo.tempShape = null;
-            repaint();
-
+        
+        if (listShape.getSelectedIndex() >= 0) {
+            for (int i = 0; i < listIndexSelected.length; i++) {
+                TrucToaDo.shapeList.get(listIndexSelected[i]).dich(Integer.valueOf(jTextFieldDiemDenX.getText()), Integer.valueOf(jTextFieldDiemDenY.getText()));
+                TrucToaDo.tempShape = null;
+                repaint();
+                if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Circle) {
+                    setCircleChanged((Circle) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyRect) {
+                    setRectChanged((MyRect) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyLine) {
+                    setLineChanged((MyLine) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Triangle) {
+                    setTriangleChanged((Triangle) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Ellipse) {
+                    setEllipseChanged((Ellipse) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn shape!");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-
-        for (int i = 0; i < listIndexSelected.length; i++) {
-            TrucToaDo.shapeList.get(listIndexSelected[i]).thuPhong(Double.valueOf(jTextFieldThuPhong.getText()));
-            TrucToaDo.tempShape = null;
-            repaint();
+        
+        if (listShape.getSelectedIndex() >= 0) {
+            for (int i = 0; i < listIndexSelected.length; i++) {
+                TrucToaDo.shapeList.get(listIndexSelected[i]).thuPhong(Double.valueOf(jTextFieldThuPhong.getText()));
+                TrucToaDo.tempShape = null;
+                repaint();
+                if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Circle) {
+                    setCircleChanged((Circle) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyRect) {
+                    setRectChanged((MyRect) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyLine) {
+                    setLineChanged((MyLine) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Triangle) {
+                    setTriangleChanged((Triangle) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Ellipse) {
+                    setEllipseChanged((Ellipse) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn shape!");
         }
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1290,6 +1236,10 @@ public class pn2D extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSlider jSliderGocQuay;
     private javax.swing.JTextField jTextFieldDiemDenX;
     private javax.swing.JTextField jTextFieldDiemDenY;

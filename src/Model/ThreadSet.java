@@ -5,13 +5,7 @@
  */
 package Model;
 
-import java.awt.Graphics;
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JComponent;
-import sun.awt.www.content.image.gif;
 
 /**
  *
@@ -26,7 +20,7 @@ public class ThreadSet extends Thread {
     public ThreadSet(RectThread rectThread) {
         this.rectThread = rectThread;
 
-        System.out.println("Creating " + nameThread);
+        
 
     }
 
@@ -40,9 +34,7 @@ public class ThreadSet extends Thread {
 
     @Override
     public void run() {
-
         {
-            System.out.println("Running " + nameThread);
             Point a1 = rectThread.getA();
             Point b1 = rectThread.getB();
             Point c1 = rectThread.getC();
@@ -60,24 +52,12 @@ public class ThreadSet extends Thread {
                 c3 = Rotation.rotateAroundO(c1.x, c1.y, -angle * i, rectThread.coordinateNew);
                 d3 = Rotation.rotateAroundO(d1.x, d1.y, -angle * i, rectThread.coordinateNew);
 
-//                Point aaa = new Point();
-//                Point bbb = new Point();
-//                Point ccc = new Point();
-//                Point ddd = new Point();
-//                aaa = TrucToaDo.expandX(a3);
-//                bbb = TrucToaDo.expandX(b3);
-//                ccc = TrucToaDo.expandX(c3);
-//                ddd = TrucToaDo.expandX(d3);
                 //CHU NHAT
                 rectThread.getListA().add(a3);
                 rectThread.getListB().add(b3);
                 rectThread.getListC().add(c3);
                 rectThread.getListD().add(d3);
-
-                System.out.println(" Hình chữ nhật quay " + i);
-
             }
-
         }
     }
 }

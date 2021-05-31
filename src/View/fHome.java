@@ -9,6 +9,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
@@ -53,6 +54,9 @@ public class fHome extends javax.swing.JFrame {
         UIManager.put("OptionPane.border", new LineBorder(new Color(214, 224, 250), 1));
         ToolTipManager.sharedInstance().setInitialDelay(600);
 
+        this.setTitle("simpleDRAW");
+        ImageIcon img = new ImageIcon("src\\pic\\icons8_crayon_20px.png");
+        this.setIconImage(img.getImage());
     }
 
     /**
@@ -145,7 +149,7 @@ public class fHome extends javax.swing.JFrame {
         pnHeader.add(lb2D, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 50, 50));
 
         lbNhomTacGia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lbNhomTacGia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictrue/icons8_info_30px.png"))); // NOI18N
+        lbNhomTacGia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pic/icons8_info_30px.png"))); // NOI18N
         lbNhomTacGia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lbNhomTacGia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {

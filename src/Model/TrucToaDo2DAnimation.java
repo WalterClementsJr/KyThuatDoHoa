@@ -73,7 +73,6 @@ public class TrucToaDo2DAnimation extends JPanel {
 
             @Override
             public void run() {
-                int t = 0;
                 if (pause) {
                     return;
                 }
@@ -119,7 +118,6 @@ public class TrucToaDo2DAnimation extends JPanel {
                 heliX = heliY = 0;
 
                 for (int i = 0; i < stuffDraw.size(); i++) {
-                    // dich cac object
                     stuffDraw.get(i).dich(0, -1);
 
                     if (stuffDraw.get(i).isOut(100)) {
@@ -136,8 +134,7 @@ public class TrucToaDo2DAnimation extends JPanel {
                 repaint();
             }
         };
-
-        timer.scheduleAtFixedRate(task, 0, 50);
+        timer.scheduleAtFixedRate(task, 0, 90);
     }
 
     @Override

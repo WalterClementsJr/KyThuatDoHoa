@@ -9,9 +9,9 @@ public interface Shapes2D {
     static final Color DEFAULT_COLOR = Color.BLACK;
 
     public void draw(Graphics g);
-    
-    public void draw(Graphics g, Color c);   
-    
+
+    public void draw(Graphics g, Color c);
+
     public void setRadianAndAnchor(double radian, Point anchor);//dành cho vẽ elip
 
     public void fill(Graphics g, Color color);
