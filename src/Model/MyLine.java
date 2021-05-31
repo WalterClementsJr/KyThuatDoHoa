@@ -7,11 +7,13 @@ import java.awt.Point;
 public class MyLine implements Shapes2D {
 
     private Point A, B, originalA, originalB;
-    public Color colorShape=Color.BLACK;
+    public Color colorShape = Color.BLACK;
+
     @Override
     public void setColor(Color colorShape) {
-        this.colorShape=colorShape;
+        this.colorShape = colorShape;
     }
+
     public MyLine(Point a, Point b) {
         A = a;
         B = b;

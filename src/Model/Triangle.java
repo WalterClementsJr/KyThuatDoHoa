@@ -20,7 +20,6 @@ public class Triangle implements Shapes2D {
     int canh;
     public Color colorShape = Color.BLACK;
 
-
     @Override
     public void setColor(Color colorShape) {
         this.colorShape = colorShape;

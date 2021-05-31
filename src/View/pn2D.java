@@ -11,20 +11,12 @@ import Model.MyFlag;
 import Model.MyLine;
 import Model.MyRect;
 import Model.ShapeInfo;
-
-import Model.ThreadGet;
-import Model.ThreadSet;
-import Model.ThreadTriangleGet;
-import Model.ThreadTriangleSet;
 import Model.Triangle;
-
 import Model.TrucToaDo;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
@@ -37,10 +29,10 @@ import javax.swing.JOptionPane;
 public class pn2D extends javax.swing.JPanel {
 
     //mấy biến này đúng thì mới thực hiện chức năng
-    boolean selectDuongThang = false; //vẽ đường thẳng
-    boolean selectHCN = false; //vẽ hình chữ nhận
-    boolean selectTamGiac = false; //vẽ hình tam giác
-    boolean selectOval = false; //vẽ hình oval
+    boolean selectDuongThang = false;
+    boolean selectHCN = false;
+    boolean selectTamGiac = false;
+    boolean selectOval = false;
     boolean selectTron = false;
     boolean selectXoay = false;
 
@@ -58,54 +50,14 @@ public class pn2D extends javax.swing.JPanel {
     DefaultListModel<String> dlm;
     int[] listIndexSelected = null;
     String name = "";
-    Point pQuay;  //TOA ĐỘ Cờ
+    Point pQuay;  // TOA ĐỘ Cờ
 
-    //QUAY HINH CHU NHAT
-    ArrayList<Point> listA = new ArrayList<>();
-    ArrayList<Point> listB = new ArrayList<>();
-    ArrayList<Point> listC = new ArrayList<>();
-    ArrayList<Point> listD = new ArrayList<>();
-    static int iAuto = 1;
-    //QUAY tam giac
-    ArrayList<Point> listTA = new ArrayList<>();
-    ArrayList<Point> listTB = new ArrayList<>();
-    ArrayList<Point> listTC = new ArrayList<>();
-    //QUAY HINH Duong thăng
-    ArrayList<Point> listDt = new ArrayList<>();
-
-    // luong quay hình chứ nhật
-    public static ThreadSet tSet = null;
-    public static ThreadGet tGet = null;
-    public static final ThreadLocal<Thread> threadLocal = new ThreadLocal<>();
-
-    // luồng quay tam giac
-    public static ThreadTriangleSet tamGiacThreadSet = null;
-    public static ThreadTriangleGet tamGiacThreadGet = null;
-
-    ;
-    public Timer timer = new Timer("MyTimer");
-    public static int counter = 1;
-    TimerTask timerTask;
     public static int selectedRotating = 0;
 
     public pn2D() {
         initComponents();
         setListShape();
         lbFlag.setVisible(false);
-
-        timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                counter++;//increments the counter
-                if (tGet != null) {
-                    tGet.run();
-                }
-                if (tamGiacThreadGet != null) {
-                    tamGiacThreadGet.run();
-                }
-            }
-        };
-        timer.scheduleAtFixedRate(timerTask, 30, 100);//this line starts the timer at the same time its executed
     }
 
     public void setListShape() {
@@ -138,6 +90,8 @@ public class pn2D extends javax.swing.JPanel {
         tfy1.setText(String.valueOf(r.getB().y));
         tfx2.setText(String.valueOf(r.getC().x));
         tfy2.setText(String.valueOf(r.getC().y));
+        tfa.setText(String.valueOf(Math.abs(r.getA().x - r.getB().x)));
+        tfb.setText(String.valueOf(Math.abs(r.getA().y - r.getC().y)));
         listShapeInfo.get(index).setX0(r.getA().x);
         listShapeInfo.get(index).setY0(r.getA().y);
         listShapeInfo.get(index).setX1(r.getB().x);
@@ -767,7 +721,6 @@ public class pn2D extends javax.swing.JPanel {
             lbHinhDuongThang.setBorder(null);
         }
         selectDuongThang = !selectDuongThang;
-
         mode = DRAW_LINE;
     }//GEN-LAST:event_lbHinhDuongThangMousePressed
 
@@ -789,7 +742,6 @@ public class pn2D extends javax.swing.JPanel {
             lbHinhCN.setBorder(null);
         }
         selectHCN = !selectHCN;
-
         mode = DRAW_RECT;
     }//GEN-LAST:event_lbHinhCNMousePressed
 
@@ -811,7 +763,6 @@ public class pn2D extends javax.swing.JPanel {
             lbHinhTamGiac.setBorder(null);
         }
         selectTamGiac = !selectTamGiac;
-
         mode = DRAW_TRIANGLE;
     }//GEN-LAST:event_lbHinhTamGiacMousePressed
 
@@ -833,10 +784,7 @@ public class pn2D extends javax.swing.JPanel {
             lbHinhOval.setBorder(null);
         }
         selectOval = !selectOval;
-
-//        mode = DRAW_CIRCLE;
         mode = DRAW_ELLIPSE;
-
     }//GEN-LAST:event_lbHinhOvalMousePressed
 
     private void pnMainMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseEntered
@@ -846,7 +794,6 @@ public class pn2D extends javax.swing.JPanel {
         if (selectXoay) {
             pnMain.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
         }
-
     }//GEN-LAST:event_pnMainMouseEntered
 
     private void pnMainMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseExited
@@ -861,8 +808,6 @@ public class pn2D extends javax.swing.JPanel {
         int xJv = evt.getX() + 50;
         int yJv = evt.getY() + 50;
         toadoJava.setText(xJv + " : " + yJv);
-//       
-
     }//GEN-LAST:event_pnMainMouseMoved
 
     private void pnMainMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnMainMouseDragged
@@ -887,9 +832,6 @@ public class pn2D extends javax.swing.JPanel {
                     start, end);
 
         } else if (mode.equals(DRAW_TRIANGLE) && selectTamGiac) {
-//            TrucToaDo.tempShape = new Triangle(
-//                    start,
-//                    (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))/5);
             TrucToaDo.tempShape = new Triangle(
                     start,
                     end);
@@ -915,7 +857,6 @@ public class pn2D extends javax.swing.JPanel {
             TrucToaDo.tempFlag = new MyFlag(x1, y1);
             pQuay = new Point(x1, y1);
             listShape.clearSelection();
-//            shape = listShapeInfo.get(selectedRotating);
         } else {
             TrucToaDo.tempFlag = null;
         }
@@ -999,21 +940,16 @@ public class pn2D extends javax.swing.JPanel {
             listIndexSelected = null;
         }
         if (listIndexSelected != null) {
-            for (int i=0;i<TrucToaDo.shapeList.size();i++)
-            {
-                for (int j=0;j<listIndexSelected.length;j++)
-                {
-                    if (i==listIndexSelected[j])
-                    {
+            for (int i = 0; i < TrucToaDo.shapeList.size(); i++) {
+                for (int j = 0; j < listIndexSelected.length; j++) {
+                    if (i == listIndexSelected[j]) {
                         TrucToaDo.shapeList.get(i).setColor(Color.BLUE);
                         break;
-                    }
-                    else
-                    {
+                    } else {
                         TrucToaDo.shapeList.get(i).setColor(Color.BLACK);
                     }
                 }
-                
+
             }
             shape = listShapeInfo.get(listIndexSelected[0]);
             name = listShapeInfo.get(listIndexSelected[0]).getName();

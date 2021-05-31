@@ -7,6 +7,7 @@ import java.awt.Point;
 public interface Shapes2D {
 
     static final Color DEFAULT_COLOR = Color.BLACK;
+
     public void setColor(Color colorShape);
 
     public void draw(Graphics g);

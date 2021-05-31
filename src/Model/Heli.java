@@ -22,11 +22,13 @@ public class Heli implements Shapes2D {
     ArrayList<Triangle> blades = new ArrayList<>();
 
     HeliBody body;
-    public Color colorShape=Color.BLACK;
+    public Color colorShape = Color.BLACK;
+
     @Override
     public void setColor(Color colorShape) {
-        this.colorShape=colorShape;
+        this.colorShape = colorShape;
     }
+
     /**
      * draw windmill from center
      *
@@ -142,11 +144,13 @@ class HeliBody implements Shapes2D {
 
     Triangle head, tail;
     MyRect box;
-    public Color colorShape=Color.BLACK;
+    public Color colorShape = Color.BLACK;
+
     @Override
     public void setColor(Color colorShape) {
-        this.colorShape=colorShape;
+        this.colorShape = colorShape;
     }
+
     public HeliBody(Point center, int width, int height) {
         head = new Triangle(
                 new Point(center.x, center.y + height / 5),

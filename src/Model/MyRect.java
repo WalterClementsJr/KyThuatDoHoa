@@ -9,11 +9,13 @@ public class MyRect implements Shapes2D {
 
     private Point A, B, C, D;
     private Point originalA, originalB, originalC, originalD;
-    public Color colorShape=Color.BLACK;
+    public Color colorShape = Color.BLACK;
+
     @Override
     public void setColor(Color colorShape) {
-        this.colorShape=colorShape;
+        this.colorShape = colorShape;
     }
+
     public MyRect(Point a, Point c) {
         A = a;
         C = c;

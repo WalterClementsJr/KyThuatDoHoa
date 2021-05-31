@@ -18,10 +18,11 @@ public class Circle implements Shapes2D {
 
     Point O, originalO;
     int radius, originalRadius;
-    public Color colorShape=Color.BLACK;
+    public Color colorShape = Color.BLACK;
+
     @Override
     public void setColor(Color colorShape) {
-        this.colorShape=colorShape;
+        this.colorShape = colorShape;
     }
 
     public Circle(Point A, int radius) {
