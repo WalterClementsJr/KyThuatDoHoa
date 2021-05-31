@@ -639,9 +639,9 @@ public class pn2D extends javax.swing.JPanel {
         jButton1.setToolTipText("Tịnh tiến 1 khoảng x, y");
         jButton1.setBorder(null);
         jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton1MousePressed(evt);
             }
         });
         pnFooter.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 30, 30));
@@ -1000,10 +1000,27 @@ public class pn2D extends javax.swing.JPanel {
             listIndexSelected = null;
         }
         if (listIndexSelected != null) {
+            for (int i=0;i<TrucToaDo.shapeList.size();i++)
+            {
+                for (int j=0;j<listIndexSelected.length;j++)
+                {
+                    if (i==listIndexSelected[j])
+                    {
+                        TrucToaDo.shapeList.get(i).setColor(Color.BLUE);
+                        break;
+                    }
+                    else
+                    {
+                        TrucToaDo.shapeList.get(i).setColor(Color.BLACK);
+                    }
+                }
+                
+            }
             shape = listShapeInfo.get(listIndexSelected[0]);
             name = listShapeInfo.get(listIndexSelected[0]).getName();
             selectedRotating = listIndexSelected[0];
             setTextTf();
+            repaint();
         }
 
 
@@ -1164,30 +1181,6 @@ public class pn2D extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_lbLatOxMousePressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        if (listShape.getSelectedIndex() >= 0) {
-            for (int i = 0; i < listIndexSelected.length; i++) {
-                TrucToaDo.shapeList.get(listIndexSelected[i]).dich(Integer.valueOf(jTextFieldDiemDenX.getText()), Integer.valueOf(jTextFieldDiemDenY.getText()));
-                TrucToaDo.tempShape = null;
-                repaint();
-                if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Circle) {
-                    setCircleChanged((Circle) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
-                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyRect) {
-                    setRectChanged((MyRect) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
-                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyLine) {
-                    setLineChanged((MyLine) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
-                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Triangle) {
-                    setTriangleChanged((Triangle) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
-                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Ellipse) {
-                    setEllipseChanged((Ellipse) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn shape!");
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         if (listShape.getSelectedIndex() >= 0) {
@@ -1213,6 +1206,30 @@ public class pn2D extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+        // TODO add your handling code here:
+        if (listShape.getSelectedIndex() >= 0) {
+            for (int i = 0; i < listIndexSelected.length; i++) {
+                TrucToaDo.shapeList.get(listIndexSelected[i]).dich(Integer.valueOf(jTextFieldDiemDenX.getText()), Integer.valueOf(jTextFieldDiemDenY.getText()));
+                TrucToaDo.tempShape = null;
+                repaint();
+                if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Circle) {
+                    setCircleChanged((Circle) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyRect) {
+                    setRectChanged((MyRect) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof MyLine) {
+                    setLineChanged((MyLine) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Triangle) {
+                    setTriangleChanged((Triangle) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                } else if (TrucToaDo.shapeList.get(listIndexSelected[i]) instanceof Ellipse) {
+                    setEllipseChanged((Ellipse) TrucToaDo.shapeList.get(listIndexSelected[i]), listIndexSelected[i]);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn shape!");
+        }
+    }//GEN-LAST:event_jButton1MousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

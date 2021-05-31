@@ -21,6 +21,11 @@ public class Ellipse implements Shapes2D {
     static int dem = 0;
     double radian = 0;
     Point anchor = new Point(0, 0);
+    public Color colorShape=Color.BLACK;
+    @Override
+    public void setColor(Color colorShape) {
+        this.colorShape=colorShape;
+    }
 
     public Point getO() {
         return O;
@@ -204,6 +209,7 @@ public class Ellipse implements Shapes2D {
 
     @Override
     public void draw(Graphics g) {
+        g.setColor(colorShape);
         long x, y, fx, fy, a2, b2, p;
         x = 0;
         y = cao;
@@ -242,7 +248,7 @@ public class Ellipse implements Shapes2D {
             }
             plotWithRotate(g, originalO.x, originalO.y, Math.round(x), Math.round(y), radian, anchor);
         }
-        O = originalO;
+//        O = originalO;
     }
 
     @Override

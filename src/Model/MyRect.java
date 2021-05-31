@@ -9,7 +9,11 @@ public class MyRect implements Shapes2D {
 
     private Point A, B, C, D;
     private Point originalA, originalB, originalC, originalD;
-
+    public Color colorShape=Color.BLACK;
+    @Override
+    public void setColor(Color colorShape) {
+        this.colorShape=colorShape;
+    }
     public MyRect(Point a, Point c) {
         A = a;
         C = c;
@@ -35,7 +39,7 @@ public class MyRect implements Shapes2D {
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(DEFAULT_COLOR);
+        g.setColor(colorShape);
         bresenhamLine(g, A.x, A.y, B.x, B.y);
         bresenhamLine(g, B.x, B.y, C.x, C.y);
         bresenhamLine(g, C.x, C.y, D.x, D.y);

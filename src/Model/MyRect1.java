@@ -56,6 +56,11 @@ public class MyRect1 implements Shapes2D {
     }
 
     @Override
+    public void setColor(Color colorShape) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
     public void draw(Graphics g) {
         g.setColor(DEFAULT_COLOR);
         bresenhamLine(g, A.x, A.y, B.x, B.y);

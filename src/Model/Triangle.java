@@ -18,7 +18,12 @@ public class Triangle implements Shapes2D {
     private Point A, B, C;
     private Point originalA, originalB, originalC;
     int canh;
+    public Color colorShape = Color.BLACK;
 
+    @Override
+    public void setColor(Color colorShape) {
+        this.colorShape = colorShape;
+    }
 //    public Triangle(Point a, int canh) {
 //        A = a;
 //        this.canh = canh;
@@ -56,7 +61,7 @@ public class Triangle implements Shapes2D {
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(Color.BLACK);
+        g.setColor(colorShape);
 
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, C.x, C.y, B.x, B.y);
