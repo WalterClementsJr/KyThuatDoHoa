@@ -20,8 +20,6 @@ public class ThreadSet extends Thread {
     public ThreadSet(RectThread rectThread) {
         this.rectThread = rectThread;
 
-        
-
     }
 
     public RectThread getRectThread() {

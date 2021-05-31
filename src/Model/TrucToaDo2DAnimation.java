@@ -24,7 +24,7 @@ public class TrucToaDo2DAnimation extends JPanel {
     public static int deltaX = 375 / 5;//nửa chiều dài của trục Ox chia cho độ lớn 1 pixel
     public static int deltaY = 250 / 5;//nửa chiều dài của trục oy chia cho độ lớn 1 pixel
     public static int MAX_OBJECT = 15;
-    
+
     // chiều tịnh tiến heli
     public static int heliX, heliY;
     public static final double ANGLE = (2 * Math.PI / 8);

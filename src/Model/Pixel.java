@@ -25,7 +25,7 @@ public class Pixel extends JComponent {
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
+        super.paintComponent(g);
         if (x >= 0 && y >= 0) {
             x = (x + deltaX - 1) * 5;
             y = (deltaY - y) * 5;

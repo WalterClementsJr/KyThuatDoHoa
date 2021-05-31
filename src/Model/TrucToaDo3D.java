@@ -41,7 +41,7 @@ public class TrucToaDo3D extends JPanel {
     }
 
     public void veTrucToaDo(Graphics g) {
-        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
+        super.paintComponent(g);
         int chieuDaiPanel = this.getWidth();
         int chieuRongPanel = this.getHeight();
         //vẽ các đường dọc
@@ -59,8 +59,6 @@ public class TrucToaDo3D extends JPanel {
         bresenhamLine(g, 0, 0, 0, deltaY);
         bresenhamLine(g, 0, 0, deltaX - 1, 0);
         bresenhamLine(g, -49, -49, 0, 0);
-//            veDoanThang(g, 0, -deltaY + 1, 0, deltaY);
-//            veDoanThang(g, -deltaX, 0, deltaX - 1, 0);
 
         g.setColor(Color.black);
     }

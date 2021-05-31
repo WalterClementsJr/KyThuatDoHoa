@@ -32,7 +32,7 @@ public class MyFlag implements Shapes2D {
     public void draw(Graphics g) {
         try {
             BufferedImage image
-                    = ImageIO.read(new File("src/pictrue/icons8_flag_filled_20px_2.png"));
+                    = ImageIO.read(new File("src/pic/icons8_flag_filled_20px_2.png"));
             if (image != null) {
                 g.drawImage(image, x, y, null);
             }
@@ -43,12 +43,12 @@ public class MyFlag implements Shapes2D {
 
     @Override
     public void draw(Graphics g, Color c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void fill(Graphics g, Color color) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -57,7 +57,7 @@ public class MyFlag implements Shapes2D {
 
     @Override
     public void dich(int x, int y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -70,15 +70,15 @@ public class MyFlag implements Shapes2D {
 
     @Override
     public void thuPhong(double heSoThuPhong) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void setRadianAndAnchor(double radian, Point anchor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public boolean isOut(int maxHeight) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
