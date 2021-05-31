@@ -22,11 +22,12 @@ public class Heli implements Shapes2D {
     ArrayList<Triangle> blades = new ArrayList<>();
 
     HeliBody body;
-    public Color colorShape = Color.BLACK;
+
+    public Color heliColor = new Color(99, 33, 61);
 
     @Override
     public void setColor(Color colorShape) {
-        this.colorShape = colorShape;
+        this.heliColor = colorShape;
     }
 
     /**
@@ -39,32 +40,42 @@ public class Heli implements Shapes2D {
     public Heli(Point center, int width, int height) {
         this.center = center;
         body = new HeliBody(center, width, height);
+        body.setColor(heliColor);
         int h = height * 7 / 10;
         int w = h / 3;
-        blades.add(new Triangle(
+        Triangle t1 = new Triangle(
                 new Point(center.x, center.y),
                 new Point(center.x + w, center.y + h),
-                new Point(center.x - w, center.y + h)));
-        blades.add(new Triangle(
+                new Point(center.x - w, center.y + h));
+        Triangle t2 = new Triangle(
                 new Point(center.x, center.y),
                 new Point(center.x + h, center.y + w),
-                new Point(center.x + h, center.y - w)));
-        blades.add(new Triangle(
+                new Point(center.x + h, center.y - w));
+        Triangle t3 = new Triangle(
                 new Point(center.x, center.y),
                 new Point(center.x - w, center.y - h),
-                new Point(center.x + w, center.y - h)));
-        blades.add(new Triangle(
+                new Point(center.x + w, center.y - h));
+        Triangle t4 = new Triangle(
                 new Point(center.x, center.y),
                 new Point(center.x - h, center.y + w),
-                new Point(center.x - h, center.y - w)));
+                new Point(center.x - h, center.y - w));
+        t1.setColor(heliColor);
+        t2.setColor(heliColor);
+        t3.setColor(heliColor);
+        t4.setColor(heliColor);
+
+        blades.add(t1);
+        blades.add(t2);
+        blades.add(t3);
+        blades.add(t4);
     }
 
     @Override
     public void draw(Graphics g) {
         body.draw(g);
-        for (Triangle t : blades) {
+        blades.forEach(t -> {
             t.draw(g);
-        }
+        });
     }
 
     @Override
@@ -144,11 +155,11 @@ class HeliBody implements Shapes2D {
 
     Triangle head, tail;
     MyRect box;
-    public Color colorShape = Color.BLACK;
+    Color color;
 
     @Override
     public void setColor(Color colorShape) {
-        this.colorShape = colorShape;
+        this.color = colorShape;
     }
 
     public HeliBody(Point center, int width, int height) {
@@ -158,7 +169,7 @@ class HeliBody implements Shapes2D {
                 new Point(center.x + width / 2, center.y)) {
             @Override
             public void draw(Graphics g) {
-                g.setColor(DEFAULT_COLOR);
+                g.setColor(color);
                 TrucToaDo.bresenhamLine(g, getA().x, getA().y, getB().x, getB().y);
                 TrucToaDo.bresenhamLine(g, getC().x, getC().y, getA().x, getA().y);
             }
@@ -170,7 +181,7 @@ class HeliBody implements Shapes2D {
                 new Point(center.x + width / 5, (center.y - height * 3 / 5))) {
             @Override
             public void draw(Graphics g) {
-                g.setColor(DEFAULT_COLOR);
+                g.setColor(color);
                 TrucToaDo.bresenhamLine(g, getA().x, getA().y, getB().x, getB().y);
                 TrucToaDo.bresenhamLine(g, getC().x, getC().y, getA().x, getA().y);
             }
@@ -183,6 +194,7 @@ class HeliBody implements Shapes2D {
                 new Point(center.x - width / 2, (int) (center.y - height * 3 / 5))) {
             @Override
             public void draw(Graphics g) {
+                g.setColor(color);
                 bresenhamLine(g, getB().x, getB().y, getC().x, getC().y);
                 bresenhamLine(g, getC().x, getC().y, getD().x, getD().y);
                 bresenhamLine(g, getD().x, getD().y, getA().x, getA().y);
@@ -195,7 +207,6 @@ class HeliBody implements Shapes2D {
         head.draw(g);
         box.draw(g);
         tail.draw(g);
-
     }
 
     @Override

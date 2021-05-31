@@ -24,10 +24,6 @@ public class Triangle implements Shapes2D {
     public void setColor(Color colorShape) {
         this.colorShape = colorShape;
     }
-//    public Triangle(Point a, int canh) {
-//        A = a;
-//        this.canh = canh;
-//    }
 
     public Triangle(Point A, Point B, Point C) {
         this.A = A;
@@ -63,7 +59,6 @@ public class Triangle implements Shapes2D {
     @Override
     public void draw(Graphics g) {
         g.setColor(colorShape);
-
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, C.x, C.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, A.x, A.y, C.x, C.y);
@@ -72,7 +67,6 @@ public class Triangle implements Shapes2D {
     @Override
     public void draw(Graphics g, Color c) {
         g.setColor(c);
-
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, C.x, C.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, A.x, A.y, C.x, C.y);
@@ -194,5 +188,4 @@ public class Triangle implements Shapes2D {
     public boolean isOut(int maxHeight) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 }
