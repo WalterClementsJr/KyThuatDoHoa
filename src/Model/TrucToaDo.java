@@ -50,7 +50,7 @@ public class TrucToaDo extends JPanel {
     }
 
     public void veTrucToaDo(Graphics g) {
-        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
+        super.paintComponent(g);
         int chieuDaiPanel = this.getWidth();
         int chieuRongPanel = this.getHeight();
         //vẽ các đường dọc

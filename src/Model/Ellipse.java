@@ -257,7 +257,7 @@ public class Ellipse implements Shapes2D {
 
     @Override
     public void fill(Graphics g, Color color) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -318,5 +318,4 @@ public class Ellipse implements Shapes2D {
                     new Point(x + h, (int) (maxHeight / 2 + Math.random() * 10)));
         }
     }
-
 }

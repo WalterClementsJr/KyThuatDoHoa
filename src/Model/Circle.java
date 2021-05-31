@@ -84,12 +84,12 @@ public class Circle implements Shapes2D {
 
     @Override
     public void draw(Graphics g, Color c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void fill(Graphics g, Color color) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -124,15 +124,12 @@ public class Circle implements Shapes2D {
     }
 
     public boolean isOut(int maxHeight) {
-        if (O.y < -1 * maxHeight / 2 - 20) {
-            return true;
-        }
-        return false;
+        return O.y < -1 * maxHeight / 2 - 20;
     }
 
     @Override
     public void setRadianAndAnchor(double radian, Point anchor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public static Circle random(int maxWidth, int maxHeight, boolean fromTop) {

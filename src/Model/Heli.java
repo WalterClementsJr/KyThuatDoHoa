@@ -92,7 +92,7 @@ public class Heli implements Shapes2D {
 
     @Override
     public void doiXungOx() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -100,7 +100,7 @@ public class Heli implements Shapes2D {
     }
 
     public void bienDang(double heSoBienDang) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public Point getCenter() {
@@ -129,11 +129,11 @@ public class Heli implements Shapes2D {
 
     @Override
     public void setRadianAndAnchor(double radian, Point anchor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public boolean isOut(int maxHeight) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }
@@ -200,7 +200,7 @@ class HeliBody implements Shapes2D {
 
     @Override
     public void setRadianAndAnchor(double radian, Point anchor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -220,12 +220,12 @@ class HeliBody implements Shapes2D {
 
     @Override
     public void doiXungOx() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void doiXungOy() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void bienDang(double heSoBienDang) {
@@ -239,7 +239,7 @@ class HeliBody implements Shapes2D {
 
     @Override
     public boolean isOut(int maxHeight) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

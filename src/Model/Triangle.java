@@ -20,6 +20,7 @@ public class Triangle implements Shapes2D {
     int canh;
     public Color colorShape = Color.BLACK;
 
+
     @Override
     public void setColor(Color colorShape) {
         this.colorShape = colorShape;
@@ -28,6 +29,7 @@ public class Triangle implements Shapes2D {
 //        A = a;
 //        this.canh = canh;
 //    }
+
     public Triangle(Point A, Point B, Point C) {
         this.A = A;
         this.B = B;
@@ -39,7 +41,7 @@ public class Triangle implements Shapes2D {
 
     @Override
     public void setRadianAndAnchor(double radian, Point anchor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public Triangle(Point a, Point b) {
@@ -66,9 +68,6 @@ public class Triangle implements Shapes2D {
         TrucToaDo.bresenhamLine(g, A.x, A.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, C.x, C.y, B.x, B.y);
         TrucToaDo.bresenhamLine(g, A.x, A.y, C.x, C.y);
-//        A = originalA;
-//        B = originalB;
-//        C = originalC;
     }
 
     @Override
@@ -194,7 +193,7 @@ public class Triangle implements Shapes2D {
 
     @Override
     public boolean isOut(int maxHeight) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

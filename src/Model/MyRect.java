@@ -49,7 +49,7 @@ public class MyRect implements Shapes2D {
 
     @Override
     public void setRadianAndAnchor(double radian, Point anchor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

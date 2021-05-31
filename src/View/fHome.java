@@ -28,7 +28,7 @@ public class fHome extends javax.swing.JFrame {
     boolean select2Da = false;
     boolean select3D = false;
     CardLayout c;
-    
+
     public static boolean left = false;
     public static boolean up = false;
     public static boolean down = false;
@@ -348,10 +348,10 @@ public class fHome extends javax.swing.JFrame {
                 down = true;
                 break;
             case KeyEvent.VK_LEFT:
-                left =  true;
+                left = true;
                 break;
             case KeyEvent.VK_RIGHT:
-                right =  true;
+                right = true;
                 break;
         }
     }//GEN-LAST:event_pnMainKeyPressed

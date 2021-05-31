@@ -59,15 +59,14 @@ public class MyLine implements Shapes2D {
                 }
                 x += x_unit;
                 if (dem <= chieuDaiMoiDoan) {
-                    
                     TrucToaDo.putPixel(g, x, y);
                 } else {
                     if (dem > chieuDaiMoiDoan && dem <= chieuDaiMoiDoan + khoangCachMoiDoan) {
-                        
+
                         //không put pixel
                     } else {
                         dem = 1;
-                        
+
                         TrucToaDo.putPixel(g, x, y);
                     }
                 }
@@ -85,15 +84,15 @@ public class MyLine implements Shapes2D {
                 }
                 y += y_unit;
                 if (dem <= chieuDaiMoiDoan) {
-                    
+
                     TrucToaDo.putPixel(g, x, y);
                 } else {
                     if (dem > chieuDaiMoiDoan && dem <= chieuDaiMoiDoan + khoangCachMoiDoan) {
-                        
+
                         //không put pixel
                     } else {
                         dem = 1;
-                        
+
                         TrucToaDo.putPixel(g, x, y);
                     }
                 }
@@ -115,7 +114,7 @@ public class MyLine implements Shapes2D {
 
     @Override
     public void fill(Graphics g, Color color) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -126,7 +125,7 @@ public class MyLine implements Shapes2D {
 
     @Override
     public void setRadianAndAnchor(double radian, Point anchor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -161,7 +160,7 @@ public class MyLine implements Shapes2D {
     public void thuPhong(double heSoThuPhong) {
         //thu phóng và tịnh tiến về lại điểm A
         double tempAx = originalA.x;
-        
+
         tempAx = tempAx * heSoThuPhong;
         int dentaX = originalA.x - (int) Math.round(tempAx);
         A.x = originalA.x;
@@ -171,7 +170,7 @@ public class MyLine implements Shapes2D {
         A.y = originalA.y;
 
         double tempBx = originalB.x;
-        
+
         tempBx = tempBx * heSoThuPhong;
         B.x = (int) Math.round(tempBx) + dentaX;
         double tempBy = originalB.y;
@@ -185,6 +184,6 @@ public class MyLine implements Shapes2D {
 
     @Override
     public boolean isOut(int maxHeight) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
