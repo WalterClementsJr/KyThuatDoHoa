@@ -98,16 +98,28 @@ public class pn2D extends javax.swing.JPanel {
         tfy1.setText(String.valueOf(r.getB().y));
         tfx2.setText(String.valueOf(r.getC().x));
         tfy2.setText(String.valueOf(r.getC().y));
-        tfa.setText(String.valueOf(Math.abs(r.getA().x - r.getB().x)));
-        tfb.setText(String.valueOf(Math.abs(r.getA().y - r.getC().y)));
+        tfa.setText(String.valueOf((int) Math.sqrt((r.getA().x - r.getB().x)
+                * (r.getA().x - r.getB().x) 
+                + (r.getA().y  - r.getB().y )
+                * (r.getA().y  - r.getB().y ))));
+        tfb.setText(String.valueOf((int) Math.sqrt((r.getB().x - r.getC().x)
+                * (r.getB().x - r.getC().x) 
+                + (r.getB().y  - r.getC().y )
+                * (r.getB().y  - r.getC().y ))));
         listShapeInfo.get(index).setX0(r.getA().x);
         listShapeInfo.get(index).setY0(r.getA().y);
         listShapeInfo.get(index).setX1(r.getB().x);
         listShapeInfo.get(index).setY1(r.getB().y);
         listShapeInfo.get(index).setX2(r.getC().x);
         listShapeInfo.get(index).setY2(r.getC().y);
-        listShapeInfo.get(index).setA(Math.abs(r.getA().x - r.getB().x));
-        listShapeInfo.get(index).setB(Math.abs(r.getA().y - r.getC().y));
+        listShapeInfo.get(index).setA((int) Math.sqrt((r.getA().x - r.getB().x)
+                * (r.getA().x - r.getB().x) 
+                + (r.getA().y  - r.getB().y )
+                * (r.getA().y  - r.getB().y )));
+        listShapeInfo.get(index).setB((int) Math.sqrt((r.getB().x - r.getC().x)
+                * (r.getB().x - r.getC().x) 
+                + (r.getB().y  - r.getC().y )
+                * (r.getB().y  - r.getC().y )));
     }
 
     public void setLineChanged(MyLine l, int index) {
@@ -152,10 +164,6 @@ public class pn2D extends javax.swing.JPanel {
         tfb.setText("");
         tfr.setText("");
         tfh.setText("");
-        tfX1.setText("");
-        tfX2.setText("");
-        tfY1.setText("");
-        tfY2.setText("");
     }
 
     public void setTextTf() {
@@ -169,10 +177,6 @@ public class pn2D extends javax.swing.JPanel {
         tfb.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getB()));
         tfr.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getR()));
         tfh.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getH()));
-        tfX1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getxStart()));
-        tfX2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getxEnd()));
-        tfY1.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getyStart()));
-        tfY2.setText(String.valueOf(listShapeInfo.get(listIndexSelected[0]).getyEnd()));
     }
 
     public void lbSelected(JLabel lb) {
@@ -209,21 +213,13 @@ public class pn2D extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listShape = new javax.swing.JList<>();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        tfY1 = new javax.swing.JTextField();
-        tfX2 = new javax.swing.JTextField();
-        tfY2 = new javax.swing.JTextField();
         tfx0 = new javax.swing.JTextField();
         tfy0 = new javax.swing.JTextField();
         tfh = new javax.swing.JTextField();
-        tfX1 = new javax.swing.JTextField();
         tfr = new javax.swing.JTextField();
         tfa = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -335,30 +331,6 @@ public class pn2D extends javax.swing.JPanel {
 
         pnThongTin.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 160, 160));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("X1");
-        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnThongTin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 25, 30));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Y1");
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnThongTin.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 25, 30));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Y2");
-        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnThongTin.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 510, 25, 30));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("X2");
-        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnThongTin.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 25, 30));
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("x0");
@@ -383,24 +355,6 @@ public class pn2D extends javax.swing.JPanel {
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnThongTin.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 25, 30));
 
-        tfY1.setEditable(false);
-        tfY1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tfY1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfY1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnThongTin.add(tfY1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 470, 45, 30));
-
-        tfX2.setEditable(false);
-        tfX2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tfX2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfX2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnThongTin.add(tfX2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 510, 45, 30));
-
-        tfY2.setEditable(false);
-        tfY2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tfY2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfY2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnThongTin.add(tfY2, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 510, 45, 30));
-
         tfx0.setEditable(false);
         tfx0.setBackground(new java.awt.Color(220, 220, 220));
         tfx0.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -421,12 +375,6 @@ public class pn2D extends javax.swing.JPanel {
         tfh.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnThongTin.add(tfh, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 420, 45, 30));
-
-        tfX1.setEditable(false);
-        tfX1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tfX1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfX1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnThongTin.add(tfX1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 470, 45, 30));
 
         tfr.setEditable(false);
         tfr.setBackground(new java.awt.Color(220, 220, 220));
@@ -1211,10 +1159,6 @@ public class pn2D extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1244,10 +1188,6 @@ public class pn2D extends javax.swing.JPanel {
     private javax.swing.JPanel pnFooter;
     private javax.swing.JPanel pnMain;
     private javax.swing.JPanel pnThongTin;
-    private javax.swing.JTextField tfX1;
-    private javax.swing.JTextField tfX2;
-    private javax.swing.JTextField tfY1;
-    private javax.swing.JTextField tfY2;
     private javax.swing.JTextField tfa;
     private javax.swing.JTextField tfb;
     private javax.swing.JTextField tfh;

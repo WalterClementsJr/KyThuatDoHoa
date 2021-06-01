@@ -194,9 +194,9 @@ public class ShapeInfo {
         this.name = "Rectangle" + String.valueOf(name);
         this.type = "Rectangle";
         x0 = xStart;
-        y0 = yEnd;
+        y0 = yStart;
         x1 = xEnd;
-        y1 = yEnd;
+        y1 = yStart;
         x2 = xEnd;
         y2 = yEnd;
         a = Math.abs(xEnd - xStart);
