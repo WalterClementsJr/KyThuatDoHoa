@@ -61,6 +61,9 @@ public class TrucToaDo3D extends JPanel {
         bresenhamLine(g, -49, -49, 0, 0);
 
         g.setColor(Color.black);
+        g.drawString("X", 726, 239);
+        g.drawString("Y", 165, 493);
+        g.drawString("Z", 389, 24);
     }
 
     public static void putPixel(Graphics g, int x, int y) {
