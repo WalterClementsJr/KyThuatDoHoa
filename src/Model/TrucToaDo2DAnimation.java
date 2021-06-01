@@ -29,11 +29,6 @@ public class TrucToaDo2DAnimation extends JPanel {
     public static int heliX, heliY;
     public static final double ANGLE = (2 * Math.PI / 8);
 
-    public BufferedImage canvas
-            = new BufferedImage(750, 500, BufferedImage.TYPE_INT_ARGB);
-
-    public static Graphics canvasGraphics;
-
     public static Heli heli = new Heli(new Point(-20, -0), 10, 30);
 
     ArrayList<Shapes2D> stuffDraw = new ArrayList<>();
@@ -42,12 +37,7 @@ public class TrucToaDo2DAnimation extends JPanel {
     public static TimerTask task;
     public static boolean pause = true;
 
-    public static Shapes2D tempShape;
-    private boolean drawGrid = true;
-    private boolean drawOxy = true;
-
     public TrucToaDo2DAnimation() {
-        canvasGraphics = this.canvas.getGraphics();
 
         int random;
         for (int i = 0; i < MAX_OBJECT; i++) {
@@ -76,9 +66,7 @@ public class TrucToaDo2DAnimation extends JPanel {
                 if (pause) {
                     return;
                 }
-
-                heli.xoay(ANGLE + counter % 10, heli.getCenter());
-
+                // arrow key input
                 if (fHome.left && fHome.up) {
                     heliX = -1;
                     heliY = 1;
@@ -130,62 +118,23 @@ public class TrucToaDo2DAnimation extends JPanel {
                         }
                     }
                 }
+                heli.xoay(ANGLE + counter % 10, heli.getCenter());
                 counter++;
                 repaint();
             }
         };
-        timer.scheduleAtFixedRate(task, 0, 90);
+        timer.scheduleAtFixedRate(task, 0, 100);
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        if (drawGrid) {
-            veGrid(canvasGraphics);
-        }
-        if (drawOxy) {
-            veOxy(canvasGraphics);
-        }
+        TrucToaDo.veTrucToaDo(g, this.getWidth(), this.getHeight());
 
-        heli.draw(canvasGraphics);
+        stuffDraw.forEach(s -> {
+            s.draw(g);
+        });
 
-        for (Shapes2D s : stuffDraw) {
-            s.draw(canvasGraphics);
-        }
-
-        g.drawImage(canvas, 0, 0, this);
-    }
-
-    public void veOxy(Graphics g) {
-        //vẽ 2 trục Ox, Oy
-        g.setColor(Color.red);
-        TrucToaDo.bresenhamLine(g, 0, -deltaY + 1, 0, deltaY);
-        TrucToaDo.bresenhamLine(g, -deltaX, 0, deltaX - 1, 0);
-
-        g.setColor(Color.black);
-    }
-
-    public void veGrid(Graphics g) {
-        super.paintComponent(g);
-        int chieuDaiPanel = this.getWidth();
-        int chieuRongPanel = this.getHeight();
-        //vẽ các đường dọc
-        for (int i = 0; i <= chieuDaiPanel; i = i + 5) {
-            g.setColor(Color.LIGHT_GRAY);
-            g.drawLine(i, 0, i, chieuRongPanel);
-        }
-        //vẽ các dường ngang
-        for (int i = 0; i <= chieuRongPanel; i = i + 5) {
-            g.setColor(Color.LIGHT_GRAY);
-            g.drawLine(0, i, chieuDaiPanel, i);
-        }
-    }
-
-    public void setDrawGrid(boolean b) {
-        drawGrid = b;
-    }
-
-    public void setDrawOxy(boolean b) {
-        drawOxy = b;
+        heli.draw(g);
     }
 }
