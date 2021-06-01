@@ -134,31 +134,29 @@ public class MyRect implements Shapes2D {
         //thu phóng rồi tịnh tiến về A
         double tempAx = originalA.x;
         tempAx = tempAx * heSoThuPhong;
-        int dentaX = originalA.x - (int) Math.round(tempAx);
-        A.x = originalA.x;
+        A.x = (int) Math.round(tempAx);
         double tempAy = A.y;
         tempAy = tempAy * heSoThuPhong;
-        int dentaY = originalA.y - (int) Math.round(tempAy);
-        A.y = originalA.y;
+        A.y = (int) Math.round(tempAy);
 
         double tempBx = originalB.x;
         tempBx = tempBx * heSoThuPhong;
-        B.x = (int) Math.round(tempBx) + dentaX;
+        B.x = (int) Math.round(tempBx);
         double tempBy = originalB.y;
         tempBy = tempBy * heSoThuPhong;
-        B.y = (int) Math.round(tempBy) + dentaY;
+        B.y = (int) Math.round(tempBy);
         double tempCx = originalC.x;
         tempCx = tempCx * heSoThuPhong;
-        C.x = (int) Math.round(tempCx) + dentaX;
+        C.x = (int) Math.round(tempCx);
         double tempCy = originalC.y;
         tempCy = tempCy * heSoThuPhong;
-        C.y = (int) Math.round(tempCy) + dentaY;
+        C.y = (int) Math.round(tempCy);
         double tempDx = originalD.x;
         tempDx = tempDx * heSoThuPhong;
-        D.x = (int) Math.round(tempDx) + dentaX;
+        D.x = (int) Math.round(tempDx);
         double tempDy = originalD.y;
         tempDy = tempDy * heSoThuPhong;
-        D.y = (int) Math.round(tempDy) + dentaY;
+        D.y = (int) Math.round(tempDy);
         originalA.x = A.x;
         originalA.y = A.y;
         originalB.x = B.x;
@@ -175,9 +173,13 @@ public class MyRect implements Shapes2D {
         B.y = -B.y;
         C.y = -C.y;
         D.y = -D.y;
+        originalA.x = A.x;
         originalA.y = A.y;
+        originalB.x = B.x;
         originalB.y = B.y;
+        originalC.x = C.x;
         originalC.y = C.y;
+        originalD.x = D.x;
         originalD.y = D.y;
     }
 
@@ -188,9 +190,13 @@ public class MyRect implements Shapes2D {
         C.x = -C.x;
         D.x = -D.x;
         originalA.x = A.x;
+        originalA.y = A.y;
         originalB.x = B.x;
+        originalB.y = B.y;
         originalC.x = C.x;
+        originalC.y = C.y;
         originalD.x = D.x;
+        originalD.y = D.y;
     }
 
     public boolean isOut(int maxHeight) {

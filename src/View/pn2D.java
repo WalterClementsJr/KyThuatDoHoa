@@ -914,6 +914,24 @@ public class pn2D extends javax.swing.JPanel {
         if (selectXoay) {
             TrucToaDo.tempFlag = new MyFlag(x1, y1);
             pQuay = new Point(x1, y1);
+            listIndexSelected=listShape.getSelectedIndices();
+            //set color black cho nhung thang duoc chon
+            for (int i=0;i<TrucToaDo.shapeList.size();i++)
+            {
+                for (int j=0;j<listIndexSelected.length;j++)
+                {
+                    if (i==listIndexSelected[j])
+                    {
+                        TrucToaDo.shapeList.get(i).setColor(Color.BLACK);
+                        break;
+                    }
+                    else
+                    {
+                        TrucToaDo.shapeList.get(i).setColor(Color.BLUE);
+                    }
+                }
+                
+            }
             listShape.clearSelection();
 //            shape = listShapeInfo.get(selectedRotating);
         } else {

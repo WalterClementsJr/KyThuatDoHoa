@@ -9,6 +9,7 @@ import static Model.TrucToaDo.putPixel;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,6 +23,8 @@ public class Ellipse implements Shapes2D {
     double radian = 0;
     Point anchor = new Point(0, 0);
     public Color colorShape=Color.BLACK;
+    ArrayList<Point> DSDiem=new ArrayList<Point>();
+    ArrayList<Point> originalDSDiem=new ArrayList<Point>();
     @Override
     public void setColor(Color colorShape) {
         this.colorShape=colorShape;
@@ -39,6 +42,14 @@ public class Ellipse implements Shapes2D {
         return cao;
     }
 
+    public void setDai(int dai) {
+        this.dai = dai;
+    }
+
+    public void setCao(int cao) {
+        this.cao = cao;
+    }
+    
     public Ellipse(Point A, Point B) {
         O = new Point();
         dai = Math.abs(A.x - B.x);
@@ -48,6 +59,48 @@ public class Ellipse implements Shapes2D {
         originalO = new Point(O.x, O.y);
         originalDai = dai;
         originalCao = cao;
+        createEllipse(originalO,originalDai,originalCao);
+    }
+    public void createEllipse(Point originalO, int dai, int cao)
+    {
+        long x, y, fx, fy, a2, b2, p;
+        x = 0;
+        y = cao;
+        a2 = dai * dai; //dai^2
+        b2 = cao * cao; // cao^2
+        fx = 0;
+        fy = 2 * a2 * y; // 2a^2y
+        generatePointsWithRotate(originalO.x, originalO.y, Math.round(x), Math.round(y), radian, anchor);
+        p = Math.round(b2 - (a2 * cao) + (0.25 * dai));
+
+        while (fx < fy) {
+            x++;
+            fx += 2 * b2; //2b2
+            if (p < 0) {
+                p += b2 * (2 * x + 3);
+            } else {
+                y--;
+                p += b2 * (2 * x + 3) + a2 * (-2 * y + 2);
+
+                fy -= 2 * a2; // 2a2
+            }
+            generatePointsWithRotate(originalO.x, originalO.y, Math.round(x), Math.round(y), radian, anchor);
+        }
+        p = Math.round(b2 * (x + 0.5) * (x + 0.5) + a2 * (y) * (y) - a2 * b2);
+
+        while (y > 0) {
+            y--;
+            fy -= 2 * a2; // 2a2
+            if (p >= 0) {
+                p += a2 * (3 - 2 * y);
+            } else {
+                x++;
+                fx += 2 * b2; // 2b2
+                p += b2 * (2 * x + 2) + a2 * (-2 * y + 3);
+
+            }
+            generatePointsWithRotate(originalO.x, originalO.y, Math.round(x), Math.round(y), radian, anchor);
+        }
     }
 
     @Override
@@ -171,22 +224,31 @@ public class Ellipse implements Shapes2D {
         }
     }
 
-    static void plot(Graphics g, int xc, int yc, int x, int y) {
+    public void plot(Graphics g, int xc, int yc, int x, int y) {
         putPixel(g, xc + x, yc + y);
         putPixel(g, xc - x, yc + y);
         putPixel(g, xc + x, yc - y);
         putPixel(g, xc - x, yc - y);
     }
 
-    static void plotWithRotate(Graphics g, int xc, int yc, int x, int y, double radian, Point anchor) {
+    public void generatePointsWithRotate(int xc, int yc, int x, int y, double radian, Point anchor) {
         Point a = Rotation.rotateAroundO(xc + x, yc + y, radian, anchor);
         Point b = Rotation.rotateAroundO(xc - x, yc + y, radian, anchor);
         Point c = Rotation.rotateAroundO(xc + x, yc - y, radian, anchor);
         Point d = Rotation.rotateAroundO(xc - x, yc - y, radian, anchor);
-        putPixel(g, a.x, a.y);
-        putPixel(g, b.x, b.y);
-        putPixel(g, c.x, c.y);
-        putPixel(g, d.x, d.y);
+        DSDiem.add(a);
+        DSDiem.add(b);
+        DSDiem.add(c);
+        DSDiem.add(d);
+        Point originalA=new Point(a.x,a.y);
+        Point originalB=new Point(b.x,b.y);
+        Point originalC=new Point(c.x,c.y);
+        Point originalD=new Point(d.x,d.y);
+        originalDSDiem.add(originalA);
+        originalDSDiem.add(originalB);
+        originalDSDiem.add(originalC);
+        originalDSDiem.add(originalD);
+        
     }
 
     static void plotDash(Graphics g, int xc, int yc, int x, int y, int chieuDaiMoiDoan, int khoangCachMoiDoan) {
@@ -210,43 +272,9 @@ public class Ellipse implements Shapes2D {
     @Override
     public void draw(Graphics g) {
         g.setColor(colorShape);
-        long x, y, fx, fy, a2, b2, p;
-        x = 0;
-        y = cao;
-        a2 = dai * dai; //dai^2
-        b2 = cao * cao; // cao^2
-        fx = 0;
-        fy = 2 * a2 * y; // 2a^2y
-        plotWithRotate(g, originalO.x, originalO.y, Math.round(x), Math.round(y), radian, anchor);
-        p = Math.round(b2 - (a2 * cao) + (0.25 * dai));
-
-        while (fx < fy) {
-            x++;
-            fx += 2 * b2; //2b2
-            if (p < 0) {
-                p += b2 * (2 * x + 3);
-            } else {
-                y--;
-                p += b2 * (2 * x + 3) + a2 * (-2 * y + 2);
-
-                fy -= 2 * a2; // 2a2
-            }
-            plotWithRotate(g, originalO.x, originalO.y, Math.round(x), Math.round(y), radian, anchor);
-        }
-        p = Math.round(b2 * (x + 0.5) * (x + 0.5) + a2 * (y) * (y) - a2 * b2);
-
-        while (y > 0) {
-            y--;
-            fy -= 2 * a2; // 2a2
-            if (p >= 0) {
-                p += a2 * (3 - 2 * y);
-            } else {
-                x++;
-                fx += 2 * b2; // 2b2
-                p += b2 * (2 * x + 2) + a2 * (-2 * y + 3);
-
-            }
-            plotWithRotate(g, originalO.x, originalO.y, Math.round(x), Math.round(y), radian, anchor);
+        for (Point i:DSDiem)
+        {
+            putPixel(g, i.x, i.y);
         }
 //        O = originalO;
     }
@@ -263,12 +291,23 @@ public class Ellipse implements Shapes2D {
     @Override
     public void xoay(double radian, Point anchor) {
         O = Rotation.rotateAroundO(originalO.x, originalO.y, radian, anchor);
+        for (int i=0;i<DSDiem.size();i++)
+        {
+            DSDiem.set(i, Rotation.rotateAroundO(originalDSDiem.get(i).x, originalDSDiem.get(i).y, radian, anchor));
+        }
     }
 
     @Override
     public void dich(int x, int y) {
         O.x = O.x + x;
         O.y = O.y + y;
+        for (int i=0;i<DSDiem.size();i++)
+        {
+            DSDiem.get(i).x=DSDiem.get(i).x+x;
+            DSDiem.get(i).y=DSDiem.get(i).y+y;
+            originalDSDiem.get(i).x=DSDiem.get(i).x;
+            originalDSDiem.get(i).y=DSDiem.get(i).y;
+        }
         originalO.x = O.x;
         originalO.y = O.y;
     }
@@ -276,21 +315,82 @@ public class Ellipse implements Shapes2D {
     @Override
     public void doiXungOx() {
         O.y = -O.y;
+        for (int i=0;i<DSDiem.size();i++)
+        {
+            DSDiem.get(i).y=-DSDiem.get(i).y;
+            originalDSDiem.get(i).x=DSDiem.get(i).x;
+            originalDSDiem.get(i).y=DSDiem.get(i).y;        
+        }
+        originalO.x = O.x;
         originalO.y = O.y;
     }
 
     @Override
     public void doiXungOy() {
         O.x = -O.x;
+        for (int i=0;i<DSDiem.size();i++)
+        {
+            DSDiem.get(i).x=-DSDiem.get(i).x;
+            originalDSDiem.get(i).x=DSDiem.get(i).x;    
+            originalDSDiem.get(i).y=DSDiem.get(i).y;  
+        }
         originalO.x = O.x;
+        originalO.y = O.y;
     }
 
     @Override
     public void thuPhong(double heSoThuPhong) {
-        dai = (int) Math.round(originalDai * heSoThuPhong);
-        cao = (int) Math.round(originalCao * heSoThuPhong);
-        originalDai = dai;
-        originalCao = cao;
+        if (DSDiem.get(0).y==O.y)
+        {
+            radian=-Math.PI/2;
+        }
+        else
+        {
+            radian=-Math.atan((double) (DSDiem.get(0).x-O.x)/(DSDiem.get(0).y-O.y));//tính góc quay dựa vào hệ số góc
+        }
+        double tempOx = originalO.x;
+        tempOx = tempOx * heSoThuPhong;
+        O.x =(int) Math.round(tempOx);
+        double tempOy = originalO.y;
+        tempOy = tempOy * heSoThuPhong;
+        O.y =(int) Math.round(tempOy);
+        anchor.x=O.x;
+        anchor.y=O.y;
+        DSDiem.clear();
+        originalDSDiem.clear();
+        createEllipse(O, (int) Math.round(originalDai*heSoThuPhong), (int) Math.round(originalCao*heSoThuPhong));
+        originalDai=(int) Math.round(originalDai*heSoThuPhong);
+        originalCao=(int) Math.round(originalCao*heSoThuPhong);
+        originalO.x = O.x;
+        originalO.y = O.y;
+        
+        
+//            double tempX= i.x;
+//        tempX = tempX * heSoThuPhong;
+//        int dentaX = originalO.x - (int) Math.round(tempX);
+//        i.x = (int) Math.round(tempX) + dentaX;
+//        double tempY = i.y;
+//        tempY = tempY * heSoThuPhong;
+//        int dentaY = originalO.y - (int) Math.round(tempY);
+//        i.y = (int) Math.round(tempY) + dentaY;
+//        for (Point i:DSDiem)
+//        {
+//            
+//        }
+//
+//        double tempBx = originalB.x;
+//
+//        tempBx = tempBx * heSoThuPhong;
+//        B.x = (int) Math.round(tempBx) + dentaX;
+//        double tempBy = originalB.y;
+//        tempBy = tempBy * heSoThuPhong;
+//        B.y = (int) Math.round(tempBy) + dentaY;
+//        originalA.x = A.x;
+//        originalA.y = A.y;
+//        originalB.x = B.x;
+//        originalB.y = B.y;
+////        originalDai = dai;
+////        originalCao = cao;
     }
 
     @Override

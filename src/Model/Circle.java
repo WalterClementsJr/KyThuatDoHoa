@@ -108,6 +108,7 @@ public class Circle implements Shapes2D {
     @Override
     public void doiXungOx() {
         O.y = -O.y;
+        originalO.x = O.x;
         originalO.y = O.y;
     }
 
@@ -115,12 +116,21 @@ public class Circle implements Shapes2D {
     public void doiXungOy() {
         O.x = -O.x;
         originalO.x = O.x;
+        originalO.y = O.y;
     }
 
     @Override
     public void thuPhong(double heSoThuPhong) {
+        double tempOx = originalO.x;
+        tempOx = tempOx * heSoThuPhong;
+        O.x =(int) Math.round(tempOx);
+        double tempOy = originalO.y;
+        tempOy = tempOy * heSoThuPhong;
+        O.y = (int) Math.round(tempOy);
         radius = (int) Math.round(originalRadius * heSoThuPhong);
         originalRadius = radius;
+        originalO.x=O.x;
+        originalO.y=O.y;
     }
 
     public boolean isOut(int maxHeight) {

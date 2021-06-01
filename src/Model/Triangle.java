@@ -144,8 +144,11 @@ public class Triangle implements Shapes2D {
         A.y = -A.y;
         B.y = -B.y;
         C.y = -C.y;
+        originalA.x = A.x;
         originalA.y = A.y;
+        originalB.x = B.x;
         originalB.y = B.y;
+        originalC.x = C.x;
         originalC.y = C.y;
     }
 
@@ -155,8 +158,11 @@ public class Triangle implements Shapes2D {
         B.x = -B.x;
         C.x = -C.x;
         originalA.x = A.x;
+        originalA.y = A.y;
         originalB.x = B.x;
+        originalB.y = B.y;
         originalC.x = C.x;
+        originalC.y = C.y;
     }
 
     @Override
@@ -164,25 +170,23 @@ public class Triangle implements Shapes2D {
         //thu phóng rồi tịnh tiến về A
         double tempAx = originalA.x;
         tempAx = tempAx * heSoThuPhong;
-        int dentaX = originalA.x - (int) Math.round(tempAx);
-        A.x = originalA.x;
+        A.x = (int) Math.round(tempAx);
         double tempAy = A.y;
         tempAy = tempAy * heSoThuPhong;
-        int dentaY = originalA.y - (int) Math.round(tempAy);
-        A.y = originalA.y;
+        A.y = (int) Math.round(tempAy);
 
         double tempBx = originalB.x;
         tempBx = tempBx * heSoThuPhong;
-        B.x = (int) Math.round(tempBx) + dentaX;
+        B.x = (int) Math.round(tempBx);
         double tempBy = originalB.y;
         tempBy = tempBy * heSoThuPhong;
-        B.y = (int) Math.round(tempBy) + dentaY;
+        B.y = (int) Math.round(tempBy);
         double tempCx = originalC.x;
         tempCx = tempCx * heSoThuPhong;
-        C.x = (int) Math.round(tempCx) + dentaX;
+        C.x = (int) Math.round(tempCx);
         double tempCy = originalC.y;
         tempCy = tempCy * heSoThuPhong;
-        C.y = (int) Math.round(tempCy) + dentaY;
+        C.y = (int) Math.round(tempCy);
         originalA.x = A.x;
         originalA.y = A.y;
         originalB.x = B.x;
