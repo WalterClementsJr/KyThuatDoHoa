@@ -275,6 +275,7 @@ public class fHome extends javax.swing.JFrame {
         lb3D.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
         c.show(pnMain, "pn2Da");
+        JOptionPane.showMessageDialog(rootPane, "Nhấn phím play để chạy animation\n\nDùng phím mũi tên để di chuyển");
     }//GEN-LAST:event_lb2DaMousePressed
 
     private void lb3DMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb3DMousePressed
