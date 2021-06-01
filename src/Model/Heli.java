@@ -139,8 +139,7 @@ public class Heli implements Shapes2D {
             t.thuPhong(heSoThuPhong);
         }
     }
-    
-   
+
     @Override
     public void setRadianAndAnchor(double radian, Point anchor) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -252,9 +251,6 @@ class HeliBody implements Shapes2D {
         head.thuPhong(heSoThuPhong);
         box.thuPhong(heSoThuPhong);
     }
-
-    
-    
 
     @Override
     public boolean isOut(int maxHeight) {

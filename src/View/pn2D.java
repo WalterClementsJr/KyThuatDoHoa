@@ -75,20 +75,20 @@ public class pn2D extends javax.swing.JPanel {
         tfy1.setText(String.valueOf(t.getB().y));
         tfx2.setText(String.valueOf(t.getC().x));
         tfy2.setText(String.valueOf(t.getC().y));
-        tfh.setText(String.valueOf((int) Math.sqrt((t.getA().x - (t.getB().x+t.getC().x)/2)
-                * (t.getA().x - (t.getB().x+t.getC().x)/2) 
-                + (t.getA().y - (t.getB().y+t.getC().y)/2) 
-                * (t.getA().y - (t.getB().y+t.getC().y)/2))));
+        tfh.setText(String.valueOf((int) Math.sqrt((t.getA().x - (t.getB().x + t.getC().x) / 2)
+                * (t.getA().x - (t.getB().x + t.getC().x) / 2)
+                + (t.getA().y - (t.getB().y + t.getC().y) / 2)
+                * (t.getA().y - (t.getB().y + t.getC().y) / 2))));
         listShapeInfo.get(index).setX0(t.getA().x);
         listShapeInfo.get(index).setY0(t.getA().y);
         listShapeInfo.get(index).setX1(t.getB().x);
         listShapeInfo.get(index).setY1(t.getB().y);
         listShapeInfo.get(index).setX2(t.getC().x);
         listShapeInfo.get(index).setY2(t.getC().y);
-        listShapeInfo.get(index).setH((int) Math.sqrt((t.getA().x - (t.getB().x+t.getC().x)/2)
-                * (t.getA().x - (t.getB().x+t.getC().x)/2) 
-                + (t.getA().y - (t.getB().y+t.getC().y)/2) 
-                * (t.getA().y - (t.getB().y+t.getC().y)/2)));
+        listShapeInfo.get(index).setH((int) Math.sqrt((t.getA().x - (t.getB().x + t.getC().x) / 2)
+                * (t.getA().x - (t.getB().x + t.getC().x) / 2)
+                + (t.getA().y - (t.getB().y + t.getC().y) / 2)
+                * (t.getA().y - (t.getB().y + t.getC().y) / 2)));
     }
 
     public void setRectChanged(MyRect r, int index) {
@@ -99,13 +99,13 @@ public class pn2D extends javax.swing.JPanel {
         tfx2.setText(String.valueOf(r.getC().x));
         tfy2.setText(String.valueOf(r.getC().y));
         tfa.setText(String.valueOf((int) Math.sqrt((r.getA().x - r.getB().x)
-                * (r.getA().x - r.getB().x) 
-                + (r.getA().y  - r.getB().y )
-                * (r.getA().y  - r.getB().y ))));
+                * (r.getA().x - r.getB().x)
+                + (r.getA().y - r.getB().y)
+                * (r.getA().y - r.getB().y))));
         tfb.setText(String.valueOf((int) Math.sqrt((r.getB().x - r.getC().x)
-                * (r.getB().x - r.getC().x) 
-                + (r.getB().y  - r.getC().y )
-                * (r.getB().y  - r.getC().y ))));
+                * (r.getB().x - r.getC().x)
+                + (r.getB().y - r.getC().y)
+                * (r.getB().y - r.getC().y))));
         listShapeInfo.get(index).setX0(r.getA().x);
         listShapeInfo.get(index).setY0(r.getA().y);
         listShapeInfo.get(index).setX1(r.getB().x);
@@ -113,13 +113,13 @@ public class pn2D extends javax.swing.JPanel {
         listShapeInfo.get(index).setX2(r.getC().x);
         listShapeInfo.get(index).setY2(r.getC().y);
         listShapeInfo.get(index).setA((int) Math.sqrt((r.getA().x - r.getB().x)
-                * (r.getA().x - r.getB().x) 
-                + (r.getA().y  - r.getB().y )
-                * (r.getA().y  - r.getB().y )));
+                * (r.getA().x - r.getB().x)
+                + (r.getA().y - r.getB().y)
+                * (r.getA().y - r.getB().y)));
         listShapeInfo.get(index).setB((int) Math.sqrt((r.getB().x - r.getC().x)
-                * (r.getB().x - r.getC().x) 
-                + (r.getB().y  - r.getC().y )
-                * (r.getB().y  - r.getC().y )));
+                * (r.getB().x - r.getC().x)
+                + (r.getB().y - r.getC().y)
+                * (r.getB().y - r.getC().y)));
     }
 
     public void setLineChanged(MyLine l, int index) {
@@ -814,23 +814,18 @@ public class pn2D extends javax.swing.JPanel {
         if (selectXoay) {
             TrucToaDo.tempFlag = new MyFlag(x1, y1);
             pQuay = new Point(x1, y1);
-            listIndexSelected=listShape.getSelectedIndices();
+            listIndexSelected = listShape.getSelectedIndices();
             //set color black cho nhung thang duoc chon
-            for (int i=0;i<TrucToaDo.shapeList.size();i++)
-            {
-                for (int j=0;j<listIndexSelected.length;j++)
-                {
-                    if (i==listIndexSelected[j])
-                    {
+            for (int i = 0; i < TrucToaDo.shapeList.size(); i++) {
+                for (int j = 0; j < listIndexSelected.length; j++) {
+                    if (i == listIndexSelected[j]) {
                         TrucToaDo.shapeList.get(i).setColor(Color.BLACK);
                         break;
-                    }
-                    else
-                    {
+                    } else {
                         TrucToaDo.shapeList.get(i).setColor(Color.BLUE);
                     }
                 }
-                
+
             }
             listShape.clearSelection();
         } else {
