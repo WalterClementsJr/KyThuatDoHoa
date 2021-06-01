@@ -27,7 +27,7 @@ public class Ellipse implements Shapes2D {
     ArrayList<Point> originalDSDiem=new ArrayList<Point>();
     @Override
     public void setColor(Color colorShape) {
-        this.colorShape=colorShape;
+        this.colorShape = colorShape;
     }
 
     public Point getO() {

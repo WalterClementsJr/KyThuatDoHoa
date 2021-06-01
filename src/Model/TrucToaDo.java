@@ -28,7 +28,7 @@ public class TrucToaDo extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        veTrucToaDo(g);
+        veTrucToaDo(g, this.getWidth(), this.getHeight());
 
 //        dash2DotLine(g, 0, 0, 40, 20);
 //        dashDotLine(g, 0, 0, 40, 20);
@@ -49,26 +49,21 @@ public class TrucToaDo extends JPanel {
 //MyLine.dashedLine(g, -20, 1, 20, 1);
     }
 
-    public void veTrucToaDo(Graphics g) {
-        super.paintComponent(g);
-        int chieuDaiPanel = this.getWidth();
-        int chieuRongPanel = this.getHeight();
+    public static void veTrucToaDo(Graphics g, int panelWidth, int panelHeight) {
         //vẽ các đường dọc
-        for (int i = 0; i <= chieuDaiPanel; i = i + 5) {
+        for (int i = 0; i <= panelWidth; i = i + 5) {
             g.setColor(Color.LIGHT_GRAY);
-            g.drawLine(i, 0, i, chieuRongPanel);
+            g.drawLine(i, 0, i, panelHeight);
         }
         //vẽ các dường ngang
-        for (int i = 0; i <= chieuRongPanel; i = i + 5) {
+        for (int i = 0; i <= panelHeight; i = i + 5) {
             g.setColor(Color.LIGHT_GRAY);
-            g.drawLine(0, i, chieuDaiPanel, i);
+            g.drawLine(0, i, panelWidth, i);
         }
         //vẽ 2 trục Ox, Oy
         g.setColor(Color.red);
         bresenhamLine(g, 0, -deltaY + 1, 0, deltaY);
         bresenhamLine(g, -deltaX, 0, deltaX - 1, 0);
-//            veDoanThang(g, 0, -deltaY + 1, 0, deltaY);
-//            veDoanThang(g, -deltaX, 0, deltaX - 1, 0);
 
         g.setColor(Color.black);
     }
@@ -366,9 +361,12 @@ public class TrucToaDo extends JPanel {
         return new Point(diem.x, p.y);
     }
 
-    public static void main(String[] args) {
-        Point a = new Point(15, 15);
-        Point b = convertDescartReverse(a);
-        Point c = convertDescart(b);
+    /**
+     * currrently not implemented bc A Tuong wants simplicity
+     * generate a random color (0 - 255)
+     * @return 
+     */
+    public static Color randomColor() {
+        return new Color((int)(Math.random() * 0x11111111));
     }
 }

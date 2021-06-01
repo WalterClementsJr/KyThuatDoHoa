@@ -217,7 +217,7 @@ public class fHome extends javax.swing.JFrame {
     private void lb2DMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb2DMouseEntered
         lb2D.setFont(new Font("Tahoma", Font.BOLD, 22));
 
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_lb2DMouseEntered
 
     private void lb2DaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb2DaMouseExited
@@ -226,7 +226,7 @@ public class fHome extends javax.swing.JFrame {
         } else {
             lb2Da.setFont(new Font("Tahoma", Font.PLAIN, 18));
         }
-// TODO add your handling code here:
+
     }//GEN-LAST:event_lb2DaMouseExited
 
     private void lb3DMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb3DMouseExited
@@ -235,7 +235,7 @@ public class fHome extends javax.swing.JFrame {
         } else {
             lb3D.setFont(new Font("Tahoma", Font.PLAIN, 18));
         }
-// TODO add your handling code here:
+
     }//GEN-LAST:event_lb3DMouseExited
 
     private void lb2DMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb2DMouseExited
@@ -244,17 +244,17 @@ public class fHome extends javax.swing.JFrame {
         } else {
             lb2D.setFont(new Font("Tahoma", Font.PLAIN, 18));
         }
-// TODO add your handling code here:
+
     }//GEN-LAST:event_lb2DMouseExited
 
     private void lb2DaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb2DaMouseEntered
         lb2Da.setFont(new Font("Tahoma", Font.BOLD, 22));
-// TODO add your handling code here:
+
     }//GEN-LAST:event_lb2DaMouseEntered
 
     private void lb3DMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb3DMouseEntered
         lb3D.setFont(new Font("Tahoma", Font.BOLD, 22));
-// TODO add your handling code here:
+
     }//GEN-LAST:event_lb3DMouseEntered
 
     private void lb2DMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb2DMousePressed
@@ -274,7 +274,7 @@ public class fHome extends javax.swing.JFrame {
         lb2D.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lb3D.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
-        c.show(pnMain, "pn2Da");// TODO add your handling code here:
+        c.show(pnMain, "pn2Da");
     }//GEN-LAST:event_lb2DaMousePressed
 
     private void lb3DMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb3DMousePressed
@@ -284,7 +284,7 @@ public class fHome extends javax.swing.JFrame {
         lb2Da.setFont(new Font("Tahoma", Font.PLAIN, 18));
         lb2D.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
-        c.show(pnMain, "pn3D");// TODO add your handling code here:
+        c.show(pnMain, "pn3D");
     }//GEN-LAST:event_lb3DMousePressed
 
     private void lbNhomTacGiaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbNhomTacGiaMousePressed
@@ -298,11 +298,11 @@ public class fHome extends javax.swing.JFrame {
     }//GEN-LAST:event_lbNhomTacGiaMousePressed
 
     private void pnMainKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnMainKeyTyped
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_pnMainKeyTyped
 
     private void pnMainKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnMainKeyReleased
-        // TODO add your handling code here:
+        
         switch (evt.getKeyCode()) {
             case KeyEvent.VK_UP:
                 up = false;
@@ -320,26 +320,8 @@ public class fHome extends javax.swing.JFrame {
     }//GEN-LAST:event_pnMainKeyReleased
 
     private void pnMainKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnMainKeyPressed
-        // TODO add your handling code here:
+        
         int key = evt.getKeyCode();
-//        switch (key) {
-//            case KeyEvent.VK_UP:
-//                TrucToaDo2DAnimation.heliX = 0;
-//                TrucToaDo2DAnimation.heliY = 1;
-//                break;
-//            case KeyEvent.VK_DOWN:
-//                TrucToaDo2DAnimation.heliX = 0;
-//                TrucToaDo2DAnimation.heliY = -1;
-//                break;
-//            case KeyEvent.VK_LEFT:
-//                TrucToaDo2DAnimation.heliX = -1;
-//                TrucToaDo2DAnimation.heliY = 0;
-//                break;
-//            case KeyEvent.VK_RIGHT:
-//                TrucToaDo2DAnimation.heliX = 1;
-//                TrucToaDo2DAnimation.heliY = 0;
-//                break;
-//        }
         switch (key) {
             case KeyEvent.VK_UP:
                 up = true;

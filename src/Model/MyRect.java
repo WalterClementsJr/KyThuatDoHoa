@@ -9,11 +9,13 @@ public class MyRect implements Shapes2D {
 
     private Point A, B, C, D;
     private Point originalA, originalB, originalC, originalD;
-    public Color colorShape=Color.BLACK;
+    public Color colorShape = Color.BLACK;
+
     @Override
     public void setColor(Color colorShape) {
-        this.colorShape=colorShape;
+        this.colorShape = colorShape;
     }
+
     public MyRect(Point a, Point c) {
         A = a;
         C = c;
@@ -44,7 +46,6 @@ public class MyRect implements Shapes2D {
         bresenhamLine(g, B.x, B.y, C.x, C.y);
         bresenhamLine(g, C.x, C.y, D.x, D.y);
         bresenhamLine(g, D.x, D.y, A.x, A.y);
-//        A = originalA; B = originalB; C = originalC; D = originalD;
     }
 
     @Override
@@ -59,10 +60,6 @@ public class MyRect implements Shapes2D {
         bresenhamLine(g, B.x, A.y, B.x, B.y);
         bresenhamLine(g, B.x, B.y, A.x, B.y);
         bresenhamLine(g, A.x, B.y, A.x, A.y);
-        A = originalA;
-        B = originalB;
-        C = originalC;
-        D = originalD;
     }
 
     @Override
@@ -200,10 +197,7 @@ public class MyRect implements Shapes2D {
     }
 
     public boolean isOut(int maxHeight) {
-        if (A.y < -1 * maxHeight / 2 - 20) {
-            return true;
-        }
-        return false;
+        return A.y < -1 * maxHeight / 2 - 20;
     }
 
     public static MyRect random(int maxWidth, int maxHeight, boolean fromTop) {
