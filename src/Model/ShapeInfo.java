@@ -206,7 +206,11 @@ public class ShapeInfo {
     public void setline(int name) {
         this.name = "Line" + String.valueOf(name);
         this.type = "Line";
-        a = (int) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+        a = (int) Math.sqrt((xEnd - xStart) * (xEnd - xStart) + (yEnd - yStart) * (yEnd - yStart));
+        x0=xStart;
+        y0=yStart;
+        x1=xEnd;
+        y1=yEnd;
 
     }
 
@@ -224,6 +228,6 @@ public class ShapeInfo {
         a = Math.abs(xStart - xEnd);
         b = Math.abs(yStart - yEnd);
         x0 = (xStart + xEnd) / 2;
-        y0 = (yStart + yStart) / 2;
+        y0 = (yStart + yEnd) / 2;
     }
 }

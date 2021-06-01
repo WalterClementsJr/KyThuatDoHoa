@@ -75,12 +75,20 @@ public class pn2D extends javax.swing.JPanel {
         tfy1.setText(String.valueOf(t.getB().y));
         tfx2.setText(String.valueOf(t.getC().x));
         tfy2.setText(String.valueOf(t.getC().y));
+        tfh.setText(String.valueOf((int) Math.sqrt((t.getA().x - (t.getB().x+t.getC().x)/2)
+                * (t.getA().x - (t.getB().x+t.getC().x)/2) 
+                + (t.getA().y - (t.getB().y+t.getC().y)/2) 
+                * (t.getA().y - (t.getB().y+t.getC().y)/2))));
         listShapeInfo.get(index).setX0(t.getA().x);
         listShapeInfo.get(index).setY0(t.getA().y);
         listShapeInfo.get(index).setX1(t.getB().x);
         listShapeInfo.get(index).setY1(t.getB().y);
         listShapeInfo.get(index).setX2(t.getC().x);
         listShapeInfo.get(index).setY2(t.getC().y);
+        listShapeInfo.get(index).setH((int) Math.sqrt((t.getA().x - (t.getB().x+t.getC().x)/2)
+                * (t.getA().x - (t.getB().x+t.getC().x)/2) 
+                + (t.getA().y - (t.getB().y+t.getC().y)/2) 
+                * (t.getA().y - (t.getB().y+t.getC().y)/2)));
     }
 
     public void setRectChanged(MyRect r, int index) {
@@ -101,14 +109,14 @@ public class pn2D extends javax.swing.JPanel {
     }
 
     public void setLineChanged(MyLine l, int index) {
-        tfX1.setText(String.valueOf(l.getA().x));
-        tfY1.setText(String.valueOf(l.getA().y));
-        tfX2.setText(String.valueOf(l.getB().x));
-        tfY2.setText(String.valueOf(l.getB().y));
-        listShapeInfo.get(index).setxStart(l.getA().x);
-        listShapeInfo.get(index).setyStart(l.getA().y);
-        listShapeInfo.get(index).setxEnd(l.getB().x);
-        listShapeInfo.get(index).setyEnd(l.getB().y);
+        tfx0.setText(String.valueOf(l.getA().x));
+        tfy0.setText(String.valueOf(l.getA().y));
+        tfx1.setText(String.valueOf(l.getB().x));
+        tfy1.setText(String.valueOf(l.getB().y));
+        listShapeInfo.get(index).setX0(l.getA().x);
+        listShapeInfo.get(index).setY0(l.getA().y);
+        listShapeInfo.get(index).setX1(l.getB().x);
+        listShapeInfo.get(index).setY1(l.getB().y);
     }
 
     public void setEllipseChanged(Ellipse e, int index) {
@@ -119,7 +127,7 @@ public class pn2D extends javax.swing.JPanel {
         listShapeInfo.get(index).setX0(e.getO().x);
         listShapeInfo.get(index).setY0(e.getO().y);
         listShapeInfo.get(index).setA(e.getDai());
-        listShapeInfo.get(index).setA(e.getCao());
+        listShapeInfo.get(index).setB(e.getCao());
     }
 
     public void setCircleChanged(Circle c, int index) {

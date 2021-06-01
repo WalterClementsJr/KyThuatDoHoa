@@ -361,6 +361,8 @@ public class Ellipse implements Shapes2D {
         createEllipse(O, (int) Math.round(originalDai*heSoThuPhong), (int) Math.round(originalCao*heSoThuPhong));
         originalDai=(int) Math.round(originalDai*heSoThuPhong);
         originalCao=(int) Math.round(originalCao*heSoThuPhong);
+        dai=originalDai;
+        cao=originalCao;
         originalO.x = O.x;
         originalO.y = O.y;
         
