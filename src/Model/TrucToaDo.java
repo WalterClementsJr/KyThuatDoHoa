@@ -362,11 +362,12 @@ public class TrucToaDo extends JPanel {
     }
 
     /**
-     * currrently not implemented bc A Tuong wants simplicity
-     * generate a random color (0 - 255)
-     * @return 
+     * currrently not implemented bc A Tuong wants simplicity generate a random
+     * color (0 - 255)
+     *
+     * @return
      */
     public static Color randomColor() {
-        return new Color((int)(Math.random() * 0x11111111));
+        return new Color((int) (Math.random() * 0x11111111));
     }
 }

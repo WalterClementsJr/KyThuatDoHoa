@@ -163,7 +163,7 @@ public class MyLine implements Shapes2D {
         //thu phóng và tịnh tiến về lại điểm A
         double tempAx = originalA.x;
         tempAx = tempAx * heSoThuPhong;
-        A.x =(int) Math.round(tempAx);
+        A.x = (int) Math.round(tempAx);
         double tempAy = A.y;
         tempAy = tempAy * heSoThuPhong;
         A.y = (int) Math.round(tempAy);

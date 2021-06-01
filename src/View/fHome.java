@@ -36,8 +36,8 @@ public class fHome extends javax.swing.JFrame {
 
     public fHome() {
         initComponents();
-        setResizable(false);
-        setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         c = (CardLayout) pnMain.getLayout();
         pnMain.add("pn2D", new pn2D());
         pnMain.add("pn2Da", new pn2Da());
@@ -45,7 +45,6 @@ public class fHome extends javax.swing.JFrame {
         c.show(pnMain, "pn2D");
         lb2D.setFont(new Font("Tahoma", Font.BOLD, 22));
         select2D = true;
-        UIManager UI = new UIManager();
         UIManager.put("OptionPane.background", Color.WHITE);
         UIManager.put("Panel.background", Color.WHITE);
         UIManager.put("Button.background", Color.WHITE);
@@ -204,9 +203,6 @@ public class fHome extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 pnMainKeyReleased(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                pnMainKeyTyped(evt);
-            }
         });
         pnMain.setLayout(new java.awt.CardLayout());
         getContentPane().add(pnMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1000, 550));
@@ -217,7 +213,6 @@ public class fHome extends javax.swing.JFrame {
     private void lb2DMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb2DMouseEntered
         lb2D.setFont(new Font("Tahoma", Font.BOLD, 22));
 
-        
     }//GEN-LAST:event_lb2DMouseEntered
 
     private void lb2DaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb2DaMouseExited
@@ -294,16 +289,11 @@ public class fHome extends javax.swing.JFrame {
             "N18DCCN202 - Nguyễn Mạnh Tường",
             "N18DCCN214 - Nguyễn Tân Thiên",
             "N18DCCN229 - Lê Đình Triều"};
-        JOptionPane d = new JOptionPane();
-        d.showMessageDialog(this, info, "About Us", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, info, "About Us", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_lbNhomTacGiaMousePressed
 
-    private void pnMainKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnMainKeyTyped
-        
-    }//GEN-LAST:event_pnMainKeyTyped
-
     private void pnMainKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnMainKeyReleased
-        
+
         switch (evt.getKeyCode()) {
             case KeyEvent.VK_UP:
                 up = false;
@@ -321,7 +311,7 @@ public class fHome extends javax.swing.JFrame {
     }//GEN-LAST:event_pnMainKeyReleased
 
     private void pnMainKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnMainKeyPressed
-        
+
         int key = evt.getKeyCode();
         switch (key) {
             case KeyEvent.VK_UP:
@@ -369,9 +359,16 @@ public class fHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new fHome().setVisible(true);
+                initUI();
             }
         });
+    }
+    
+    protected static void initUI() {
+        fHome fhome = new fHome();
+        fhome.setVisible(true);
+        fhome.setResizable(false);
+        fhome.setLocationRelativeTo(null);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

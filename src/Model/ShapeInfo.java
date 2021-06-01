@@ -207,10 +207,10 @@ public class ShapeInfo {
         this.name = "Line" + String.valueOf(name);
         this.type = "Line";
         a = (int) Math.sqrt((xEnd - xStart) * (xEnd - xStart) + (yEnd - yStart) * (yEnd - yStart));
-        x0=xStart;
-        y0=yStart;
-        x1=xEnd;
-        y1=yEnd;
+        x0 = xStart;
+        y0 = yStart;
+        x1 = xEnd;
+        y1 = yEnd;
 
     }
 
