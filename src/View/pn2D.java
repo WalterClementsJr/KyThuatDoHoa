@@ -98,6 +98,8 @@ public class pn2D extends javax.swing.JPanel {
         listShapeInfo.get(index).setY1(r.getB().y);
         listShapeInfo.get(index).setX2(r.getC().x);
         listShapeInfo.get(index).setY2(r.getC().y);
+        listShapeInfo.get(index).setA(Math.abs(r.getA().x - r.getB().x));
+        listShapeInfo.get(index).setB(Math.abs(r.getA().y - r.getC().y));
     }
 
     public void setLineChanged(MyLine l, int index) {
