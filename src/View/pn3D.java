@@ -63,7 +63,6 @@ public class pn3D extends javax.swing.JPanel {
         jSpinnerDai = new javax.swing.JSpinner();
         jSpinnerRong = new javax.swing.JSpinner();
         jSpinnerCao = new javax.swing.JSpinner();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jSpinnerBanKinh = new javax.swing.JSpinner();
         pnMain = new Model.TrucToaDo3D();
@@ -120,7 +119,7 @@ public class pn3D extends javax.swing.JPanel {
                 jSpinnerYoStateChanged(evt);
             }
         });
-        pnThongTin.add(jSpinnerYo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 100, 30));
+        pnThongTin.add(jSpinnerYo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 120, 30));
 
         jSpinnerZo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jSpinnerZo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -180,11 +179,6 @@ public class pn3D extends javax.swing.JPanel {
             }
         });
         pnThongTin.add(jSpinnerCao, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 120, 30));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("√2");
-        pnThongTin.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 20, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -392,7 +386,6 @@ public class pn3D extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner jSpinner6;

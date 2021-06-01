@@ -14,8 +14,8 @@ public class Projection {
     }
 
     public static Point cavalier(int x, int y, int z) {
-        int x1 = x - y;
-        int y1 = z - y;
+        int x1 =(int) Math.round(x - y*Math.sqrt(2)/2);
+        int y1 =(int) Math.round(z - y*Math.sqrt(2)/2);
         return new Point(x1, y1);
     }
 }
