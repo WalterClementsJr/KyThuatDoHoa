@@ -199,8 +199,8 @@ public class ShapeInfo {
         y1 = yEnd;
         x2 = xEnd;
         y2 = yEnd;
-        a = Math.abs(yEnd - yStart);
-        b = Math.abs(xEnd - xStart);
+        a = Math.abs(xEnd - xStart);
+        b = Math.abs(yEnd - yStart);
     }
 
     public void setline(int name) {
